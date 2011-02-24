@@ -1,0 +1,166 @@
+/** Add css rules here for your application. */
+
+
+/** Example rules used by the template application (remove for your app) */
+h1 {
+  font-size: 2em;
+  font-weight: bold;
+  color: #777777;
+  margin: 40px 0px 70px;
+  text-align: center;
+}
+
+.sendButton {
+  display: block;
+  font-size: 16pt;
+}
+
+/** Most GWT widgets already have a style name defined */
+.gwt-DialogBox {
+  width: 400px;
+}
+
+.dialogVPanel {
+  margin: 5px;
+}
+
+.serverResponseLabelError {
+  color: red;
+}
+
+/** Set ids using widget.getElement().setId("idOfElement") */
+#closeButton {
+  margin: 15px 6px 6px;
+}
+
+.olControlNavToolbar2 div { 
+  top: 5px;
+  left: 5px;
+  margin-left:5px;
+  
+  position: relative;
+}
+
+.olControlNavigationHistoryPreviousItemActive { 
+    background:url(img/MActionZoomLast.png) no-repeat;
+	   background-position: 0px 0px;
+   float:left;
+    margin-right:5px;
+}
+.olControlNavigationHistoryPreviousItemInactive { 
+    background:url(img/MActionZoomLast.png) no-repeat;
+	   opacity:0.4;
+	   
+   float:left;
+    margin-right:5px;
+}
+
+.olControlNavigationHistoryNextItemActive { 
+    background:url(img/MActionZoomNext.png) no-repeat;
+	   float:left;
+    margin-right:5px;
+}
+.olControlNavigationHistoryNextItemInactive { 
+    background:url(img/MActionZoomNext.png) no-repeat;
+	   opacity:0.4;
+	   float:left;
+    margin-right:5px;
+}
+
+.olControlZoomInItemInactive {
+    background:url(img/MActionZoomIn.png) no-repeat;
+    float:left;
+    height:24px;
+    margin-right:5px;
+    width:24px;
+}
+
+.olControlZoomOutItemInactive {
+    background:url(img/MActionZoomOut.png) no-repeat;
+    float:left;
+    height:24px;
+    margin-right:5px;
+    width:24px;
+}
+
+.ZoomBoxItemActive {
+    background:url(img/MActionZoomOut.png) no-repeat;
+  background-color: gray;
+    float:left;
+    height:24px;
+    margin-right:5px;
+    width:24px;
+}
+
+.ZoomBoxItemInactive {
+    background:url(img/MActionZoomOut.png) no-repeat;
+    float:left;
+    height:24px;
+    margin-right:5px;
+    width:24px;
+}
+
+.olControlZoomToMaxExtentItemInactive {
+    background:url(img/MActionZoomFullExtent.png) no-repeat;
+    float:left;
+    height:24px;
+    margin-right:5px;
+    width:24px;
+}
+
+
+.olControlZoomBoxItemActive { 
+  background-image: url("img/MActionZoomIn.png");
+  background-color: gray;
+  background-repeat: no-repeat;
+    float:left;
+    height:24px;
+    margin-right:5px;
+    width:24px;
+}
+
+.olControlZoomBoxItemInactive { 
+  background-image: url("img/MActionZoomIn.png");
+  background-repeat: no-repeat;
+    float:left;
+    height:24px;
+    margin-right:5px;
+    width:24px;
+}
+
+.olControlNavigationItemActive { 
+  background-image: url("img/MActionPan.png");
+  background-color: gray;
+  background-repeat: no-repeat;
+    float:left;
+    height:24px;
+    margin-right:5px;
+    width:24px;
+}
+
+.olControlNavigationItemInactive { 
+  background-image: url("img/MActionPan.png");
+  background-repeat: no-repeat;
+    float:left;
+    height:24px;
+    margin-right:5px;
+    width:24px;
+}
+
+.LabelError
+{
+  color           : #ff0000;
+  font-size       : 0.7em;
+  font-style      : italic;
+}
+
+.LabelLink
+{
+  font-family     : Helvetica, Arial, sans-serif;
+  color           : blue;
+  font-size       : 0.7em;
+  font-style      : italic;
+  text-decoration : underline;
+  padding-right   : 20px;
+  cursor          : pointer;
+}

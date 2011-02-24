@@ -1,0 +1,100 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title></title>
+    <link rel="shortcut icon" href="globe-green.ico">
+    <link rel="stylesheet" href="theme/default/style.css" type="text/css">
+    <link rel="stylesheet" href="styles.css" type="text/css">
+    <script type="text/javascript" language="javascript" src="LayerParams.js"></script>
+    <script type="text/javascript" language="javascript" src="Project.js"></script>
+    <script type="text/javascript" language="javascript" src="MosRegion.js"></script>
+    <script type="text/javascript" language="javascript" src="TverAvtoDor.js"></script>
+    <script type="text/javascript" language="javascript" src="MosAvtoDor.js"></script>
+	<script type="text/javascript" language="javascript" src="Terr.js"></script>
+    <script type="text/javascript" language="javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
+    <script type="text/javascript" language="javascript" src="OpenLayers.js"></script>
+    <script type="text/javascript" language="javascript" src="OpenLayers/Layer/EventPane.js"></script>
+    <script type="text/javascript" language="javascript" src="OpenLayers/Layer/SphericalMercator.js"></script>
+    <script type="text/javascript" language="javascript" src="OpenLayers/Layer/FixedZoomLevels.js"></script>
+	<script type="text/javascript" language="javascript" src="cloudmade.js"></script>
+	<script type="text/javascript" language="javascript" src="OpenStreetMap.js"></script>
+    <script type="text/javascript" language="javascript" src="tveravtodor/tveravtodor.nocache.js"></script>
+
+    <script type="text/javascript">
+        var bounds = new OpenLayers.Bounds(-20037508,-20037508,20037508,20037508.34);
+        var maxExtent = new OpenLayers.Bounds(-20037508,-20037508,20037508,20037508.34);
+        var map;
+        var maxResolution = 2445.9849046875;
+
+        var vectors;
+        var vectors1;
+        var geojson;
+
+        var options = {
+        	allOverlays: true,
+            projection: new OpenLayers.Projection("EPSG:900913"),
+            units: "m",
+            numZoomLevels: 18,
+            minZoomLevel: 4,
+            maxZoomLevel: 18,
+//            displayProjection: new OpenLayers.Projection("EPSG:102113"),
+            displayProjection: new OpenLayers.Projection("EPSG:900913"),
+            maxExtent: new OpenLayers.Bounds(-20037508, -20037508, 20037508, 20037508.34),
+            controls:[]
+        };
+
+        OpenLayers.IMAGE_RELOAD_ATTEMPTS = 1;
+        OpenLayers.Util.onImageLoadErrorColor = "transparent";
+
+        function initMap2() {
+
+            geojson = new OpenLayers.Format.GeoJSON();
+
+            map.addControl( new OpenLayers.Control.MousePosition() );
+//			nav2 = new OpenLayers.Control.Navigation();
+//            map.addControl(nav2);
+
+//            nav = new OpenLayers.Control.NavigationHistory();
+//            map.addControl(nav);
+//            panel = new OpenLayers.Control.Panel({div: document.getElementById("toolbar")});
+//            panel.addControls([new OpenLayers.Control.ZoomBox(), new OpenLayers.Control.ZoomBox({displayClass: "ZoomBox", out: true}),
+//            	 new OpenLayers.Control.ZoomToMaxExtent(), nav.previous, nav.next, nav2]);
+//            map.addControl(panel);
+
+
+            var panZoomBar = new OpenLayers.Control.PanZoomBar();
+			OpenLayers.Control.PanZoomBar.prototype.draw = function(px) {
+		        OpenLayers.Control.prototype.draw.apply(this, arguments);
+        		px = this.position.clone();
+
+        		this.buttons = [];
+
+		        var sz = new OpenLayers.Size(18,18);
+        		var centered = new OpenLayers.Pixel(px.x+sz.w/2, px.y);
+        		var wposition = sz.w;
+
+
+		        this._addButton("zoomin", "zoom-plus-mini.png", centered.add(0, sz.h*3+5), sz);
+		        centered = this._addZoomBar(centered.add(0, sz.h*4 + 5));
+		        this._addButton("zoomout", "zoom-minus-mini.png", centered, sz);
+		        return this.div;
+			};
+			map.addControl(panZoomBar);
+        }
+    </script>
+
+</head>
+
+<body bgcolor="white" >
+<noscript>
+    <div style="width: 22em; position: absolute; left: 50%; margin-left: -11em; color: red; background-color:white; border: 1px solid red; padding: 4px; font-family: sans-serif">
+        Your web browser must have JavaScript enabled
+        in order for this application to display correctly.
+    </div>
+</noscript>
+</body>
+
+
+</html>

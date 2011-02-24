@@ -1,0 +1,19 @@
+<component name="libraryTable">
+  <library name="lib1">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/lib/gwt-servlet.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/gwt-api-checker.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/smartgwt.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/wsc-20.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/gwt-user.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/smartgwt-skins.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/commons-codec-1.4.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/ArcGIS93.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/gwt-soyc-vis.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/wsc-gae.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/gwt-dev.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
