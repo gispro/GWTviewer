@@ -1,16 +1,12 @@
-package ru.mos.gispro.tveravtodor.client.layer;
+package ru.mos.gispro.client.layer;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import com.google.gwt.user.client.Window;
-import ru.mos.gispro.tveravtodor.client.LegendInfo;
-import ru.mos.gispro.tveravtodor.client.MapServiceInfo;
-import ru.mos.gispro.tveravtodor.client.MapServiceInfoAsync;
-import ru.mos.gispro.tveravtodor.client.JSONRequestHandler;
-import ru.mos.gispro.tveravtodor.client.Service;
+import ru.mos.gispro.client.*;
+import ru.mos.gispro.client.Service;
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.core.client.JavaScriptObject;
@@ -57,7 +53,7 @@ public class ArcGIS93 implements MapService {
 		private native void createCallbackFunction(JSONRequestHandler obj,
 		                                           String callbackName)/*-{
 				    tmpcallback = function(j) {
-				    obj.@ru.mos.gispro.tveravtodor.client.JSONRequestHandler::onRequestComplete(Lcom/google/gwt/core/client/JavaScriptObject;)(j);
+				    obj.@ru.mos.gispro.client.JSONRequestHandler::onRequestComplete(Lcom/google/gwt/core/client/JavaScriptObject;)(j);
 				    };
 				    eval( "window." + callbackName + "=tmpcallback" );
 				    }-*/;

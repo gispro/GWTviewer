@@ -1,4 +1,4 @@
-package ru.mos.gispro.tveravtodor.client.layer;
+package ru.mos.gispro.client.layer;
 
 import com.google.gwt.core.client.JavaScriptObject;
 

@@ -1,13 +1,11 @@
-package ru.mos.gispro.tveravtodor.client.layer;
+package ru.mos.gispro.client.layer;
 
 import com.google.gwt.core.client.JavaScriptObject;
-import com.google.gwt.user.client.Window;
 import com.smartgwt.client.widgets.tree.Tree;
 import com.smartgwt.client.widgets.tree.TreeGrid;
 import com.smartgwt.client.widgets.tree.TreeNode;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 /**

@@ -1,4 +1,4 @@
-package ru.mos.gispro.tveravtodor.client.json;
+package ru.mos.gispro.client.json;
 
 import com.google.gwt.core.client.JavaScriptObject;
 import com.google.gwt.core.client.JsArray;
@@ -18,6 +18,8 @@ public class JSONConfig extends JavaScriptObject
 	public final native JavaScriptObject layer                (int i) /*-{ return this.mapServices[i]; }-*/;
 
     public final native boolean          isTverAvtoDor             () /*-{ return this.isTverAvtoDor; }-*/;
+    public final native boolean          isMosAvtoDor              () /*-{ return this.isMosAvtoDor; }-*/;
+    public final native boolean          isMosRegion               () /*-{ return this.isMosRegion; }-*/;
 
     public final native boolean          municipalities            () /*-{ return this.mosregion_municipalities; }-*/;
     public final native boolean          toolButtonFullExtent      () /*-{ return this.toolButtonFullExtent; }-*/;

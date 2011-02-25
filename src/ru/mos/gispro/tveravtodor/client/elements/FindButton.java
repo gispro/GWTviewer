@@ -1,4 +1,4 @@
-package ru.mos.gispro.tveravtodor.client.elements;
+package ru.mos.gispro.client.elements;
 
 import com.google.gwt.core.client.JavaScriptObject;
 import com.google.gwt.core.client.JsArrayString;
@@ -19,19 +19,15 @@ import com.smartgwt.client.widgets.events.CloseClientEvent;
 import com.smartgwt.client.widgets.grid.ListGrid;
 import com.smartgwt.client.widgets.grid.ListGridField;
 import com.smartgwt.client.widgets.grid.ListGridRecord;
-import com.smartgwt.client.widgets.grid.events.SelectionChangedHandler;
-import com.smartgwt.client.widgets.grid.events.SelectionEvent;
 import com.smartgwt.client.widgets.layout.HLayout;
 import com.smartgwt.client.widgets.layout.VLayout;
 import com.smartgwt.client.widgets.toolbar.ToolStripButton;
-import ru.mos.gispro.tveravtodor.client.JSONRequestHandler;
+import ru.mos.gispro.client.GWTViewer;
+import ru.mos.gispro.client.JSONRequestHandler;
 // import ru.mos.gispro.tveravtodor.client.TverAvtoDor;
-import ru.mos.gispro.tveravtodor.client.GWTViewer;
-import ru.mos.gispro.tveravtodor.client.geometry.GeometryManager;
-import ru.mos.gispro.tveravtodor.client.json.JSONFind;
-import ru.mos.gispro.tveravtodor.client.json.JSONFindItem;
-import ru.mos.gispro.tveravtodor.client.json.JSONPolyLine;
-import ru.mos.gispro.tveravtodor.client.json.JSONPolygon;
+import ru.mos.gispro.client.geometry.GeometryManager;
+import ru.mos.gispro.client.json.JSONFind;
+import ru.mos.gispro.client.json.JSONFindItem;
 
 /**
  * User: dima
@@ -97,7 +93,7 @@ public class FindButton extends ToolStripButton
 
 				private native void createCallbackFunction(JSONRequestHandler obj, String callbackName)/*-{
 	                         tmpcallback = function(j) {
-	                         obj.@ru.mos.gispro.tveravtodor.client.JSONRequestHandler::onRequestComplete(Lcom/google/gwt/core/client/JavaScriptObject;)(j);
+	                         obj.@ru.mos.gispro.client.JSONRequestHandler::onRequestComplete(Lcom/google/gwt/core/client/JavaScriptObject;)(j);
 	                         };
 	                         eval( "window." + callbackName + "=tmpcallback" );
 	                         }-*/;

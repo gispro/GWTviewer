@@ -1,13 +1,13 @@
-package ru.mos.gispro.tveravtodor.client.elements;
+package ru.mos.gispro.client.elements;
 
 import com.google.gwt.core.client.JavaScriptObject;
 import com.smartgwt.client.widgets.form.fields.IPickTreeItem;
 import com.smartgwt.client.widgets.form.fields.events.ChangedEvent;
-import ru.mos.gispro.tveravtodor.client.JSONRequestHandler;
-import ru.mos.gispro.tveravtodor.client.geometry.GeometryManager;
-import ru.mos.gispro.tveravtodor.client.geometry.GeometryManager1;
-import ru.mos.gispro.tveravtodor.client.json.JSONFind;
-import ru.mos.gispro.tveravtodor.client.json.JSONFindItem;
+import ru.mos.gispro.client.JSONRequestHandler;
+import ru.mos.gispro.client.geometry.GeometryManager;
+import ru.mos.gispro.client.geometry.GeometryManager1;
+import ru.mos.gispro.client.json.JSONFind;
+import ru.mos.gispro.client.json.JSONFindItem;
 
 public class TerrTreePickTree extends IPickTreeItem {
 
@@ -49,7 +49,7 @@ public class TerrTreePickTree extends IPickTreeItem {
 
 				private native void createCallbackFunction(JSONRequestHandler obj, String callbackName)/*-{
 	                         tmpcallback = function(j) {
-	                         obj.@ru.mos.gispro.tveravtodor.client.JSONRequestHandler::onRequestComplete(Lcom/google/gwt/core/client/JavaScriptObject;)(j);
+	                         obj.@ru.mos.gispro.client.JSONRequestHandler::onRequestComplete(Lcom/google/gwt/core/client/JavaScriptObject;)(j);
 	                         };
 	                         eval( "window." + callbackName + "=tmpcallback" );
 	                         }-*/;

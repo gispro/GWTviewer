@@ -1,7 +1,7 @@
-package ru.mos.gispro.tveravtodor.client.elements;
+package ru.mos.gispro.client.elements;
 
 import com.google.gwt.core.client.JavaScriptObject;
-import ru.mos.gispro.tveravtodor.client.json.JSONConfig;
+import ru.mos.gispro.client.json.JSONConfig;
 
 public class ConfigLoader
 {

@@ -1,9 +1,9 @@
-package ru.mos.gispro.tveravtodor.client.elements;
+package ru.mos.gispro.client.elements;
 
 import com.smartgwt.client.widgets.tree.Tree;
 import com.smartgwt.client.widgets.tree.TreeNode;
-import ru.mos.gispro.tveravtodor.client.json.JSONTerr;
-import ru.mos.gispro.tveravtodor.client.json.JSONTerrs;
+import ru.mos.gispro.client.json.JSONTerr;
+import ru.mos.gispro.client.json.JSONTerrs;
 
 public class TerrTree extends Tree {
 

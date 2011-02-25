@@ -1,6 +1,5 @@
-package ru.mos.gispro.tveravtodor.client.elements;
+package ru.mos.gispro.client.elements;
 
-import com.google.gwt.user.client.*;
 import com.smartgwt.client.widgets.Button;
 import com.smartgwt.client.widgets.Dialog;
 import com.smartgwt.client.widgets.events.ClickEvent;
@@ -17,7 +16,7 @@ import com.smartgwt.client.widgets.form.fields.events.ChangedHandler;
 import com.smartgwt.client.widgets.toolbar.ToolStripButton;
 import com.smartgwt.client.widgets.tree.Tree;
 import com.smartgwt.client.widgets.tree.TreeGrid;
-import ru.mos.gispro.tveravtodor.client.layer.LayerUtils;
+import ru.mos.gispro.client.layer.LayerUtils;
 
 /**
  * User: dima

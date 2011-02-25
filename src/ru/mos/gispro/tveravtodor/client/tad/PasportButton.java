@@ -1,16 +1,15 @@
-package ru.mos.gispro.tveravtodor.client.tad;
+package ru.mos.gispro.client.tad;
 
 import com.google.gwt.core.client.JavaScriptObject;
 import com.google.gwt.event.shared.HandlerRegistration;
-import com.google.gwt.user.client.Window;
 import com.smartgwt.client.types.SelectionType;
 import com.smartgwt.client.widgets.Canvas;
 import com.smartgwt.client.widgets.events.ClickEvent;
 import com.smartgwt.client.widgets.events.ClickHandler;
 import com.smartgwt.client.widgets.toolbar.ToolStripButton;
-import ru.mos.gispro.tveravtodor.client.JSONRequestHandler;
-import ru.mos.gispro.tveravtodor.client.json.JSONIdentify;
-import ru.mos.gispro.tveravtodor.client.GWTViewer;
+import ru.mos.gispro.client.JSONRequestHandler;
+import ru.mos.gispro.client.json.JSONIdentify;
+import ru.mos.gispro.client.GWTViewer;
 
 public class PasportButton extends ToolStripButton
 {
@@ -66,7 +65,7 @@ public class PasportButton extends ToolStripButton
 				private native void createCallbackFunction(JSONRequestHandler obj,
 				                                           String callbackName)/*-{
                             tmpcallback = function(j) {
-                            obj.@ru.mos.gispro.tveravtodor.client.JSONRequestHandler::onRequestComplete(Lcom/google/gwt/core/client/JavaScriptObject;)(j);
+                            obj.@ru.mos.gispro.client.JSONRequestHandler::onRequestComplete(Lcom/google/gwt/core/client/JavaScriptObject;)(j);
                             };
                             eval( "window." + callbackName + "=tmpcallback" );
                             }-*/;

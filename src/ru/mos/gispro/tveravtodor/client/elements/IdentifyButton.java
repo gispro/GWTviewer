@@ -1,4 +1,4 @@
-package ru.mos.gispro.tveravtodor.client.elements;
+package ru.mos.gispro.client.elements;
 
 import com.google.gwt.core.client.JavaScriptObject;
 import com.google.gwt.core.client.JsArrayString;
@@ -23,33 +23,36 @@ import com.smartgwt.client.widgets.toolbar.ToolStripButton;
 import com.smartgwt.client.widgets.tree.Tree;
 import com.smartgwt.client.widgets.tree.TreeGrid;
 import com.smartgwt.client.widgets.tree.TreeNode;
-import ru.mos.gispro.tveravtodor.client.JSONRequestHandler;
-import ru.mos.gispro.tveravtodor.client.geometry.GeometryManager;
-import ru.mos.gispro.tveravtodor.client.json.JSONIdentify;
-import ru.mos.gispro.tveravtodor.client.json.JSONIdentifyItem;
-import ru.mos.gispro.tveravtodor.client.layer.ArcGIS93;
-import ru.mos.gispro.tveravtodor.client.layer.LayerUtils;
-import ru.mos.gispro.tveravtodor.client.layer.WMS;
+import ru.mos.gispro.client.GWTViewer;
+import ru.mos.gispro.client.JSONRequestHandler;
+import ru.mos.gispro.client.geometry.GeometryManager;
+import ru.mos.gispro.client.json.JSONIdentify;
+import ru.mos.gispro.client.json.JSONIdentifyItem;
+import ru.mos.gispro.client.layer.ArcGIS93;
+import ru.mos.gispro.client.layer.WMS;
 import com.smartgwt.client.widgets.Canvas;
 
-import ru.mos.gispro.tveravtodor.client.GWTViewer;
+import ru.mos.gispro.client.window.Contractors;
 
 /**
  * User: dima
  * Date: 20.11.2010
  * Time: 15:49:27
  */
-public class IdentifyButton extends ToolStripButton {
-
+public class IdentifyButton extends ToolStripButton
+{
 	HandlerRegistration handlerRegistration;
-
-
+    private  final   static   String    TAG_BOLD_UNDERLINE_START  = "<b><u>";
+    private  final   static   String    TAG_BOLD_UNDERLINE_END    = "<u><b>";
+    private  final   static   String    STRING_IDENTIFIER         = "Идентификатор";
+    private  final   static   String    STRING_IDENTIFIER_LINK    = "<b><u>Идентификатор<u><b>";
+    //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	public native void goURL(String url) /*-{
 		$wnd.window.open(url);
     }-*/;
-
-	public IdentifyButton(final TreeGrid treeGrid, final Canvas canvas) {
-
+    //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	public IdentifyButton(final TreeGrid treeGrid, final Canvas canvas)
+    {
 		final Tree data = treeGrid.getTree();
 
 		this.setIcon("MActionIdentify.png");
@@ -58,56 +61,59 @@ public class IdentifyButton extends ToolStripButton {
 		this.setActionType(SelectionType.RADIO);
 		this.setRadioGroup("mapAction");
 
-		this.addClickHandler(new ClickHandler() {
-
-			Window winModal;
-			boolean isPointSelected = false;
-			TreeGrid tree2;
-			ListGrid list2;
-			Tree data2;
-			RecordList data3;
-
+		this.addClickHandler(new ClickHandler()
+        {
+			Window      winModal;
+			boolean     isPointSelected = false;
+			TreeGrid    tree2;
+			ListGrid    list2;
+			Tree        data2;
+			RecordList  data3;
+            int         activeRequest = 0;
+            //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 			protected native void test22() /*-{
-            for (indexControl = 0;  indexControl < $wnd.map.controls.length; ++indexControl)
+                for (indexControl = 0;  indexControl < $wnd.map.controls.length; ++indexControl)
+                {
+                    if ($wnd.map.controls[indexControl].displayClass != "olControlNavigationHistory")
+                        $wnd.map.controls[indexControl].deactivate();
+                    if ($wnd.map.controls[indexControl].displayClass == "olControlMousePosition")
+                        $wnd.map.controls[indexControl].activate();
+                }
+            }-*/;
+            //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+			class JSONRequest
             {
-                if ($wnd.map.controls[indexControl].displayClass != "olControlNavigationHistory")
-                    $wnd.map.controls[indexControl].deactivate();
-                if ($wnd.map.controls[indexControl].displayClass == "olControlMousePosition")
-                    $wnd.map.controls[indexControl].activate();
-            }
-        }-*/;
-
-			class JSONRequest {
-
-				public void get(String url, JSONRequestHandler handler) {
+                //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+				public void get(String url, JSONRequestHandler handler)
+                {
 					String callbackName = "JSONCallback" + handler.hashCode();
 					get(url + "&callback=" + callbackName, callbackName, handler);
 				}
-
+                //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 				public void get(String url, String callbackName,
-				                JSONRequestHandler handler) {
+				                JSONRequestHandler handler)
+                {
 					createCallbackFunction(handler, callbackName);
 					addScript(url);
 				}
-
+                //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 				public native void addScript(String url) /*-{
-                                 var scr = document.createElement("script");
-                                 scr.setAttribute("language", "JavaScript");
-                                 scr.setAttribute("src", url);
-                                 document.getElementsByTagName("head")[0].appendChild(scr);
-                                 }-*/;
-
-				private native void createCallbackFunction(JSONRequestHandler obj,
-				                                           String callbackName)/*-{
-                            tmpcallback = function(j) {
-                            obj.@ru.mos.gispro.tveravtodor.client.JSONRequestHandler::onRequestComplete(Lcom/google/gwt/core/client/JavaScriptObject;)(j);
+                    var scr = document.createElement("script");
+                    scr.setAttribute("language", "JavaScript");
+                    scr.setAttribute("src", url);
+                    document.getElementsByTagName("head")[0].appendChild(scr);
+                }-*/;
+                //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+				private native void createCallbackFunction(JSONRequestHandler obj, String callbackName)/*-{
+                            tmpcallback = function(j)
+                            {
+                                obj.@ru.mos.gispro.client.JSONRequestHandler::onRequestComplete(Lcom/google/gwt/core/client/JavaScriptObject;)(j);
                             };
                             eval( "window." + callbackName + "=tmpcallback" );
-                            }-*/;
+                }-*/;
+                //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 			}
-
-			int activeRequest = 0;
-
+            //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 			public void onClick(ClickEvent event) {
 
 //				Document.get().getElementById("map").getStyle().setCursor(isSelected() ? Style.Cursor.CROSSHAIR : Style.Cursor.DEFAULT);
@@ -148,8 +154,10 @@ public class IdentifyButton extends ToolStripButton {
 					data2.openAll();
 
 					tree2.setData(data2);
-					tree2.addSelectionChangedHandler(new SelectionChangedHandler() {
-						public void onSelectionChanged(SelectionEvent event) {
+					tree2.addSelectionChangedHandler(new SelectionChangedHandler()
+                    {
+						public void onSelectionChanged(SelectionEvent event)
+                        {
 							TreeNode treeNode = (TreeNode) event.getRecord();
 
 							data3.removeList(data3.toArray());
@@ -158,19 +166,28 @@ public class IdentifyButton extends ToolStripButton {
 								return;
 
 							JsArrayString keys = item.attributesKeys();
-							for (int k = 0; k < keys.length(); ++k) {
-								ListGridRecord record = new ListGridRecord();
-								record.setAttribute("field", keys.get(k));
-								record.setAttribute("value", item.attributesByKey(keys.get(k)));
-								data3.add(record);
+							for (int k = 0; k < keys.length(); ++k)
+                            {
+                                if (!keys.get(k).equalsIgnoreCase("OBJECTID"))
+                                {
+    								ListGridRecord record = new ListGridRecord();
+                                    if (keys.get(k).equalsIgnoreCase(STRING_IDENTIFIER))
+                                    {
+	    							    record.setAttribute("field", STRING_IDENTIFIER_LINK);
+                                        record.setAttribute("value", TAG_BOLD_UNDERLINE_START +
+                                                                               item.attributesByKey(keys.get(k)) +
+                                                                     TAG_BOLD_UNDERLINE_END);
+                                    }
+                                    else
+                                    {
+                                        record.setAttribute("field", keys.get(k));
+                                        record.setAttribute("value", item.attributesByKey(keys.get(k)));
+                                    }
+			    					data3.add(record);
+                                }
 							}
-
-//							com.google.gwt.user.client.Window.alert("1");
-
 							GeometryManager.clearGeometry();
 							GeometryManager.draw(item.geometry(), false, false);
-
-//							com.google.gwt.user.client.Window.alert("2");
 						}
 					});
 
@@ -179,22 +196,56 @@ public class IdentifyButton extends ToolStripButton {
 					ListGridField field = new ListGridField("field", "Поле");
 					ListGridField value = new ListGridField("value", "Значение");
 					list2.setFields(field, value);
+
+                    field.setCanReorder(false);    field.setCanFreeze(false);    field.setCanHide  (false);
+                    field.setCanGroupBy(false);    field.setCanFilter(false);
+                    value.setCanReorder(false);    value.setCanSort  (false);    value.setCanFreeze(false);
+                    value.setCanGroupBy(false);    value.setCanFilter(false);    value.setCanHide  (false);
+
+
 					data3 = new RecordList();
 					list2.setData(data3);
 					list2.setEmptyMessage("");
 
-					list2.addCellClickHandler(new CellClickHandler() {
-						public void onCellClick(CellClickEvent cellClickEvent) {
-
-							String f = cellClickEvent.getRecord().getAttribute("field");
-//                            String u = "http://94.198.33.13:8000/RoadSoft/" + cellClickEvent.getRecord().getAttribute("value");
-							String u = GWTViewer.config.getURLRoadSoft() + cellClickEvent.getRecord().getAttribute("value");
-							if ("Документ".equals(f)) {
-								goURL(u);
+//                    com.google.gwt.user.client.Window.alert("0. GWTViewer.config.isMosAvtoDor() : " + GWTViewer.config.isMosAvtoDor());
+                    if (GWTViewer.config.isMosAvtoDor())
+                    {
+//                        com.google.gwt.user.client.Window.alert("1. GWTViewer.config.isMosAvtoDor() : " + GWTViewer.config.isMosAvtoDor());
+                        list2.addCellClickHandler(new CellClickHandler()
+                        {
+                            public void onCellClick(CellClickEvent cellClickEvent)
+                            {
+//                                com.google.gwt.user.client.Window.alert("2. GWTViewer.config.isMosAvtoDor() : " + cellClickEvent.getRecord().getAttribute("field"));
+                                if (STRING_IDENTIFIER_LINK.equalsIgnoreCase(cellClickEvent.getRecord().getAttribute("field")))
+                                {
+                                    String f = cellClickEvent.getRecord().getAttribute("value");
+                                    f = f.substring(TAG_BOLD_UNDERLINE_START.length());
+                                    f = f.substring(0, f.length() - TAG_BOLD_UNDERLINE_END.length());
+//                                    com.google.gwt.user.client.Window.alert("ИДЕНТИФИКАТОР : " + f);
+                                    // for (int i = 0; i < data3.getJsObj())
+//                                    com.google.gwt.user.client.Window.alert("ИДЕНТИФИКАТОР : " + data3.getJsObj().toString());
+                                    Contractors contractors = new Contractors (winModal.getWidth(), winModal.getHeight(),
+                                                                               Integer.valueOf(f), data3);
+                                    contractors.show();
+                                }
 							}
-
-						}
-					});
+                        });
+                    }
+                    else if (GWTViewer.config.isTverAvtoDor())
+                    {
+					    list2.addCellClickHandler(new CellClickHandler() {
+						    public void onCellClick(CellClickEvent cellClickEvent)
+                            {
+//    							String f = cellClickEvent.getRecord().getAttribute("field");
+			    				if ("Документ".equals(cellClickEvent.getRecord().getAttribute("field")))
+                                {
+//                              String u = "http://94.198.33.13:8000/RoadSoft/" + cellClickEvent.getRecord().getAttribute("value");
+                                    String u = GWTViewer.config.getURLRoadSoft() + cellClickEvent.getRecord().getAttribute("value");
+				    				goURL(u);
+							    }
+    						}
+	    				});
+                    }
 
 					layout.addMember(tree2);
 					layout.addMember(list2);
@@ -270,15 +321,17 @@ public class IdentifyButton extends ToolStripButton {
 											ccc);
 								}
 
-								if (name.equals(WMS.class.getName())) {
+								if (name.equals(WMS.class.getName()))
+                                {
 									String url = ((WMS) mapService).Url();
 
-									class CCC implements JSONRequestHandler {
-
+									class CCC implements JSONRequestHandler
+                                    {
 										public int request;
 										public WMS service;
 
-										public void onRequestComplete(JavaScriptObject json) {
+										public void onRequestComplete(JavaScriptObject json)
+                                        {
 											if (activeRequest > request)
 												return;
 											JSONIdentify identify = json.cast();
@@ -287,7 +340,8 @@ public class IdentifyButton extends ToolStripButton {
 											TreeNode treeNode = new TreeNode();
 //				                            treeNode.setAttribute("Layout", service.name + "_" + Integer.toString(test));
 											data2.add(treeNode, data2.getRoot());
-											for (int i = 0; i < identify.results().length(); ++i) {
+											for (int i = 0; i < identify.results().length(); ++i)
+                                            {
 												TreeNode treeNode2 = new TreeNode();
 												treeNode2.setAttribute("Layout", identify.results().get(i).layerName());
 												treeNode2.setAttribute("item", identify.results().get(i));
@@ -295,15 +349,7 @@ public class IdentifyButton extends ToolStripButton {
 											}
 										}
 									}
-
-//									CCC ccc = new CCC();
-//									ccc.request = activeRequest;
-//									ccc.service = (WMS) mapService;
-//									new JSONRequest().get(url,
-//						                    ccc);
 								}
-
-
 							}
 						}
 
@@ -330,11 +376,9 @@ public class IdentifyButton extends ToolStripButton {
 				} else {
 					handlerRegistration.removeHandler();
 				}
-
 				if (!isPointSelected)
 					return;
 			}
 		});
-
 	}
 }

@@ -1,9 +1,9 @@
-package ru.mos.gispro.tveravtodor.client.geometry;
+package ru.mos.gispro.client.geometry;
 
 import com.google.gwt.core.client.JavaScriptObject;
-import ru.mos.gispro.tveravtodor.client.json.JSONPoint;
-import ru.mos.gispro.tveravtodor.client.json.JSONPolyLine;
-import ru.mos.gispro.tveravtodor.client.json.JSONPolygon;
+import ru.mos.gispro.client.json.JSONPoint;
+import ru.mos.gispro.client.json.JSONPolyLine;
+import ru.mos.gispro.client.json.JSONPolygon;
 
 public class GeometryManager1 {
 
