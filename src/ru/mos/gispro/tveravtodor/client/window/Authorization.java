@@ -1,7 +1,5 @@
-package ru.mos.gispro.tveravtodor.client.window;
+package ru.mos.gispro.client.window;
 
-import com.google.gwt.core.client.GWT;
-import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.smartgwt.client.types.Alignment;
 import com.smartgwt.client.widgets.Button;
@@ -14,9 +12,7 @@ import com.smartgwt.client.widgets.form.fields.TextItem;
 import com.smartgwt.client.widgets.layout.HLayout;
 import com.smartgwt.client.widgets.layout.VLayout;
 
-import ru.mos.gispro.tveravtodor.client.MapServiceInfo;
-import ru.mos.gispro.tveravtodor.client.MapServiceInfoAsync;
-import ru.mos.gispro.tveravtodor.client.GWTViewer;
+import ru.mos.gispro.client.GWTViewer;
 
 public class Authorization extends WindowBase
 {

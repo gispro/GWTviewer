@@ -1,4 +1,4 @@
-package ru.mos.gispro.tveravtodor.client.window;
+package ru.mos.gispro.client.window;
 
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
@@ -24,8 +24,8 @@ import com.smartgwt.client.widgets.form.fields.TextItem;
 import com.smartgwt.client.widgets.layout.HLayout;
 import com.smartgwt.client.widgets.layout.VLayout;
 
-import ru.mos.gispro.tveravtodor.client.GWTViewer;
-import ru.mos.gispro.tveravtodor.client.References;
+import ru.mos.gispro.client.GWTViewer;
+import ru.mos.gispro.client.References;
 
 public class Registration extends WindowBase
 {

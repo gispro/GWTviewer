@@ -1,4 +1,4 @@
-package ru.mos.gispro.tveravtodor.client.window;
+package ru.mos.gispro.client.window;
 
 import com.smartgwt.client.widgets.Window;
 import com.smartgwt.client.widgets.events.CloseClickHandler;
