@@ -45,7 +45,7 @@
       <jvmarg value="-Xmx256M"/>
       <!-- Additional arguments like -style PRETTY or -logLevel DEBUG -->
       <arg line="${gwt.args}"/>
-      <arg value="ru.mos.gispro.tveravtodor.GWTViewer"/>
+      <arg value="ru.mos.gispro.GWTViewer"/>
     </java>
   </target>
 
@@ -60,7 +60,7 @@
       <arg value="index.html"/>
       <!-- Additional arguments like -style PRETTY or -logLevel DEBUG -->
       <arg line="${gwt.args}"/>
-        <arg value="ru.mos.gispro.tveravtodor.GWTViewer"/>
+        <arg value="ru.mos.gispro.GWTViewer"/>
     </java>
   </target>
 
@@ -71,7 +71,7 @@
       </classpath>
       <arg value="-XonlyEclipse"/>
       <arg value="-ignore"/>
-      <arg value="ru.mos.gispro.tveravtodor.GWTViewer"/>
+      <arg value="ru.mos.gispro.GWTViewer"/>
     </java>
   </target>
 
