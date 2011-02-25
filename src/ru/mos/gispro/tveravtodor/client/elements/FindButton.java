@@ -25,7 +25,8 @@ import com.smartgwt.client.widgets.layout.HLayout;
 import com.smartgwt.client.widgets.layout.VLayout;
 import com.smartgwt.client.widgets.toolbar.ToolStripButton;
 import ru.mos.gispro.tveravtodor.client.JSONRequestHandler;
-import ru.mos.gispro.tveravtodor.client.TverAvtoDor;
+// import ru.mos.gispro.tveravtodor.client.TverAvtoDor;
+import ru.mos.gispro.tveravtodor.client.GWTViewer;
 import ru.mos.gispro.tveravtodor.client.geometry.GeometryManager;
 import ru.mos.gispro.tveravtodor.client.json.JSONFind;
 import ru.mos.gispro.tveravtodor.client.json.JSONFindItem;
@@ -59,9 +60,9 @@ public class FindButton extends ToolStripButton
 		this.setActionType(SelectionType.RADIO);
 		this.setRadioGroup("mapAction");
 
-        URL_FIND_NAS_PUNKT   = TverAvtoDor.config.getURLFindNasPunkt();
-        URL_FIND_STREETS     = TverAvtoDor.config.getURLFindStreets ();
-        URL_FIND_TITUL_DOROG = TverAvtoDor.config.findTitulDorog    ();
+        URL_FIND_NAS_PUNKT   = GWTViewer.config.getURLFindNasPunkt();
+        URL_FIND_STREETS     = GWTViewer.config.getURLFindStreets ();
+        URL_FIND_TITUL_DOROG = GWTViewer.config.findTitulDorog    ();
 
         if (URL_FIND_STREETS.trim().length() == 0)
             FIND_ULITSI = null;
@@ -242,7 +243,6 @@ public class FindButton extends ToolStripButton
 					whereListBox.addItem(FIND_NAS_PUNKT);
                     if (FIND_TITUL_DOROG != null)
     					whereListBox.addItem(FIND_TITUL_DOROG);
-//                    if (TverAvtoDor.config.isMosRegion() && (FIND_ULITSI != null))
                     if (FIND_ULITSI != null)
     					whereListBox.addItem(FIND_ULITSI);
 					whereLayout.addMember(whereListBox);

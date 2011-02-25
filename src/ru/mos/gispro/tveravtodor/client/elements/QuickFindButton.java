@@ -13,7 +13,7 @@ import com.smartgwt.client.widgets.grid.ListGridField;
 import com.smartgwt.client.widgets.grid.ListGridRecord;
 import com.smartgwt.client.widgets.toolbar.ToolStripButton;
 import ru.mos.gispro.tveravtodor.client.JSONRequestHandler;
-import ru.mos.gispro.tveravtodor.client.TverAvtoDor;
+import ru.mos.gispro.tveravtodor.client.GWTViewer;
 import ru.mos.gispro.tveravtodor.client.geometry.GeometryManager;
 import ru.mos.gispro.tveravtodor.client.json.JSONFind;
 import ru.mos.gispro.tveravtodor.client.json.JSONFindItem;
@@ -69,7 +69,7 @@ public class QuickFindButton extends ToolStripButton
 				String url = "";
 
 				if (QUICK_FIND.equals(where))
-                    url = TverAvtoDor.config.getURLQuickSearch();
+                    url = GWTViewer.config.getURLQuickSearch();
                 url = url.replaceAll("<0>", what);
                 
                 class FindRequestHandler implements JSONRequestHandler {

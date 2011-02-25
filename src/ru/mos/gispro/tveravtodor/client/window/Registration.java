@@ -24,7 +24,7 @@ import com.smartgwt.client.widgets.form.fields.TextItem;
 import com.smartgwt.client.widgets.layout.HLayout;
 import com.smartgwt.client.widgets.layout.VLayout;
 
-import ru.mos.gispro.tveravtodor.client.TverAvtoDor;
+import ru.mos.gispro.tveravtodor.client.GWTViewer;
 import ru.mos.gispro.tveravtodor.client.References;
 
 public class Registration extends WindowBase
@@ -105,9 +105,9 @@ public class Registration extends WindowBase
 //	protected void createUserInterface()
 //	{
 		int extHeight = 0;
-		if (TverAvtoDor.config.withOrganization())
+		if (GWTViewer.config.withOrganization())
 			extHeight += 28;
-		if (TverAvtoDor.config.withDepartment())
+		if (GWTViewer.config.withDepartment())
 			extHeight += 28;
 		if (extHeight > 0)
 			this.setHeight(HEIGHT + extHeight);
@@ -122,13 +122,13 @@ public class Registration extends WindowBase
 		accountForm.setTitleWidth     (90);
 //		accountForm.setBorder("1px solid #ff0000");
 		
-		if (TverAvtoDor.config.withOrganization())
+		if (GWTViewer.config.withOrganization())
 		{
 			createOrganizationItem();
 			cbItemOrganizations.setWidth(COMPONENT_WIDTH);
 		}
 		
-		if (TverAvtoDor.config.withDepartment())
+		if (GWTViewer.config.withDepartment())
 		{
 			createDepartmentItem ();
 			cbItemDepartments.setWidth(COMPONENT_WIDTH);
@@ -147,16 +147,16 @@ public class Registration extends WindowBase
         login   .setWidth(COMPONENT_WIDTH);
         password.setWidth(COMPONENT_WIDTH);
         
-		if (TverAvtoDor.config.withOrganization() || TverAvtoDor.config.withDepartment())
+		if (GWTViewer.config.withOrganization() || GWTViewer.config.withDepartment())
 		{
-			if (TverAvtoDor.config.withOrganization() && TverAvtoDor.config.withDepartment())
+			if (GWTViewer.config.withOrganization() && GWTViewer.config.withDepartment())
 				accountForm.setFields(cbItemOrganizations, cbItemDepartments, sname, name, pname, login, password);
 			else
 			{
-				if (TverAvtoDor.config.withOrganization())
+				if (GWTViewer.config.withOrganization())
 					accountForm.setFields(cbItemOrganizations, sname, name, pname, login, password);
 			
-				if (TverAvtoDor.config.withDepartment())
+				if (GWTViewer.config.withDepartment())
 					accountForm.setFields(cbItemDepartments, sname, name, pname, login, password);
 			}
 		} else
@@ -217,9 +217,9 @@ public class Registration extends WindowBase
 		addItem(layout);
 
 //		System.out.println ("Registration ...");
-		if (TverAvtoDor.config.withOrganization())
+		if (GWTViewer.config.withOrganization())
 		{
-			TverAvtoDor.MapServiceInfoServlet.loadOrganizations(new AsyncCallback<String>()
+			GWTViewer.MapServiceInfoServlet.loadOrganizations(new AsyncCallback<String>()
 			{
 				public void onFailure(Throwable caught) {}
 				public void onSuccess(String content)
@@ -228,9 +228,9 @@ public class Registration extends WindowBase
 				}
 			});
 		}
-		if (TverAvtoDor.config.withDepartment())
+		if (GWTViewer.config.withDepartment())
 		{
-			TverAvtoDor.MapServiceInfoServlet.loadDepartments(new AsyncCallback<String>()
+			GWTViewer.MapServiceInfoServlet.loadDepartments(new AsyncCallback<String>()
 			{
 				public void onFailure(Throwable caught) {}
 				public void onSuccess(String content)
@@ -331,7 +331,7 @@ public class Registration extends WindowBase
 		String organization = "0";
 		String department   = "0";
 
-		if (TverAvtoDor.config.withOrganization())
+		if (GWTViewer.config.withOrganization())
 		{
 			organization = (String) accountForm.getValue(CONTROL_ORGANIZATIONS);
 			if (organizationsList != null)
@@ -347,7 +347,7 @@ public class Registration extends WindowBase
 				}
 			}
 		}
-		if (TverAvtoDor.config.withDepartment())
+		if (GWTViewer.config.withDepartment())
 		{
 			department = (String) accountForm.getValue(CONTROL_DEPARTMENTS);
 			if (departmentsList != null)
@@ -364,13 +364,13 @@ public class Registration extends WindowBase
 			}
 		}
 			
-		if (TverAvtoDor.config.withOrganization() && (organization.equals("0")))
+		if (GWTViewer.config.withOrganization() && (organization.equals("0")))
 		{
 			labelException.setContents(EXCEPT_ORGANIZATION);
 			labelException.redraw();
 			return;
 		}
-		if (TverAvtoDor.config.withDepartment() && (department.equals("0")))
+		if (GWTViewer.config.withDepartment() && (department.equals("0")))
 		{
 			labelException.setContents(EXCEPT_DEPARTMENT);
 			return;
@@ -382,7 +382,7 @@ public class Registration extends WindowBase
 			return;
 		}
 */
-  		TverAvtoDor.MapServiceInfoServlet.registration(sname, name, pname, login, password, organization, department, POSITION_ID,
+  		GWTViewer.MapServiceInfoServlet.registration(sname, name, pname, login, password, organization, department, POSITION_ID,
 					                                   new AsyncCallback<String>()
 		{
 			public void onFailure(Throwable caught) {}

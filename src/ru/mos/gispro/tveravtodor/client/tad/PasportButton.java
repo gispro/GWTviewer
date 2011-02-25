@@ -10,7 +10,7 @@ import com.smartgwt.client.widgets.events.ClickHandler;
 import com.smartgwt.client.widgets.toolbar.ToolStripButton;
 import ru.mos.gispro.tveravtodor.client.JSONRequestHandler;
 import ru.mos.gispro.tveravtodor.client.json.JSONIdentify;
-import ru.mos.gispro.tveravtodor.client.TverAvtoDor;
+import ru.mos.gispro.tveravtodor.client.GWTViewer;
 
 public class PasportButton extends ToolStripButton
 {
@@ -106,7 +106,7 @@ public class PasportButton extends ToolStripButton
 //									String id = identify.results().get(0).attributesByKey("Идентификатор");
 									String id = identify.results().get(0).attributesByKey(identify.results().get(0).attributesKeys().get(12));
 									// String urlgo = "http://94.198.33.13:8000/roadsoft/Road/Road.aspx?ID=" + id;
-                                    String urlgo = TverAvtoDor.config.getURLRoadSoft() + "Road/Road.aspx?ID=" + id;
+                                    String urlgo = GWTViewer.config.getURLRoadSoft() + "Road/Road.aspx?ID=" + id;
 // com.google.gwt.user.client.Window.alert("onRequestComplete : urlgo = " + urlgo);
 									goURL(urlgo);
 								}

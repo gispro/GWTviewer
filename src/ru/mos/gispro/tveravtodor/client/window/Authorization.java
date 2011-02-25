@@ -16,7 +16,7 @@ import com.smartgwt.client.widgets.layout.VLayout;
 
 import ru.mos.gispro.tveravtodor.client.MapServiceInfo;
 import ru.mos.gispro.tveravtodor.client.MapServiceInfoAsync;
-import ru.mos.gispro.tveravtodor.client.TverAvtoDor;
+import ru.mos.gispro.tveravtodor.client.GWTViewer;
 
 public class Authorization extends WindowBase
 {
@@ -68,7 +68,7 @@ public class Authorization extends WindowBase
         accountForm.setFields(login, password);
 
         Label linkRegistration = null;
-		if (TverAvtoDor.config.withRegistration())
+		if (GWTViewer.config.withRegistration())
 		{
 			linkRegistration = new Label();   
 			linkRegistration.setAlign(Alignment.RIGHT);
@@ -151,9 +151,9 @@ public class Authorization extends WindowBase
 //                                                              (String) accountForm.getValue(CONTROL_PASSWORD));
 //		System.out.println ("Authorization.userConnect - " + (String) accountForm.getValue(CONTROL_LOGIN   ) + ", " +
 //                                                             (String) accountForm.getValue(CONTROL_PASSWORD));
-        TverAvtoDor.MapServiceInfoServlet.userConnect((String) accountForm.getValue(CONTROL_LOGIN   ),
-				                                      (String) accountForm.getValue(CONTROL_PASSWORD),
-				                                      new AsyncCallback<String>()
+        GWTViewer.MapServiceInfoServlet.userConnect((String) accountForm.getValue(CONTROL_LOGIN   ),
+				                                    (String) accountForm.getValue(CONTROL_PASSWORD),
+				                                     new AsyncCallback<String>()
 		{
 			public void onFailure(Throwable caught) {}
 			public void onSuccess(String content)

@@ -18,7 +18,7 @@ import com.smartgwt.client.widgets.toolbar.ToolStripButton;
 import ru.mos.gispro.tveravtodor.client.JSONRequestHandler;
 import ru.mos.gispro.tveravtodor.client.geometry.GeometryManager;
 import ru.mos.gispro.tveravtodor.client.json.JSONIdentify;
-import ru.mos.gispro.tveravtodor.client.TverAvtoDor;
+import ru.mos.gispro.tveravtodor.client.GWTViewer;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -209,10 +209,6 @@ public class VideoButton extends ToolStripButton
 									form.setFields(radioGroupItem, button);
 									winModal.addChild(form);
 									winModal.show();
-//									String id = identify.results().get(0).attributesByKey(identify.results().get(0).attributesKeys().get(12));
-//									String urlgo = "http://94.198.33.13:8000/roadsoft/ldTPassport/LDPage.aspx?__WP=RoadPassport_OUDH&RoadID="+id+"&BeginKm="+km+"&BeginM="+m+"&EndKm="+km1+"&EndM="+m1+"&Date=";
-//									String urlgo = TverAvtoDor.config.getTver_urlRoadSoft() + "ldTPassport/LDPage.aspx?__WP=RoadPassport_OUDH&RoadID="+id+"&BeginKm="+km+"&BeginM="+m+"&EndKm="+km1+"&EndM="+m1+"&Date=";
-//									goURL(urlgo);
 								}
 							}
 

@@ -24,7 +24,7 @@ import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 public class MapServiceInfoImpl extends RemoteServiceServlet implements MapServiceInfo
 {
     public    final   static   String   JSON_ORGANIZATIONS_TITLE = "organizations";
-    public    final   static   String   JSON_DEPARTMENTS_TITLE   = "departments";
+    public    final   static   String   JSON_DEPARTMENTS_TITLE   = "departments"  ;
 
     private   final   static   String   JSON_ORGANIZATIONS_STUB  = "{\"organisations\" : []}";
     private   final   static   String   JSON_DEPARTMENTS_STUB    = "{\"departments\" : []}";

@@ -32,7 +32,7 @@ import ru.mos.gispro.tveravtodor.client.layer.LayerUtils;
 import ru.mos.gispro.tveravtodor.client.layer.WMS;
 import com.smartgwt.client.widgets.Canvas;
 
-import ru.mos.gispro.tveravtodor.client.TverAvtoDor;
+import ru.mos.gispro.tveravtodor.client.GWTViewer;
 
 /**
  * User: dima
@@ -188,7 +188,7 @@ public class IdentifyButton extends ToolStripButton {
 
 							String f = cellClickEvent.getRecord().getAttribute("field");
 //                            String u = "http://94.198.33.13:8000/RoadSoft/" + cellClickEvent.getRecord().getAttribute("value");
-							String u = TverAvtoDor.config.getURLRoadSoft() + cellClickEvent.getRecord().getAttribute("value");
+							String u = GWTViewer.config.getURLRoadSoft() + cellClickEvent.getRecord().getAttribute("value");
 							if ("Документ".equals(f)) {
 								goURL(u);
 							}
@@ -230,7 +230,7 @@ public class IdentifyButton extends ToolStripButton {
 									String url = ((ArcGIS93) mapService).UrlIdentify() + "/identify?";
 									url += "geometryType=esriGeometryPoint&tolerance=7&" +
 											"sr=102113&returnGeometry=true&f=json&layers=all:" + ((ArcGIS93) mapService).Layers().replaceAll(", ", ",") + "&" + getInfo();
-                                    if (TverAvtoDor.config.debug_InfoURL_Alert())
+                                    if (GWTViewer.config.debug_InfoURL_Alert())
                                         com.google.gwt.user.client.Window.alert("IdentifyButton\n" + url);
                                     
 									class CCC implements JSONRequestHandler {
