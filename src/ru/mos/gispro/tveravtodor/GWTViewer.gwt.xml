@@ -2,8 +2,6 @@
 <module rename-to="gwtviewer">
 	<inherits name="com.google.gwt.user.User"/>
 	<inherits name="com.smartgwt.SmartGwt"/>
-    <inherits name="com.google.gwt.i18n.I18N"/>
-    <extend-property name="locale" values="ru"/>
 	<entry-point class="ru.mos.gispro.tveravtodor.client.GWTViewer"/>
     <servlet path="/" class="ru.mos.gispro.tveravtodor.server.MapServiceInfoImpl" />
 	<source path="client"/>
