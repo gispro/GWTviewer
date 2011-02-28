@@ -1,7 +1,9 @@
 
 <module rename-to="gwtviewer">
 	<inherits name="com.google.gwt.user.User"/>
-	<inherits name="com.smartgwt.SmartGwt"/>
+	<inherits name="com.smartgwt.SmartGwt"   />
+    <inherits name="com.google.gwt.http.HTTP"/>
+    <inherits name="com.google.gwt.xml.XML"  />
 	<entry-point class="ru.mos.gispro.client.GWTViewer"/>
     <servlet path="/" class="ru.mos.gispro.server.MapServiceInfoImpl" />
 	<source path="client"/>

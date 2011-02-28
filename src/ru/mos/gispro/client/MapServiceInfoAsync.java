@@ -20,5 +20,4 @@ public interface MapServiceInfoAsync
                              String pname       , String login       ,
                              String password    , String organization,
                              String department  , String position    , AsyncCallback<String> callback) throws IllegalArgumentException;
-
 }

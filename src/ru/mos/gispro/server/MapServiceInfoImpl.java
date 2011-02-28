@@ -4,6 +4,8 @@ import java.net.MalformedURLException;
 import java.util.*;
 
 import com.esri.schemas.arcgis._9.*;
+import com.google.gwt.http.client.*;
+import com.google.gwt.user.client.rpc.AsyncCallback;
 import org.apache.commons.codec.binary.Base64;
 
 import ru.mos.gispro.client.LegendInfo;
@@ -27,6 +29,9 @@ public class MapServiceInfoImpl extends RemoteServiceServlet implements MapServi
 
     private   final   static   String   JSON_ORGANIZATIONS_STUB  = "{\"organisations\" : []}";
     private   final   static   String   JSON_DEPARTMENTS_STUB    = "{\"departments\" : []}";
+
+    private String   result = "null";
+
     //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     public Map<String,String> Legends(String input) throws IllegalArgumentException
     {
