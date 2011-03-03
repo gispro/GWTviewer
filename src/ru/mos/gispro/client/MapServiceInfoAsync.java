@@ -13,11 +13,12 @@ public interface MapServiceInfoAsync
 
 	void legendsTrue(String input, AsyncCallback<Map<String, List<LegendInfo>>> async);
 
-    void   userConnect      (String login       , String password    , AsyncCallback<String> callback) throws IllegalArgumentException;
-    void   loadOrganizations(                                          AsyncCallback<String> callback) throws IllegalArgumentException;
-    void   loadDepartments  (                                          AsyncCallback<String> callback) throws IllegalArgumentException;
-    void   registration     (String sname       , String name        ,
-                             String pname       , String login       ,
-                             String password    , String organization,
-                             String department  , String position    , AsyncCallback<String> callback) throws IllegalArgumentException;
+    void userConnect      (String login       , String password    , AsyncCallback<String> callback) throws IllegalArgumentException;
+    void loadOrganizations(                                          AsyncCallback<String> callback) throws IllegalArgumentException;
+    void loadDepartments  (                                          AsyncCallback<String> callback) throws IllegalArgumentException;
+    void registration     (String sname       , String name        ,
+                           String pname       , String login       ,
+                           String password    , String organization,
+                           String department  , String position    , AsyncCallback<String> callback) throws IllegalArgumentException;
+    void loadPeople       (String id                               , AsyncCallback<String> callback) throws IllegalArgumentException;
 }

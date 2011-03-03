@@ -134,6 +134,9 @@ public class MapServiceInfoImpl extends RemoteServiceServlet implements MapServi
 
         UniversalMapServer server = null;
         try {
+            // System.out.println ("MapServiceInfoImpl.legendsTrue : address = " + address + ", localPart=" + localPart);
+//            if (localPart.equalsIgnoreCase("Cadastre_MapServer"))
+//                return null;
             server = new UniversalMapServer(address, localPart);
         } catch (MalformedURLException e) {
             e.printStackTrace();
@@ -145,26 +148,24 @@ public class MapServiceInfoImpl extends RemoteServiceServlet implements MapServi
         imageType.setImageFormat(EsriImageFormat.ESRI_IMAGE_PNG);
         imageType.setImageReturnType(EsriImageReturnType.ESRI_IMAGE_RETURN_MIME_DATA);
 
-
         Integer mapCount = stub.getMapCount();
-
 //        for (int mi = 0; mi < mapCount; mi++) {
-
             String mapName = stub.getMapName(0);
 
             ArrayOfMapServerLegendInfo response = stub.getLegendInfo(mapName, null, null, imageType);
 
             int iid = 0, gid = 0, cid = 0;
-            for (MapServerLegendInfo i : response.getMapServerLegendInfo()) {
+            for (MapServerLegendInfo i : response.getMapServerLegendInfo())
+            {
 //                System.out.println("layerID     : " + i.getLayerID());
 //                System.out.println("Name :      " + i.getName());
 
                 String id = Integer.toString(i.getLayerID());
-
                 List<LegendInfo> legendInfos = new ArrayList<LegendInfo>();
 
                 int labelId = 0;
-                for (MapServerLegendGroup group : i.getLegendGroups().getMapServerLegendGroup()) {
+                for (MapServerLegendGroup group : i.getLegendGroups().getMapServerLegendGroup())
+                {
 
 //                    System.out.println("group.getHeading() : " + group.getHeading());
                     for (MapServerLegendClass clas : group.getLegendClasses().getMapServerLegendClass())
@@ -352,6 +353,21 @@ public class MapServiceInfoImpl extends RemoteServiceServlet implements MapServi
         }
         Global.writeLog (Global.LOG_SECTION_SERVLET + "2. MapServiceInfoImpl : registration - result = " + result);
         return result;
+    }
+    //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    public String loadPeople (String id) throws IllegalArgumentException
+    {
+        String  content = null; // "1234567890"; // null;
+//        Global.writeLog (Global.LOG_SECTION_SERVLET + "0. loadPeople : content - " + content);
+        ContactorsDM dm = new ContactorsDM();
+
+        dm.Connect();
+        if (dm.getConnection () != null)
+        {
+            content = dm.loadContractors(id);
+        }
+        dm.Disconnect();
+        return content;
     }
     //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     public static void main(String[] args) {

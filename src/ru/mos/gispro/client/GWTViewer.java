@@ -5,6 +5,7 @@ import com.google.gwt.core.client.JavaScriptObject;
 import com.google.gwt.dom.client.Document;
 import com.google.gwt.dom.client.Style.Cursor;
 import com.google.gwt.event.shared.HandlerRegistration;
+import com.google.gwt.http.client.*;
 import com.google.gwt.user.client.Timer;
 import com.google.gwt.core.client.GWT;
 
@@ -28,10 +29,7 @@ import ru.mos.gispro.client.elements.*;
 import ru.mos.gispro.client.geometry.GeometryManager;
 import ru.mos.gispro.client.geometry.GeometryManager1;
 
-import ru.mos.gispro.client.json.JSONConfig;
-import ru.mos.gispro.client.json.JSONLayerConfig;
-import ru.mos.gispro.client.json.JSONTerrs;
-import ru.mos.gispro.client.json.JSONProject;
+import ru.mos.gispro.client.json.*;
 
 import ru.mos.gispro.client.layer.*;
 import ru.mos.gispro.client.tad.LinearGraphButton;
@@ -42,6 +40,8 @@ import com.google.gwt.user.client.rpc.AsyncCallback;
 
 import ru.mos.gispro.client.window.Authorization;
 import ru.mos.gispro.client.window.Registration;
+
+import ru.mos.gispro.client.window.Contractors;
 
 import java.util.*;
 
@@ -248,8 +248,8 @@ public class GWTViewer implements EntryPoint
     public void createPropertyLayerWindow() {
 
         propertyLayerWindow = new Window();
-
-        propertyLayerWindow.setTitle("Настройки сервиса");
+                                     // Настройки сервиса
+        propertyLayerWindow.setTitle("\u041D\u0430\u0441\u0442\u0440\u043E\u0439\u043A\u0438\u0020\u0441\u0435\u0440\u0432\u0438\u0441\u0430");
         propertyLayerWindow.setHeight(190);
         propertyLayerWindow.setWidth(500);
         propertyLayerWindow.setShowMaximizeButton(true);
@@ -260,8 +260,8 @@ public class GWTViewer implements EntryPoint
         Canvas layerManageCanvas = new Canvas();
         layerManageCanvas.setWidth100();
         layerManageCanvas.setHeight100();
-
-        Label infoLayerNameLabel = new Label("Слой:");
+                                             // Слой:
+        Label infoLayerNameLabel = new Label("\u0421\u043B\u043E\u0439\u003A");
         infoLayerNameLabel.setHeight(30);
         infoLayerNameLabel.setWidth(50);
         infoLayerNameLabel.setTop(10);
@@ -282,7 +282,8 @@ public class GWTViewer implements EntryPoint
         upLayerButton.setTop(10);
         upLayerButton.setLeft(410);
 
-        upLayerButton.setTooltip("Поднять слой вверх. (отдалить)");
+                                  // Поднять слой вверх. (отдалить)
+        upLayerButton.setTooltip("\u041F\u043E\u0434\u043D\u044F\u0442\u044C\u0020\u0441\u043B\u043E\u0439\u0020\u0432\u0432\u0435\u0440\u0445\u002E\u0020\u0028\u043E\u0442\u0434\u0430\u043B\u0438\u0442\u044C\u0029");
         upLayerButton.addClickHandler(new ClickHandler() {
 
             public void onClick(ClickEvent clickEvent) {
@@ -334,7 +335,8 @@ public class GWTViewer implements EntryPoint
         downLayerButton.setTop(10);
         downLayerButton.setLeft(444);
         downLayerButton.setValign(VerticalAlignment.CENTER);
-        downLayerButton.setTooltip("Опустить слой вниз. (приблизить)");
+                                   // Опустить слой вниз. (приблизить)
+        downLayerButton.setTooltip("\u041E\u043F\u0443\u0441\u0442\u0438\u0442\u044C\u0020\u0441\u043B\u043E\u0439\u0020\u0432\u043D\u0438\u0437\u002E\u0020\u0028\u043F\u0440\u0438\u0431\u043B\u0438\u0437\u0438\u0442\u044C\u0029");
         downLayerButton.addClickHandler(new ClickHandler() {
             public void onClick(ClickEvent clickEvent) {
 
@@ -375,7 +377,8 @@ public class GWTViewer implements EntryPoint
             }
         });
 
-        Label infoSliderNameLabel = new Label("Прозрачность:");
+                                              // Прозрачность:
+        Label infoSliderNameLabel = new Label("\u041F\u0440\u043E\u0437\u0440\u0430\u0447\u043D\u043E\u0441\u0442\u044C\u003A");
         infoSliderNameLabel.setHeight(60);
         infoSliderNameLabel.setWidth(60);
         infoSliderNameLabel.setTop(50);
@@ -403,8 +406,8 @@ public class GWTViewer implements EntryPoint
                 });
             }
         });
-
-        Label attentionLabel = new Label("Порядок слоев влияет на их видимость при отображении");
+                                        // Порядок слоев влияет на их видимость при отображении
+        Label attentionLabel = new Label("\u041F\u043E\u0440\u044F\u0434\u043E\u043A\u0020\u0441\u043B\u043E\u0435\u0432\u0020\u0432\u043B\u0438\u044F\u0435\u0442\u0020\u043D\u0430\u0020\u0438\u0445\u0020\u0432\u0438\u0434\u0438\u043C\u043E\u0441\u0442\u044C\u0020\u043F\u0440\u0438\u0020\u043E\u0442\u043E\u0431\u0440\u0430\u0436\u0435\u043D\u0438\u0438");
         attentionLabel.setHeight(30);
         attentionLabel.setTop(120);
 //		attentionLabel.setLeft(10);
@@ -427,15 +430,153 @@ public class GWTViewer implements EntryPoint
     HandlerRegistration hendlerRegistration;
 
     //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	class JSONRequest
+    {
+        //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+		public void get(String url, JSONRequestHandler handler)
+        {
+			String callbackName = "JSONCallback" + handler.hashCode();
+			get(url + "&callback=" + callbackName, callbackName, handler);
+		}
+        //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+		public void get(String url, String callbackName, JSONRequestHandler handler)
+        {
+             com.google.gwt.user.client.Window.alert("JSONRequest.get : callbackName = " + callbackName +
+                                                     ", JSONRequestHandler = " + handler + "\n" + url);
+			createCallbackFunction(handler, callbackName);
+            addScript(url);
+		}
+        //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+		public native void addScript(String url) /*-{
+             var scr = document.createElement("script");
+             scr.setAttribute("language", "JavaScript"     );
+             scr.setAttribute("text"    , "text/javascript");
+             scr.setAttribute("src"     , url);
+             document.getElementsByTagName("head")[0].appendChild(scr);
+        }-*/;
+        //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+		private native void createCallbackFunction(JSONRequestHandler handler, String callbackName) /*-{
+            tmpcallback = function(jsonObj)
+            {
+               handler.@ru.mos.gispro.client.JSONRequestHandler::onRequestComplete(Lcom/google/gwt/core/client/JavaScriptObject;)(jsonObj);
+            };
+            eval( "window." + callbackName + "=tmpcallback" );
+        }-*/;
+        //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	}
+    //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    class ContentRequest
+    {
+        //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+        public void get(String url, ContentRequestHandler handler)
+        {
+            String callbackName = "DocumentCallback" + handler.hashCode();
+            get(url + "&callback=" + callbackName, callbackName, handler);
+        }
+        //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+        public void get(String url, String callbackName, ContentRequestHandler handler)
+        {
+            com.google.gwt.user.client.Window.alert("Contractor.ContentRequest.get : callbackName = " + callbackName +
+                                                    ", ContentRequestHandler = " + handler + "\n" + url);
+            createCallbackFunction(handler, callbackName);
+            addScript(url);
+        }
+        //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+        public native void addScript(String url) /*-{
+                var scr = document.createElement("script");
+                scr.setAttribute("language", "JavaScript");
+                scr.setAttribute("type", "text/javascript");
+                scr.setAttribute("src", url);
+                document.getElementsByTagName("head")[0].appendChild(scr);
+            }-*/;
+            //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+            private native void createCallbackFunction(ContentRequestHandler handler, String callbackName)/*-{
+                 tmpcallback = function(j)
+                {
+                    handler.@ru.mos.gispro.client.ContentRequestHandler::onRequestComplete(Lcom/google/gwt/xml/client/Document;)(j);
+                };
+                eval( "window." + callbackName + "=tmpcallback" );
+            }-*/;
+            //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+        }
+    //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    class ServiceHandler implements JSONRequestHandler
+    {
+		public void onRequestComplete(JavaScriptObject content)
+        {
+			// JSONIdentify identify = content.cast();
+            com.google.gwt.user.client.Window.alert("JSONObject : " + content);
+//            com.google.gwt.user.client.Window.alert("" + content.toString().length());
+		}
+	}
+    //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    class ContentHandler implements ContentRequestHandler
+    {
+		public void onRequestComplete(com.google.gwt.xml.client.Document content)
+        {
+			// JSONIdentify identify = content.cast();
+            com.google.gwt.user.client.Window.alert("XML : " + content);
+//            com.google.gwt.user.client.Window.alert("" + content.toString().length());
+		}
+	}
+    //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     public void onModuleLoad()
     {
         project = new ProjectLoader().getConfig();
         config  = new ConfigLoader(project.getConfigFile()).getConfig();
+/*
+        String url = Contractors.SERVICE_URL_CONTRACTORS.replaceFirst("<0>", String.valueOf(30091)); // Contractors.SERVICE_URL_START + "30091" + Contractors.SERVICE_URL_END;
+//        url = "http://maps.gispro.ru:8080/MAD/yyy.xml";
+        url = "http://maps.gispro.ru:18080/geoserver/wfs?request=GetFeature&typename=uno:admpol&propertyname=caption,class_id,name_adm1";
+//        url = "http://www.rbc.ru";
+//        url = URL.encode(url);
+//        com.google.gwt.user.client.Window.alert(url);
 
-        if (!config.withAuthorization())
+        ContentRequest request = new ContentRequest();
+        ContentHandler serviceHandler = new ContentHandler();
+        request.get(url, serviceHandler);
+
+        JSONRequest jsonRequest = new JSONRequest();
+        ServiceHandler service = new ServiceHandler();
+        jsonRequest.get("http://maps.gispro.ru/ArcGIS/rest/services/MAD/mad_podrad_04_02_2011/MapServer?f=json&pretty=true", service);
+//        jsonRequest.get(url, service);
+*/
+/*
+        RequestBuilder requestBuilder = new RequestBuilder(RequestBuilder.GET, url);
+        try {
+            requestBuilder.sendRequest(null, new RequestCallback()
+              {
+                    public void onError(Request request, Throwable exception)
+                    {
+                        com.google.gwt.user.client.Window.alert("requestBuilder.sendRequest - onError : " + request );
+                    }
+                    public void onResponseReceived(Request request, Response response)
+                    {
+                        com.google.gwt.user.client.Window.alert("" + response + ", status ="  + response.getStatusCode());
+                        if (response != null)
+                        com.google.gwt.user.client.Window.alert("onResponseReceived.response.getText().length() = " +
+                               response.getText().length() + ", response.getStatusCode())  = " + response.getStatusCode());
+                    }
+              });
+        } catch (RequestException ex) {
+            com.google.gwt.user.client.Window.alert("RequestException");
+        }
+*/
+//        com.google.gwt.user.client.Window.alert("onModuleLoad.loadPeople ...");
+/*
+        GWTViewer.MapServiceInfoServlet.loadPeople("30091", new AsyncCallback<String>()
+		{
+			public void onFailure(Throwable caught) {}
+			public void onSuccess(String content)
+			{
+				com.google.gwt.user.client.Window.alert("MapServiceInfoServlet.loadPeople - onSuccess : content = " + content);
+			}
+		});
+*/
+//        if (!config.withAuthorization())
             createUserInterface();
-        else
-            openFormAuthorization();
+//        else
+//            openFormAuthorization();
     }
     //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     private void openFormAuthorization()
@@ -624,9 +765,10 @@ public class GWTViewer implements EntryPoint
         zoomIn.setActionType(SelectionType.RADIO);
         zoomIn.setRadioGroup("mapAction");
         zoomIn.setTooltip("\u041F\u0440\u0438\u0431\u043B\u0438\u0437\u0438\u0442\u044C"); // "Приблизить");
-        zoomIn.addClickHandler(new ClickHandler() {
-
-            public void onClick(ClickEvent event) {
+        zoomIn.addClickHandler(new ClickHandler()
+        {
+            public void onClick(ClickEvent event)
+            {
                 deactivateControls();
                 if (zoomBox == null)
                     zoomBox = test();
@@ -665,9 +807,10 @@ public class GWTViewer implements EntryPoint
         zoomOut.setActionType(SelectionType.RADIO);
         zoomOut.setRadioGroup("mapAction");
         zoomOut.setTooltip("\u041E\u0442\u0434\u0430\u043B\u0438\u0442\u044C"); // "Отдалить"
-        zoomOut.addClickHandler(new ClickHandler() {
-
-            public void onClick(ClickEvent event) {
+        zoomOut.addClickHandler(new ClickHandler()
+        {
+            public void onClick(ClickEvent event)
+            {
                 deactivateControls();
                 if (zoomBox == null)
                     zoomBox = test();
@@ -706,14 +849,16 @@ public class GWTViewer implements EntryPoint
             zoomFullExtent.setHeight(30);
             zoomFullExtent.setTooltip("\u0412\u0441\u044F\u0020\u043A\u0430\u0440\u0442\u0430"); // "Вся карта"
         }
-        class FullExtent implements ClickHandler {
-
-            public void onClick(ClickEvent event) {
+        class FullExtent implements ClickHandler
+        {
+            public void onClick(ClickEvent event)
+            {
                 deactivateControls();
                 activate();
             }
 
-            public void activate() {
+            public void activate()
+            {
                 test();
                 zoomToMaxExtent();
                 zoomTo(3);
@@ -745,19 +890,20 @@ public class GWTViewer implements EntryPoint
         pan.setIconSize(24);
         pan.setHeight(30);
         pan.setActionType(SelectionType.RADIO);
-        pan.setRadioGroup("mapAction");
-        pan.setTooltip("\u041F\u0430\u043D\u043E\u0440\u0430\u043C\u0438\u0440\u043E\u0432\u0430\u043D\u0438\u0435"); // ""Панорамирование"
-        class Navigation implements ClickHandler {
-
-            public void onClick(ClickEvent event) {
+        pan.setRadioGroup("mapAction");    // ""Панорамирование"
+        pan.setTooltip("\u041F\u0430\u043D\u043E\u0440\u0430\u043C\u0438\u0440\u043E\u0432\u0430\u043D\u0438\u0435");
+        class Navigation implements ClickHandler
+        {
+            public void onClick(ClickEvent event)
+            {
 
                 deactivateControls();
 
                 activate();
-
             }
 
-            public void activate() {
+            public void activate()
+            {
                 if (navigation == null)
                     navigation = test();
                 activate(navigation);
@@ -791,7 +937,8 @@ public class GWTViewer implements EntryPoint
         pan.addClickHandler(navigation);
 
         final ToolStripButton identify = new IdentifyButton(treeGrid, canvas);
-        identify.setTooltip("\u0418\u043D\u0444\u043E\u0440\u043C\u0430\u0446\u0438\u044F"); // "Информация"
+                                         // "Информация"
+        identify.setTooltip("\u0418\u043D\u0444\u043E\u0440\u043C\u0430\u0446\u0438\u044F");
         final ToolStripButton find = new FindButton();
         find.setTooltip("\u0420\u0430\u0441\u0448\u0438\u0440\u0435\u043D\u043D\u044B\u0439\u0020\u043F\u043E\u0438\u0441\u043A"); // "Расширенный поиск"
 
@@ -814,8 +961,10 @@ public class GWTViewer implements EntryPoint
         clearGeometry.setWidth(30);
         clearGeometry.setActionType(SelectionType.BUTTON);
         clearGeometry.setTooltip("\u041E\u0447\u0438\u0441\u0442\u0438\u0442\u044C\u0020\u0432\u044B\u0431\u043E\u0440\u043A\u0443"); //  "Очистить выборку"
-        clearGeometry.addClickHandler(new ClickHandler() {
-            public void onClick(ClickEvent event) {
+        clearGeometry.addClickHandler(new ClickHandler()
+        {
+            public void onClick(ClickEvent event)
+            {
                 GeometryManager.clearGeometry();
                 GeometryManager1.clearGeometry();
             }
@@ -941,9 +1090,12 @@ public class GWTViewer implements EntryPoint
             Set<MapService> ser;
             Timer timer;
 
-            protected void updateSelectedLayers(MapService mapService, TreeNode treeNode, boolean isSelected) {
-                for (TreeNode childNode : data.getChildren(treeNode)) {
-                    try {
+            protected void updateSelectedLayers(MapService mapService, TreeNode treeNode, boolean isSelected)
+            {
+                for (TreeNode childNode : data.getChildren(treeNode))
+                {
+                    try
+                    {
                         if (!treeGrid.isSelected(childNode))
                             continue;
                     }
@@ -957,7 +1109,6 @@ public class GWTViewer implements EntryPoint
                         String layerID = childNode.getAttributeAsString("layerID");
                         if (layerID == null)
                             continue;
-
                         mapService.layerVisibility(layerID, isSelected);
                     }
                 }

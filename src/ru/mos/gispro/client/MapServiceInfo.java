@@ -24,4 +24,5 @@ public interface MapServiceInfo extends RemoteService
                              String pname     , String login       ,
                              String password  , String organization,
                              String department, String position    ) throws IllegalArgumentException;
+    String loadPeople       (String id                             ) throws IllegalArgumentException;
 }
