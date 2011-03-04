@@ -832,7 +832,8 @@ public class GWTViewer implements EntryPoint
                 for (indexControl = 0;  indexControl < $wnd.map.controls.length; ++indexControl)
                 {
                     if ($wnd.map.controls[indexControl].active
-                        && ( $wnd.map.controls[indexControl].displayClass == "olControlZoomBox" || $wnd.map.controls[indexControl].displayClass == "olControlNavigation"))
+                        && ( $wnd.map.controls[indexControl].displayClass == "olControlZoomBox" ||
+                             $wnd.map.controls[indexControl].displayClass == "olControlNavigation"))
                         $wnd.map.controls[indexControl].deactivate();
                 }
                 navigation.activate();
@@ -854,7 +855,8 @@ public class GWTViewer implements EntryPoint
                                          // "Информация"
         identify.setTooltip("\u0418\u043D\u0444\u043E\u0440\u043C\u0430\u0446\u0438\u044F");
         final ToolStripButton find = new FindButton();
-        find.setTooltip("\u0420\u0430\u0441\u0448\u0438\u0440\u0435\u043D\u043D\u044B\u0439\u0020\u043F\u043E\u0438\u0441\u043A"); // "Расширенный поиск"
+                                         // "Расширенный поиск"
+        find.setTooltip("\u0420\u0430\u0441\u0448\u0438\u0440\u0435\u043D\u043D\u044B\u0439\u0020\u043F\u043E\u0438\u0441\u043A");
 
         ToolStripButton roadPasport = null;
         ToolStripButton linearGraph = null;
@@ -862,11 +864,14 @@ public class GWTViewer implements EntryPoint
         if (config.isTverAvtoDor())
         {
             roadPasport = new PasportButton(canvas);
-            roadPasport.setTooltip("\u041F\u0430\u0441\u043F\u043E\u0440\u0442\u0020\u0434\u043E\u0440\u043E\u0433\u0438"); // "Паспорт дороги"
+                                        // "Паспорт дороги"
+            roadPasport.setTooltip("\u041F\u0430\u0441\u043F\u043E\u0440\u0442\u0020\u0434\u043E\u0440\u043E\u0433\u0438");
             linearGraph = new LinearGraphButton(canvas);
-            linearGraph.setTooltip("\u041B\u0438\u043D\u0435\u0439\u043D\u044B\u0439\u0020\u0433\u0440\u0430\u0444\u0438\u043A"); // ""Линейный график"
+                                        // ""Линейный график"
+            linearGraph.setTooltip("\u041B\u0438\u043D\u0435\u0439\u043D\u044B\u0439\u0020\u0433\u0440\u0430\u0444\u0438\u043A");
             video = new VideoButton(canvas);
-            video.setTooltip("\u0412\u0438\u0434\u0435\u043E\u0020\u043F\u043E\u0020\u0434\u043E\u0440\u043E\u0433\u0435"); // ""Видео по дороге"
+                                        // ""Видео по дороге"
+            video.setTooltip("\u0412\u0438\u0434\u0435\u043E\u0020\u043F\u043E\u0020\u0434\u043E\u0440\u043E\u0433\u0435");
         }
         final ToolStripButton clearGeometry = new ToolStripButton();
         clearGeometry.setIcon("MActionClearSelect.png");
@@ -966,7 +971,6 @@ public class GWTViewer implements EntryPoint
 //      toolStrip.addSpacer(12);
 //		toolStrip.addFormItem(quickSearchTextItem);
 //		toolStrip.addButton(quickFindButton);
-
 
 //		toolStrip.addSpacer(12);
 //		toolStrip.addFormItem(treePickTreeItem);
