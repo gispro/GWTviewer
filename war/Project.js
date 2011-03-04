@@ -1,6 +1,6 @@
 var projectJSON =
 {
     "configFile"  : "MosRegion",
-    "configFile1" : "TverAvtoDor",
-    "configFile2" : "MosAvtoDor"
+    "configFile2" : "TverAvtoDor",
+    "configFile3" : "MosAvtoDor"
 };
