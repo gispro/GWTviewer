@@ -96,17 +96,17 @@
       <file leaf-file-name="IdentifyButton.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/ru/mos/gispro/client/elements/IdentifyButton.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="44" column="61" selection-start="1932" selection-end="1932" vertical-scroll-proportion="0.0">
+            <state line="113" column="74" selection-start="5426" selection-end="5426" vertical-scroll-proportion="0.0">
               <folding>
-                <marker date="1299237030694" expanded="true" signature="2407:2439" placeholder="{...}" />
-                <marker date="1299237030694" expanded="true" signature="3256:3742" placeholder="{...}" />
-                <marker date="1299237030694" expanded="true" signature="3371:3728" placeholder="{...}" />
-                <marker date="1299237030694" expanded="true" signature="4600:4876" placeholder="{...}" />
-                <marker date="1299237030694" expanded="true" signature="5074:5394" placeholder="{...}" />
-                <marker date="1299237030694" expanded="true" signature="5142:5304" placeholder="{...}" />
-                <marker date="1299237030694" expanded="true" signature="15954:17050" placeholder="{...}" />
-                <marker date="1299237030694" expanded="true" signature="16254:16584" placeholder="{...}" />
-                <marker date="1299237030694" expanded="true" signature="16398:16553" placeholder="{...}" />
+                <marker date="1299241678652" expanded="true" signature="2497:2529" placeholder="{...}" />
+                <marker date="1299241678652" expanded="true" signature="2706:3128" placeholder="{...}" />
+                <marker date="1299241678652" expanded="true" signature="2805:3122" placeholder="{...}" />
+                <marker date="1299241678652" expanded="true" signature="3929:4177" placeholder="{...}" />
+                <marker date="1299241678652" expanded="true" signature="4357:4629" placeholder="{...}" />
+                <marker date="1299241678652" expanded="true" signature="4409:4555" placeholder="{...}" />
+                <marker date="1299241678652" expanded="true" signature="4875:5634" placeholder="{...}" />
+                <marker date="1299241678652" expanded="true" signature="5079:5288" placeholder="{...}" />
+                <marker date="1299241678652" expanded="true" signature="5183:5278" placeholder="{...}" />
               </folding>
             </state>
           </provider>
@@ -115,44 +115,44 @@
       <file leaf-file-name="GWTViewer.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/ru/mos/gispro/client/GWTViewer.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="1052" column="79" selection-start="44297" selection-end="44297" vertical-scroll-proportion="2.817159">
+            <state line="1052" column="28" selection-start="44322" selection-end="44322" vertical-scroll-proportion="2.5612245">
               <folding>
                 <element signature="imports" expanded="true" />
-                <marker date="1299234574969" expanded="true" signature="2661:2758" placeholder="{...}" />
-                <marker date="1299234574969" expanded="true" signature="2802:3228" placeholder="{...}" />
-                <marker date="1299234574969" expanded="true" signature="2875:3060" placeholder="{&quot;minZoomLevel&quot;: 3...}" />
-                <marker date="1299234574969" expanded="true" signature="3070:3186" placeholder="{&quot;singleTile&quot;: &quot;true&quot;...}" />
-                <marker date="1299234574969" expanded="true" signature="3296:3477" placeholder="{...}" />
-                <marker date="1299234574969" expanded="true" signature="3529:3576" placeholder="{...}" />
-                <marker date="1299234574969" expanded="true" signature="3628:3665" placeholder="{...}" />
-                <marker date="1299234574969" expanded="true" signature="3628:3665" placeholder="{...}" />
-                <marker date="1299234574969" expanded="true" signature="4664:4739" placeholder="{...}" />
-                <marker date="1299234574969" expanded="true" signature="4831:4902" placeholder="{...}" />
-                <marker date="1299234574969" expanded="true" signature="4986:5061" placeholder="{...}" />
-                <marker date="1299234574969" expanded="true" signature="5141:5208" placeholder="{...}" />
-                <marker date="1299234574969" expanded="true" signature="5266:5827" placeholder="{...}" />
-                <marker date="1299234574969" expanded="true" signature="5455:5555" placeholder="{...}" />
-                <marker date="1299234574969" expanded="true" signature="5625:5725" placeholder="{...}" />
-                <marker date="1299234574969" expanded="true" signature="5970:7898" placeholder="{...}" />
-                <marker date="1299234574969" expanded="true" signature="5974:6571" placeholder="//..." />
-                <marker date="1299234574969" expanded="true" signature="6682:7790" placeholder="{...}" />
-                <marker date="1299234574969" expanded="true" signature="6744:7771" placeholder="{&quot;pointRadius&quot;: &quot;${type}&quot;...}" />
-                <marker date="1299234574969" expanded="true" signature="6814:7291" placeholder="//..." />
-                <marker date="1299234574969" expanded="true" signature="7948:9288" placeholder="{...}" />
-                <marker date="1299234574969" expanded="true" signature="8061:9178" placeholder="{...}" />
-                <marker date="1299234574969" expanded="true" signature="8123:9159" placeholder="{&quot;pointRadius&quot;: &quot;${type}&quot;...}" />
-                <marker date="1299234574969" expanded="true" signature="8193:8675" placeholder="//..." />
-                <marker date="1299234574969" expanded="true" signature="9349:9743" placeholder="{...}" />
-                <marker date="1299234574969" expanded="true" signature="9440:9737" placeholder="{...}" />
-                <marker date="1299234574969" expanded="true" signature="18953:19277" placeholder="{...}" />
-                <marker date="1299234574969" expanded="true" signature="19467:19766" placeholder="{...}" />
-                <marker date="1299234574969" expanded="true" signature="19529:19688" placeholder="{...}" />
-                <marker date="1299234574969" expanded="true" signature="20949:21274" placeholder="{...}" />
-                <marker date="1299234574969" expanded="true" signature="21473:21774" placeholder="{...}" />
-                <marker date="1299234574969" expanded="true" signature="21538:21694" placeholder="{...}" />
-                <marker date="1299234574969" expanded="true" signature="35601:36092" placeholder="{...}" />
-                <marker date="1299234574969" expanded="true" signature="35716:36039" placeholder="{...}" />
-                <marker date="1299234574969" expanded="true" signature="36154:36328" placeholder="{...}" />
+                <marker date="1299243538723" expanded="true" signature="2661:2758" placeholder="{...}" />
+                <marker date="1299243538723" expanded="true" signature="2802:3228" placeholder="{...}" />
+                <marker date="1299243538723" expanded="true" signature="2875:3060" placeholder="{&quot;minZoomLevel&quot;: 3...}" />
+                <marker date="1299243538723" expanded="true" signature="3070:3186" placeholder="{&quot;singleTile&quot;: &quot;true&quot;...}" />
+                <marker date="1299243538723" expanded="true" signature="3296:3477" placeholder="{...}" />
+                <marker date="1299243538723" expanded="true" signature="3529:3576" placeholder="{...}" />
+                <marker date="1299243538723" expanded="true" signature="3628:3665" placeholder="{...}" />
+                <marker date="1299243538723" expanded="true" signature="3628:3665" placeholder="{...}" />
+                <marker date="1299243538723" expanded="true" signature="4664:4739" placeholder="{...}" />
+                <marker date="1299243538723" expanded="true" signature="4831:4902" placeholder="{...}" />
+                <marker date="1299243538723" expanded="true" signature="4986:5061" placeholder="{...}" />
+                <marker date="1299243538723" expanded="true" signature="5141:5208" placeholder="{...}" />
+                <marker date="1299243538723" expanded="true" signature="5266:5827" placeholder="{...}" />
+                <marker date="1299243538723" expanded="true" signature="5455:5555" placeholder="{...}" />
+                <marker date="1299243538723" expanded="true" signature="5625:5725" placeholder="{...}" />
+                <marker date="1299243538723" expanded="true" signature="5970:7898" placeholder="{...}" />
+                <marker date="1299243538723" expanded="true" signature="5974:6571" placeholder="//..." />
+                <marker date="1299243538723" expanded="true" signature="6682:7790" placeholder="{...}" />
+                <marker date="1299243538723" expanded="true" signature="6744:7771" placeholder="{&quot;pointRadius&quot;: &quot;${type}&quot;...}" />
+                <marker date="1299243538723" expanded="true" signature="6814:7291" placeholder="//..." />
+                <marker date="1299243538723" expanded="true" signature="7948:9288" placeholder="{...}" />
+                <marker date="1299243538723" expanded="true" signature="8061:9178" placeholder="{...}" />
+                <marker date="1299243538723" expanded="true" signature="8123:9159" placeholder="{&quot;pointRadius&quot;: &quot;${type}&quot;...}" />
+                <marker date="1299243538723" expanded="true" signature="8193:8675" placeholder="//..." />
+                <marker date="1299243538723" expanded="true" signature="9349:9743" placeholder="{...}" />
+                <marker date="1299243538723" expanded="true" signature="9440:9737" placeholder="{...}" />
+                <marker date="1299243538723" expanded="true" signature="18953:19277" placeholder="{...}" />
+                <marker date="1299243538723" expanded="true" signature="19467:19766" placeholder="{...}" />
+                <marker date="1299243538723" expanded="true" signature="19529:19688" placeholder="{...}" />
+                <marker date="1299243538723" expanded="true" signature="20949:21274" placeholder="{...}" />
+                <marker date="1299243538723" expanded="true" signature="21473:21774" placeholder="{...}" />
+                <marker date="1299243538723" expanded="true" signature="21538:21694" placeholder="{...}" />
+                <marker date="1299243538723" expanded="true" signature="35601:36121" placeholder="{...}" />
+                <marker date="1299243538723" expanded="true" signature="35716:36068" placeholder="{...}" />
+                <marker date="1299243538723" expanded="true" signature="36183:36357" placeholder="{...}" />
               </folding>
             </state>
           </provider>
@@ -230,12 +230,12 @@
         <option value="$PROJECT_DIR$/war/MosRegion.js" />
         <option value="$PROJECT_DIR$/src/ru/mos/gispro/client/elements/FullExtent.java" />
         <option value="$PROJECT_DIR$/war/MosAvtoDor.js" />
-        <option value="$PROJECT_DIR$/src/ru/mos/gispro/client/GWTViewer.java" />
-        <option value="$PROJECT_DIR$/src/ru/mos/gispro/client/GWTViewer.java" />
         <option value="$PROJECT_DIR$/war/Project.js" />
         <option value="$PROJECT_DIR$/war/META-INF/context.xml" />
         <option value="$PROJECT_DIR$/build.xml" />
         <option value="$PROJECT_DIR$/src/ru/mos/gispro/client/elements/IdentifyButton.java" />
+        <option value="$PROJECT_DIR$/src/ru/mos/gispro/client/GWTViewer.java" />
+        <option value="$PROJECT_DIR$/src/ru/mos/gispro/client/GWTViewer.java" />
       </list>
     </option>
   </component>
@@ -954,7 +954,7 @@
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.23187366" sideWeight="0.24432577" order="1" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32950467" sideWeight="0.6021362" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39985642" sideWeight="0.73564756" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2074659" sideWeight="0.6311585" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.25412777" sideWeight="0.6311585" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Dependency Viewer" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32977304" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="true" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.32843792" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Data Sources" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32950467" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -1047,11 +1047,6 @@
     </buildFile>
   </component>
   <component name="editorHistoryManager">
-    <entry file="jar://$PROJECT_DIR$/lib/gwt-servlet.jar!/com/google/gwt/xml/client/Document.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="5" column="17" selection-start="150" selection-end="217" vertical-scroll-proportion="0.12160229" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/ru/mos/gispro/server/MapServiceInfoImpl.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="366" column="14" selection-start="17161" selection-end="17161" vertical-scroll-proportion="1.5485232" />
@@ -1117,19 +1112,55 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/ru/mos/gispro/client/layer/ArcGIS93.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="89" column="18" selection-start="2736" selection-end="2736" vertical-scroll-proportion="1.769339">
+          <folding>
+            <marker date="1299234574922" expanded="true" signature="1373:1588" placeholder="{...}" />
+            <marker date="1299234574922" expanded="true" signature="1731:1971" placeholder="{...}" />
+            <marker date="1299234574922" expanded="true" signature="1767:1901" placeholder="{...}" />
+            <marker date="1299234574922" expanded="true" signature="8870:8919" placeholder="{...}" />
+            <marker date="1299234574922" expanded="true" signature="9012:9056" placeholder="{...}" />
+            <marker date="1299234574922" expanded="true" signature="9165:9681" placeholder="{...}" />
+            <marker date="1299234574922" expanded="true" signature="9252:9468" placeholder="{&quot;minZoomLevel&quot;: 4...}" />
+            <marker date="1299234574922" expanded="true" signature="9476:9632" placeholder="{&quot;wrapDateLine&quot;: &quot;true&quot;...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/ru/mos/gispro/client/elements/IdentifyButton.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="44" column="61" selection-start="1932" selection-end="1932" vertical-scroll-proportion="0.0">
+        <state line="113" column="74" selection-start="5426" selection-end="5426" vertical-scroll-proportion="0.0">
           <folding>
-            <marker date="1299237030694" expanded="true" signature="2407:2439" placeholder="{...}" />
-            <marker date="1299237030694" expanded="true" signature="3256:3742" placeholder="{...}" />
-            <marker date="1299237030694" expanded="true" signature="3371:3728" placeholder="{...}" />
-            <marker date="1299237030694" expanded="true" signature="4600:4876" placeholder="{...}" />
-            <marker date="1299237030694" expanded="true" signature="5074:5394" placeholder="{...}" />
-            <marker date="1299237030694" expanded="true" signature="5142:5304" placeholder="{...}" />
-            <marker date="1299237030694" expanded="true" signature="15954:17050" placeholder="{...}" />
-            <marker date="1299237030694" expanded="true" signature="16254:16584" placeholder="{...}" />
-            <marker date="1299237030694" expanded="true" signature="16398:16553" placeholder="{...}" />
+            <marker date="1299241678652" expanded="true" signature="2497:2529" placeholder="{...}" />
+            <marker date="1299241678652" expanded="true" signature="2706:3128" placeholder="{...}" />
+            <marker date="1299241678652" expanded="true" signature="2805:3122" placeholder="{...}" />
+            <marker date="1299241678652" expanded="true" signature="3929:4177" placeholder="{...}" />
+            <marker date="1299241678652" expanded="true" signature="4357:4629" placeholder="{...}" />
+            <marker date="1299241678652" expanded="true" signature="4409:4555" placeholder="{...}" />
+            <marker date="1299241678652" expanded="true" signature="4875:5634" placeholder="{...}" />
+            <marker date="1299241678652" expanded="true" signature="5079:5288" placeholder="{...}" />
+            <marker date="1299241678652" expanded="true" signature="5183:5278" placeholder="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ru/mos/gispro/client/elements/ZoomClickHandler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="64" column="4" selection-start="2259" selection-end="2259" vertical-scroll-proportion="0.0">
+          <folding>
+            <element signature="imports" expanded="true" />
+            <marker date="1299234574828" expanded="true" signature="1544:2011" placeholder="{...}" />
+            <marker date="1299234574828" expanded="true" signature="1642:1977" placeholder="{...}" />
+            <marker date="1299234574828" expanded="true" signature="2071:2201" placeholder="{...}" />
+            <marker date="1299234574828" expanded="true" signature="2071:2201" placeholder="{...}" />
+            <marker date="1299234574828" expanded="true" signature="2071:2201" placeholder="{...}" />
+            <marker date="1299234574828" expanded="true" signature="2071:2201" placeholder="{...}" />
+            <marker date="1299234574828" expanded="true" signature="2071:2201" placeholder="{...}" />
+            <marker date="1299234574828" expanded="true" signature="2071:2201" placeholder="{...}" />
+            <marker date="1299234574828" expanded="true" signature="2262:2428" placeholder="{...}" />
+            <marker date="1299234574828" expanded="true" signature="2262:2428" placeholder="{...}" />
+            <marker date="1299234574828" expanded="true" signature="2262:2428" placeholder="{...}" />
           </folding>
         </state>
       </provider>
@@ -1158,66 +1189,46 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/ru/mos/gispro/client/elements/ZoomClickHandler.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="64" column="4" selection-start="2259" selection-end="2259" vertical-scroll-proportion="0.0">
-          <folding>
-            <element signature="imports" expanded="true" />
-            <marker date="1299234574828" expanded="true" signature="1544:2011" placeholder="{...}" />
-            <marker date="1299234574828" expanded="true" signature="1642:1977" placeholder="{...}" />
-            <marker date="1299234574828" expanded="true" signature="2071:2201" placeholder="{...}" />
-            <marker date="1299234574828" expanded="true" signature="2071:2201" placeholder="{...}" />
-            <marker date="1299234574828" expanded="true" signature="2071:2201" placeholder="{...}" />
-            <marker date="1299234574828" expanded="true" signature="2071:2201" placeholder="{...}" />
-            <marker date="1299234574828" expanded="true" signature="2071:2201" placeholder="{...}" />
-            <marker date="1299234574828" expanded="true" signature="2071:2201" placeholder="{...}" />
-            <marker date="1299234574828" expanded="true" signature="2262:2428" placeholder="{...}" />
-            <marker date="1299234574828" expanded="true" signature="2262:2428" placeholder="{...}" />
-            <marker date="1299234574828" expanded="true" signature="2262:2428" placeholder="{...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/ru/mos/gispro/client/GWTViewer.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="1052" column="79" selection-start="44297" selection-end="44297" vertical-scroll-proportion="2.817159">
+        <state line="1052" column="28" selection-start="44322" selection-end="44322" vertical-scroll-proportion="2.5612245">
           <folding>
             <element signature="imports" expanded="true" />
-            <marker date="1299234574969" expanded="true" signature="2661:2758" placeholder="{...}" />
-            <marker date="1299234574969" expanded="true" signature="2802:3228" placeholder="{...}" />
-            <marker date="1299234574969" expanded="true" signature="2875:3060" placeholder="{&quot;minZoomLevel&quot;: 3...}" />
-            <marker date="1299234574969" expanded="true" signature="3070:3186" placeholder="{&quot;singleTile&quot;: &quot;true&quot;...}" />
-            <marker date="1299234574969" expanded="true" signature="3296:3477" placeholder="{...}" />
-            <marker date="1299234574969" expanded="true" signature="3529:3576" placeholder="{...}" />
-            <marker date="1299234574969" expanded="true" signature="3628:3665" placeholder="{...}" />
-            <marker date="1299234574969" expanded="true" signature="3628:3665" placeholder="{...}" />
-            <marker date="1299234574969" expanded="true" signature="4664:4739" placeholder="{...}" />
-            <marker date="1299234574969" expanded="true" signature="4831:4902" placeholder="{...}" />
-            <marker date="1299234574969" expanded="true" signature="4986:5061" placeholder="{...}" />
-            <marker date="1299234574969" expanded="true" signature="5141:5208" placeholder="{...}" />
-            <marker date="1299234574969" expanded="true" signature="5266:5827" placeholder="{...}" />
-            <marker date="1299234574969" expanded="true" signature="5455:5555" placeholder="{...}" />
-            <marker date="1299234574969" expanded="true" signature="5625:5725" placeholder="{...}" />
-            <marker date="1299234574969" expanded="true" signature="5970:7898" placeholder="{...}" />
-            <marker date="1299234574969" expanded="true" signature="5974:6571" placeholder="//..." />
-            <marker date="1299234574969" expanded="true" signature="6682:7790" placeholder="{...}" />
-            <marker date="1299234574969" expanded="true" signature="6744:7771" placeholder="{&quot;pointRadius&quot;: &quot;${type}&quot;...}" />
-            <marker date="1299234574969" expanded="true" signature="6814:7291" placeholder="//..." />
-            <marker date="1299234574969" expanded="true" signature="7948:9288" placeholder="{...}" />
-            <marker date="1299234574969" expanded="true" signature="8061:9178" placeholder="{...}" />
-            <marker date="1299234574969" expanded="true" signature="8123:9159" placeholder="{&quot;pointRadius&quot;: &quot;${type}&quot;...}" />
-            <marker date="1299234574969" expanded="true" signature="8193:8675" placeholder="//..." />
-            <marker date="1299234574969" expanded="true" signature="9349:9743" placeholder="{...}" />
-            <marker date="1299234574969" expanded="true" signature="9440:9737" placeholder="{...}" />
-            <marker date="1299234574969" expanded="true" signature="18953:19277" placeholder="{...}" />
-            <marker date="1299234574969" expanded="true" signature="19467:19766" placeholder="{...}" />
-            <marker date="1299234574969" expanded="true" signature="19529:19688" placeholder="{...}" />
-            <marker date="1299234574969" expanded="true" signature="20949:21274" placeholder="{...}" />
-            <marker date="1299234574969" expanded="true" signature="21473:21774" placeholder="{...}" />
-            <marker date="1299234574969" expanded="true" signature="21538:21694" placeholder="{...}" />
-            <marker date="1299234574969" expanded="true" signature="35601:36092" placeholder="{...}" />
-            <marker date="1299234574969" expanded="true" signature="35716:36039" placeholder="{...}" />
-            <marker date="1299234574969" expanded="true" signature="36154:36328" placeholder="{...}" />
+            <marker date="1299243538723" expanded="true" signature="2661:2758" placeholder="{...}" />
+            <marker date="1299243538723" expanded="true" signature="2802:3228" placeholder="{...}" />
+            <marker date="1299243538723" expanded="true" signature="2875:3060" placeholder="{&quot;minZoomLevel&quot;: 3...}" />
+            <marker date="1299243538723" expanded="true" signature="3070:3186" placeholder="{&quot;singleTile&quot;: &quot;true&quot;...}" />
+            <marker date="1299243538723" expanded="true" signature="3296:3477" placeholder="{...}" />
+            <marker date="1299243538723" expanded="true" signature="3529:3576" placeholder="{...}" />
+            <marker date="1299243538723" expanded="true" signature="3628:3665" placeholder="{...}" />
+            <marker date="1299243538723" expanded="true" signature="3628:3665" placeholder="{...}" />
+            <marker date="1299243538723" expanded="true" signature="4664:4739" placeholder="{...}" />
+            <marker date="1299243538723" expanded="true" signature="4831:4902" placeholder="{...}" />
+            <marker date="1299243538723" expanded="true" signature="4986:5061" placeholder="{...}" />
+            <marker date="1299243538723" expanded="true" signature="5141:5208" placeholder="{...}" />
+            <marker date="1299243538723" expanded="true" signature="5266:5827" placeholder="{...}" />
+            <marker date="1299243538723" expanded="true" signature="5455:5555" placeholder="{...}" />
+            <marker date="1299243538723" expanded="true" signature="5625:5725" placeholder="{...}" />
+            <marker date="1299243538723" expanded="true" signature="5970:7898" placeholder="{...}" />
+            <marker date="1299243538723" expanded="true" signature="5974:6571" placeholder="//..." />
+            <marker date="1299243538723" expanded="true" signature="6682:7790" placeholder="{...}" />
+            <marker date="1299243538723" expanded="true" signature="6744:7771" placeholder="{&quot;pointRadius&quot;: &quot;${type}&quot;...}" />
+            <marker date="1299243538723" expanded="true" signature="6814:7291" placeholder="//..." />
+            <marker date="1299243538723" expanded="true" signature="7948:9288" placeholder="{...}" />
+            <marker date="1299243538723" expanded="true" signature="8061:9178" placeholder="{...}" />
+            <marker date="1299243538723" expanded="true" signature="8123:9159" placeholder="{&quot;pointRadius&quot;: &quot;${type}&quot;...}" />
+            <marker date="1299243538723" expanded="true" signature="8193:8675" placeholder="//..." />
+            <marker date="1299243538723" expanded="true" signature="9349:9743" placeholder="{...}" />
+            <marker date="1299243538723" expanded="true" signature="9440:9737" placeholder="{...}" />
+            <marker date="1299243538723" expanded="true" signature="18953:19277" placeholder="{...}" />
+            <marker date="1299243538723" expanded="true" signature="19467:19766" placeholder="{...}" />
+            <marker date="1299243538723" expanded="true" signature="19529:19688" placeholder="{...}" />
+            <marker date="1299243538723" expanded="true" signature="20949:21274" placeholder="{...}" />
+            <marker date="1299243538723" expanded="true" signature="21473:21774" placeholder="{...}" />
+            <marker date="1299243538723" expanded="true" signature="21538:21694" placeholder="{...}" />
+            <marker date="1299243538723" expanded="true" signature="35601:36121" placeholder="{...}" />
+            <marker date="1299243538723" expanded="true" signature="35716:36068" placeholder="{...}" />
+            <marker date="1299243538723" expanded="true" signature="36183:36357" placeholder="{...}" />
           </folding>
         </state>
       </provider>
