@@ -97,22 +97,24 @@ public class GWTViewer implements EntryPoint
 //		$wnd.map.setCenter(new $wnd.OpenLayers.LonLat($wnd.configLayers.centerX,$wnd.configLayers.centerY),3);
     }-*/;
 
-    public native void zoomToMaxExtent() /*-{
-        $wnd.map.zoomToMaxExtent();
-    }-*/;
+//    public native void zoomToMaxExtent() /*-{
+//        $wnd.map.zoomToMaxExtent();
+//    }-*/;
 
     public native void zoomTo(Integer lvl) /*-{
         $wnd.map.zoomTo(lvl);
     }-*/;
 
-    class NavigationHistory {
-
-        NavigationHistory(ToolStripButton prev, ToolStripButton next) {
+    class NavigationHistory
+    {
+        NavigationHistory(ToolStripButton prev, ToolStripButton next)
+        {
             this.prev = prev;
             this.next = next;
         }
 
-        public void activate() {
+        public void activate()
+        {
             if (navigationHistory == null)
                 navigationHistory = test();
 
@@ -373,10 +375,8 @@ public class GWTViewer implements EntryPoint
                     if (layer == null) continue;
                     LayerUtils.setLayerZOrder(layer, 1000-k);
                 }
-
             }
         });
-
                                               // Прозрачность:
         Label infoSliderNameLabel = new Label("\u041F\u0440\u043E\u0437\u0440\u0430\u0447\u043D\u043E\u0441\u0442\u044C\u003A");
         infoSliderNameLabel.setHeight(60);
@@ -430,6 +430,7 @@ public class GWTViewer implements EntryPoint
     HandlerRegistration hendlerRegistration;
 
     //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/*
 	class JSONRequest
     {
         //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -446,25 +447,29 @@ public class GWTViewer implements EntryPoint
 			createCallbackFunction(handler, callbackName);
             addScript(url);
 		}
-        //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-		public native void addScript(String url) /*-{
-             var scr = document.createElement("script");
-             scr.setAttribute("language", "JavaScript"     );
-             scr.setAttribute("text"    , "text/javascript");
-             scr.setAttribute("src"     , url);
-             document.getElementsByTagName("head")[0].appendChild(scr);
-        }-*/;
-        //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-		private native void createCallbackFunction(JSONRequestHandler handler, String callbackName) /*-{
-            tmpcallback = function(jsonObj)
-            {
-               handler.@ru.mos.gispro.client.JSONRequestHandler::onRequestComplete(Lcom/google/gwt/core/client/JavaScriptObject;)(jsonObj);
-            };
-            eval( "window." + callbackName + "=tmpcallback" );
-        }-*/;
-        //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-	}
+*/
+//        //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+//		public native void addScript(String url)
+//        /*-{
+//             var scr = document.createElement("script");
+//             scr.setAttribute("language", "JavaScript"     );
+//             scr.setAttribute("text"    , "text/javascript");
+//             scr.setAttribute("src"     , url);
+//             document.getElementsByTagName("head")[0].appendChild(scr);
+//        }-*/;
+//        //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+//		private native void createCallbackFunction(JSONRequestHandler handler, String callbackName)
+//        /*-{
+//            tmpcallback = function(jsonObj)
+//            {
+//               handler.@ru.mos.gispro.client.JSONRequestHandler::onRequestComplete(Lcom/google/gwt/core/client/JavaScriptObject;)(jsonObj);
+//            };
+//            eval( "window." + callbackName + "=tmpcallback" );
+//        }-*/;
+//        //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+//	}
     //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/*
     class ContentRequest
     {
         //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -481,25 +486,29 @@ public class GWTViewer implements EntryPoint
             createCallbackFunction(handler, callbackName);
             addScript(url);
         }
+*/
         //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-        public native void addScript(String url) /*-{
-                var scr = document.createElement("script");
-                scr.setAttribute("language", "JavaScript");
-                scr.setAttribute("type", "text/javascript");
-                scr.setAttribute("src", url);
-                document.getElementsByTagName("head")[0].appendChild(scr);
-            }-*/;
-            //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-            private native void createCallbackFunction(ContentRequestHandler handler, String callbackName)/*-{
-                 tmpcallback = function(j)
-                {
-                    handler.@ru.mos.gispro.client.ContentRequestHandler::onRequestComplete(Lcom/google/gwt/xml/client/Document;)(j);
-                };
-                eval( "window." + callbackName + "=tmpcallback" );
-            }-*/;
-            //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-        }
+//        public native void addScript(String url)
+//        /*-{
+//                var scr = document.createElement("script");
+//                scr.setAttribute("language", "JavaScript");
+//                scr.setAttribute("type", "text/javascript");
+//                scr.setAttribute("src", url);
+//                document.getElementsByTagName("head")[0].appendChild(scr);
+//        }-*/;
+//        //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+//        private native void createCallbackFunction(ContentRequestHandler handler, String callbackName)
+//        /*-{
+//                 tmpcallback = function(j)
+//                {
+//                    handler.@ru.mos.gispro.client.ContentRequestHandler::onRequestComplete(Lcom/google/gwt/xml/client/Document;)(j);
+//                };
+//              eval( "window." + callbackName + "=tmpcallback" );
+//        }-*/;
+        //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+//    }
     //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/*
     class ServiceHandler implements JSONRequestHandler
     {
 		public void onRequestComplete(JavaScriptObject content)
@@ -519,6 +528,7 @@ public class GWTViewer implements EntryPoint
 //            com.google.gwt.user.client.Window.alert("" + content.toString().length());
 		}
 	}
+*/
     //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     public void onModuleLoad()
     {
@@ -573,10 +583,10 @@ public class GWTViewer implements EntryPoint
 			}
 		});
 */
-//        if (!config.withAuthorization())
+        if (!config.withAuthorization())
             createUserInterface();
-//        else
-//            openFormAuthorization();
+        else
+            openFormAuthorization();
     }
     //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     private void openFormAuthorization()
@@ -765,40 +775,7 @@ public class GWTViewer implements EntryPoint
         zoomIn.setActionType(SelectionType.RADIO);
         zoomIn.setRadioGroup("mapAction");
         zoomIn.setTooltip("\u041F\u0440\u0438\u0431\u043B\u0438\u0437\u0438\u0442\u044C"); // "Приблизить");
-        zoomIn.addClickHandler(new ClickHandler()
-        {
-            public void onClick(ClickEvent event)
-            {
-                deactivateControls();
-                if (zoomBox == null)
-                    zoomBox = test();
-                activate(zoomBox);
-                if (hendlerRegistration != null) {
-                    Document.get().getElementById("map").getStyle().setCursor(Cursor.DEFAULT);
-                    hendlerRegistration.removeHandler();
-                    hendlerRegistration = null;
-                }
-            }
-
-            protected native void activate(JavaScriptObject zoomBox) /*-{
-
-                for (indexControl = 0;  indexControl < $wnd.map.controls.length; ++indexControl)
-                {
-                    if ($wnd.map.controls[indexControl].active
-                        && ( $wnd.map.controls[indexControl].displayClass == "olControlZoomBox" || $wnd.map.controls[indexControl].displayClass == "olControlNavigation"))
-                        $wnd.map.controls[indexControl].deactivate();
-                }
-                zoomBox.activate();
-            }-*/;
-
-            protected native JavaScriptObject test() /*-{
-                var zoomBox = new $wnd.OpenLayers.Control.ZoomBox();
-                $wnd.map.addControl(zoomBox);
-                return zoomBox;
-            }-*/;
-
-            private JavaScriptObject zoomBox;
-        });
+        zoomIn.addClickHandler(new ZoomClickHandler(hendlerRegistration, false));
 
         final ToolStripButton zoomOut = new ToolStripButton();
         zoomOut.setIcon("MActionZoomOut.png");
@@ -806,39 +783,9 @@ public class GWTViewer implements EntryPoint
         zoomOut.setHeight(30);
         zoomOut.setActionType(SelectionType.RADIO);
         zoomOut.setRadioGroup("mapAction");
-        zoomOut.setTooltip("\u041E\u0442\u0434\u0430\u043B\u0438\u0442\u044C"); // "Отдалить"
-        zoomOut.addClickHandler(new ClickHandler()
-        {
-            public void onClick(ClickEvent event)
-            {
-                deactivateControls();
-                if (zoomBox == null)
-                    zoomBox = test();
-                activate(zoomBox);
-                if (hendlerRegistration != null) {
-                    Document.get().getElementById("map").getStyle().setCursor(Cursor.DEFAULT);
-                    hendlerRegistration.removeHandler();
-                    hendlerRegistration = null;
-                }
-            }
-
-            protected native void activate(JavaScriptObject zoomBox) /*-{
-                for (indexControl = 0; indexControl < $wnd.map.controls.length; ++indexControl) {
-                    if ($wnd.map.controls[indexControl].active
-                            && ( $wnd.map.controls[indexControl].displayClass == "olControlZoomBox" || $wnd.map.controls[indexControl].displayClass == "olControlNavigation"))
-                        $wnd.map.controls[indexControl].deactivate();
-                }
-                zoomBox.activate();
-            }-*/;
-
-            protected native JavaScriptObject test() /*-{
-                var zoomBox = new $wnd.OpenLayers.Control.ZoomBox({displayClass: "ZoomBox", out: true});
-                $wnd.map.addControl(zoomBox);
-                return zoomBox;
-            }-*/;
-
-            private JavaScriptObject zoomBox;
-        });
+                                                          // "Отдалить"
+        zoomOut.setTooltip("\u041E\u0442\u0434\u0430\u043B\u0438\u0442\u044C");
+        zoomOut.addClickHandler(new ZoomClickHandler(hendlerRegistration, true));
 
         ToolStripButton zoomFullExtent = null;
         if (config.toolButtonFullExtent())
@@ -848,37 +795,6 @@ public class GWTViewer implements EntryPoint
             zoomFullExtent.setIconSize(24);
             zoomFullExtent.setHeight(30);
             zoomFullExtent.setTooltip("\u0412\u0441\u044F\u0020\u043A\u0430\u0440\u0442\u0430"); // "Вся карта"
-        }
-        class FullExtent implements ClickHandler
-        {
-            public void onClick(ClickEvent event)
-            {
-                deactivateControls();
-                activate();
-            }
-
-            public void activate()
-            {
-                test();
-                zoomToMaxExtent();
-                zoomTo(3);
-                test2();
-                mapToCenter(config.centerX(), config.centerY());
-            }
-
-            protected native void test() /*-{
-                for (indexControl = 0;  indexControl < $wnd.map.controls.length; ++indexControl)
-                {
-                    if ($wnd.map.controls[indexControl].displayClass == "olControlNavigationHistory")
-                        $wnd.map.controls[indexControl].deactivate();
-                }
-            }-*/;
-
-            protected native void test2() /*-{
-            for (indexControl = 0;  indexControl < $wnd.map.controls.length; ++indexControl)
-                    if ($wnd.map.controls[indexControl].displayClass == "olControlNavigationHistory")
-                        $wnd.map.controls[indexControl].activate();
-            }-*/;
         }
 
         FullExtent fullExtent = new FullExtent();
@@ -896,9 +812,7 @@ public class GWTViewer implements EntryPoint
         {
             public void onClick(ClickEvent event)
             {
-
                 deactivateControls();
-
                 activate();
             }
 
@@ -1085,8 +999,8 @@ public class GWTViewer implements EntryPoint
         mapFlow.redraw();
         initMap();
 
-        treeGrid.addSelectionChangedHandler(new SelectionChangedHandler() {
-
+        treeGrid.addSelectionChangedHandler(new SelectionChangedHandler()
+        {
             Set<MapService> ser;
             Timer timer;
 
@@ -1151,7 +1065,8 @@ public class GWTViewer implements EntryPoint
                     return;
                 }
 
-                if (treeNode.getAttributeAsBoolean("isNodeGroup")) {
+                if (treeNode.getAttributeAsBoolean("isNodeGroup"))
+                {
                     updateSelectedLayers((MapService) mapService, treeNode, event.getState());
 
                     ser.add((MapService) mapService);
@@ -1176,8 +1091,7 @@ public class GWTViewer implements EntryPoint
                     }
                 }
 
-                ((MapService) mapService).layerVisibility(layerID,
-                        event.getState());
+                ((MapService) mapService).layerVisibility(layerID, event.getState());
                 ser.add((MapService) mapService);
                 timer.cancel();
                 timer.schedule(500);
@@ -1220,7 +1134,6 @@ public class GWTViewer implements EntryPoint
 
         addVectorLayer();
         addVectorLayer1();
-
 
         fullExtent.activate();
         navigation.activate();
