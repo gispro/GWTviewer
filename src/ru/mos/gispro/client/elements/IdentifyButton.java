@@ -42,10 +42,10 @@ import ru.mos.gispro.client.window.Contractors;
 public class IdentifyButton extends ToolStripButton
 {
 	HandlerRegistration handlerRegistration;
-    private  final   static   String    TAG_FONT_HIDE_START       = "<font style=\"color:white\">";
-    private  final   static   String    TAG_FONT_HIDE_END         = "</font>";
-    private  final   static   String    STRING_IDENTIFIER         = "Идентификатор";
-    private  final   static   String    STRING_CONTACTS_LINK      = "<font style=\"color:blue\"><b><u>Контакты ...<u><b></font>";
+    private  final   static   String    TAG_FONT_HIDE_START  = "<font style=\"color:white\">";
+    private  final   static   String    TAG_FONT_HIDE_END    = "</font>";
+    private  final   static   String    STRING_IDENTIFIER    = "Идентификатор";
+    private  final   static   String    STRING_CONTACTS_LINK = "<font style=\"color:blue\"><b><u>Контакты ...<u><b></font>";
     //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	public native void goURL(String url) /*-{
 		$wnd.window.open(url);
