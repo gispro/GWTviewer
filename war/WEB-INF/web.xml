@@ -8,7 +8,7 @@
   <!-- Servlets -->
   <servlet>
     <servlet-name>mapServiceInfo</servlet-name>
-    <servlet-class>ru.mos.gispro.tveravtodor.server.MapServiceInfoImpl</servlet-class>
+    <servlet-class>ru.mos.gispro.server.MapServiceInfoImpl</servlet-class>
   </servlet>
 
   <servlet-mapping>
