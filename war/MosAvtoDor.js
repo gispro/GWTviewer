@@ -1,5 +1,10 @@
 var configMosAvtoDor =
 {
+// Authorizationa & registration
+    "withAuthorization"         : false,
+    "withRegistration"          : true,
+    "withOrganization"          : false,
+    "withDepartment"            : false,
 // DEBUG
     "debug_ServiceADD"          : false,
     "debug_InfoURL_Alert"       : false,
@@ -8,9 +13,11 @@ var configMosAvtoDor =
     "toolButtonFullExtent"      : false,
 
     "mosregion_municipalities"  : true,
+    "isMosAvtoDor"              : true,
+// Header
+    "withHeader"                : false,
 //~~~~~ MosRegion ~~~~~
-    "isTverAvtoDor"             : false,
-    "pageTitul"                 : "Электронная карта Московской области",
+     "pageTitul"                 : "Электронная карта Московской области",
     "urlQuickSearch"            : "http://maps.gispro.ru/ArcGIS/rest/services/MOSOBL/mosobl_osn/MapServer/find?layers=20,10,14,17&f=json&searchFields=Find&searchText=<0>&contains=true&sr=102113&returnGeometry=true",
     "urlFindNasPunkt"           : "http://maps.gispro.ru/ArcGIS/rest/services/MOSOBL/mosobl_osn/MapServer/find?layers=20&f=json&searchFields=Find&searchText=<0>&contains=true&sr=102113&returnGeometry=true",
     "urlFindStreets"            : "http://maps.gispro.ru/ArcGIS/rest/services/MOSOBL/mosobl_osn/MapServer/find?layers=1&f=json&searchFields=Find&&searchText=<0>&contains=true&sr=102113&returnGeometry=true",
