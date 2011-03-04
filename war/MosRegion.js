@@ -1,7 +1,7 @@
 var configMosRegion =
 {
 // Authorizationa & registration
-    "withAuthorization"         : true,
+    "withAuthorization"         : false,
     "withRegistration"          : true,
     "withOrganization"          : false,
     "withDepartment"            : false,
