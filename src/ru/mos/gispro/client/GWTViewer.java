@@ -1045,9 +1045,12 @@ public class GWTViewer implements EntryPoint
                     ser = new HashSet<MapService>();
 
                 if (timer == null)
-                    timer = new Timer() {
-                        public void run() {
-                            for (MapService d : ser) {
+                    timer = new Timer()
+                    {
+                        public void run()
+                        {
+                            for (MapService d : ser)
+                            {
                                 d.invalidate();
                             }
                             ser.clear();
