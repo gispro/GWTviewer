@@ -14,64 +14,60 @@ import java.util.List;
  * Time: 12:09:25
  */
 
-public class LayerUtils {
-
-	public static void addArcGIS93Layer(String name, String url, TreeGrid treeGrid, Boolean select) {
+public class LayerUtils
+{
+	public static void addArcGIS93Layer(String name, String url, TreeGrid treeGrid, Boolean select)
+    {
 		addArcGIS93Layer(name, url, url, treeGrid, select);
 	}
 
-	public static void addArcGIS93Layer(String name, String url, String urlIdentify, TreeGrid treeGrid, boolean select) {
+    public static native void setLayerZOrder(JavaScriptObject layer, int order)
+    /*-{
+        layer.setZIndex(order);
+    }-*/;
 
+    public static native void setLayerOpacity(JavaScriptObject layer, float opacity)
+    /*-{
+        layer.setOpacity(opacity);
+    }-*/;
+
+	public static void addArcGIS93Layer(String name, String url, String urlIdentify, TreeGrid treeGrid, boolean select)
+    {
 		Tree data = treeGrid.getData();
 
 		TreeNode treeNode = new TreeNode();
 		treeNode.setAttribute("Layout", name + " ");
 		String idPrefix = Integer.toString(treeNode.hashCode()) + "_";
 		treeNode.setID(idPrefix + "-1");
-		treeNode.setAttribute(
-				"service",
-				new ArcGIS93(
-						name,
-						url,
-						urlIdentify,
-						"EPSG:102113",
-						treeNode,
-						data,
-						treeGrid));
+		treeNode.setAttribute( "service", new ArcGIS93 (name, url, urlIdentify, "EPSG:102113", treeNode, data, treeGrid));
 		treeNode.setAttribute("isService", true);
+
 		data.add(treeNode, data.getRoot());
 
 		treeGrid.selectRecord(treeNode);
 
-		if (!select) {
+		if (!select)
 			treeGrid.deselectRecord(treeNode);
-		}
-
 	}
 
-	public static void addWMSLayer(String name, String url, String layerName, TreeGrid treeGrid, Boolean select) {
-
+	public static void addWMSLayer(String name, String url, String layerName, TreeGrid treeGrid, Boolean select)
+    {
 		Tree data = treeGrid.getData();
 
 		TreeNode treeNode = new TreeNode();
 		treeNode.setAttribute("Layout", name);
 		String idPrefix = Integer.toString(treeNode.hashCode()) + "_";
 		treeNode.setID(idPrefix + "-1");
-		treeNode.setAttribute("service", new WMS(name,
-				url, layerName,
-				"EPSG:900913"));
+		treeNode.setAttribute("service", new WMS(name, url, layerName, "EPSG:900913"));
 		treeNode.setAttribute("isService", true);
+
 		data.add(treeNode, data.getRoot());
-		if (select) {
+		if (select)
 			treeGrid.selectRecord(treeNode);
-		}
 	}
 
-
-
-
-	public static void addGoogleStreetsLayer(TreeGrid treeGrid) {
-
+	public static void addGoogleStreetsLayer(TreeGrid treeGrid)
+    {
 		Tree data = treeGrid.getData();
 
 		String idPrefix;
@@ -89,8 +85,8 @@ public class LayerUtils {
 
 	}
 
-	public static void addGoogleSatelliteLayer(TreeGrid treeGrid) {
-
+	public static void addGoogleSatelliteLayer(TreeGrid treeGrid)
+    {
 		Tree data = treeGrid.getData();
 
 		TreeNode treeNode = new TreeNode();
@@ -115,8 +111,8 @@ public class LayerUtils {
 		data.add(treeNode, data.getRoot());
 	}
 
-	public static void addOSMLayer(TreeGrid treeGrid) {
-
+	public static void addOSMLayer(TreeGrid treeGrid)
+    {
 		Tree data = treeGrid.getData();
 
 		TreeNode treeNode = new TreeNode();
@@ -128,31 +124,27 @@ public class LayerUtils {
 		data.add(treeNode, data.getRoot());
 	}
 
-	public static native void setLayerZOrder(JavaScriptObject layer, int order) /*-{
-		layer.setZIndex(order);
-    }-*/;
-
-	public static void initLayerOrder(TreeGrid treeGrid) {
+	public static void initLayerOrder(TreeGrid treeGrid)
+    {
 		TreeNode root = treeGrid.getTree().getRoot();
 
 		List<TreeNode> rootNodes = new ArrayList<TreeNode>();
 		TreeNode[] nodes = treeGrid.getTree().getChildren(root);
 
 		int i = -1;
-		for (TreeNode n : nodes) {
+		for (TreeNode n : nodes)
+        {
 			i++;
-			if (treeGrid.getTree().getParent(n)!=root)continue;
+			if (treeGrid.getTree().getParent(n) != root)
+                continue;
 			rootNodes.add(n);
 		}
-		for (int k = 0; k < rootNodes.size(); k++) {
+		for (int k = 0; k < rootNodes.size(); k++)
+        {
 			JavaScriptObject layer = ((MapService)rootNodes.get(k).getAttributeAsObject("service")).getLayer();
-			if (layer == null) continue;
-			setLayerZOrder(layer,1000 - k);
+			if (layer == null)
+                continue;
+			setLayerZOrder(layer, 1000 - k);
 		}
 	}
-
-	public static native void setLayerOpacity(JavaScriptObject layer, float opacity) /*-{
-		layer.setOpacity(opacity);
-    }-*/;
-
 }

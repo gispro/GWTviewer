@@ -1031,11 +1031,11 @@ public class GWTViewer implements EntryPoint
                     }
                 }
             }
-
             public void onSelectionChanged(SelectionEvent event)
             {
                 TreeNode node = treeGrid.getTree().findById(event.getRecord().getAttribute("id"));
-                while (treeGrid.getTree().getParent(node)!=root)node = treeGrid.getTree().getParent(node);
+                while (treeGrid.getTree().getParent(node) != root)
+                    node = treeGrid.getTree().getParent(node);
                 String s = node.getAttribute("Layout");
                 currentLayer = s;
                 currentLayerLabel.setContents(s);
@@ -1113,23 +1113,10 @@ public class GWTViewer implements EntryPoint
             JSONLayerConfig layer = config.layer(i).cast();
 //			com.google.gwt.user.client.Window.alert(layer.select() + "");
 
-            if (LAYER_TYPE_ARC_GIS_93.equals(layer.type())) {
-                LayerUtils.addArcGIS93Layer(
-                        layer.name(),
-                        layer.serviceUrl(),
-                        layer.infoServiceUrl(),
-                        treeGrid,
-                        layer.selected()
-                );
-            } else if (LAYER_TYPE_WMS.equals(layer.type())) {
-                LayerUtils.addWMSLayer(
-                        layer.name(),
-                        layer.serviceUrl(),
-                        layer.serviceName(),
-                        treeGrid,
-                        layer.selected()
-                );
-            }
+            if (LAYER_TYPE_ARC_GIS_93.equals(layer.type()))
+                LayerUtils.addArcGIS93Layer (layer.name(), layer.serviceUrl(), layer.infoServiceUrl(), treeGrid, layer.selected());
+            else if (LAYER_TYPE_WMS.equals(layer.type()))
+                LayerUtils.addWMSLayer (layer.name(), layer.serviceUrl(), layer.serviceName(), treeGrid, layer.selected() );
         }
 
         LayerUtils.addGoogleStreetsLayer  (treeGrid);

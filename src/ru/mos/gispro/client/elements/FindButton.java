@@ -150,33 +150,55 @@ public class FindButton extends ToolStripButton
 							return;
 						}
 
+                        ClassIDSorter sorter = new ClassIDSorter();
+                        for (int i = 0; i < resCount; i++)
+                        {
+                            JsArrayString keys = find.results().get(i).attributesKeys();
+                            boolean with_class_id = false;
+                            for (int j = 0; j < keys.length(); j++)
+                            {
+                                if (QuickFindButton.ALIAS_CLASS_ID.equalsIgnoreCase(keys.get(j)))
+                                {
+//                                        com.google.gwt.user.client.Window.alert("onRequestComplete : " + find.results().get(i).value() + ", class_id = " + find.results().get(i).attributesByKey(ALIAS_CLASS_ID));
+                                    sorter.addItem(i, find.results().get(i).attributesByKey(QuickFindButton.ALIAS_CLASS_ID));
+                                    with_class_id = true;
+                                    break;
+                                }
+                            }
+                            if (!with_class_id)
+                                sorter.addItem(i, "-1");
+                        }
+
 						listGrid.setData(new ListGridRecord[]{});
 
 						for (int i = 0; i < resCount; i++)
                         {
-							String name = find.results().get(i).value();
-                            int comma = name.indexOf(",");
-                            if (comma > 0)
+                            if (i <= sorter.getItemCount())
                             {
-                                int point = -1;
-                                point = name.indexOf(".", comma + 1);
-                                if (point > comma)
-                                    name = name.substring(0, point) + name.substring(point + 1);
-                            }
+                                int idx = sorter.getItem(i).i;
+    							String name = find.results().get(idx).value();
+                                int comma = name.indexOf(",");
+                                if (comma > 0)
+                                {
+                                    int point = -1;
+                                    point = name.indexOf(".", comma + 1);
+                                    if (point > comma)
+                                        name = name.substring(0, point) + name.substring(point + 1);
+                                }
 
-							ListGridRecord record = new ListGridRecord();
-							record.setAttribute("name", name);
-							record.setAttribute("item", find.results().get(i));
-							listGrid.addData(record);
+	    						ListGridRecord record = new ListGridRecord();
+		    					record.setAttribute("name", name);
+			    				record.setAttribute("item", find.results().get(idx));
+				    			listGrid.addData(record);
+                            }
 						}
+                        sorter.destroy();
 					}
 				}
 
 				FindRequestHandler findRequestHandler = new FindRequestHandler();
 				findRequestHandler.request = activeRequest;
 				new JSONRequest().get(url, findRequestHandler);
-
-
 			}
 
 			public void findProcess() {
@@ -307,6 +329,8 @@ public class FindButton extends ToolStripButton
 					listGrid.setFields(nameField);
 					listGrid.setEmptyMessage("");
 
+                    nameField.setCanReorder(false);    nameField.setCanFreeze(false);    nameField.setCanHide  (false);
+                    nameField.setCanGroupBy(false);    nameField.setCanFilter(false);    nameField.setCanSort  (false);
 
 //					final ListGrid findAttrGrid = new ListGrid();
 					findAttrGrid.setEmptyMessage("");
@@ -317,7 +341,6 @@ public class FindButton extends ToolStripButton
 					ListGridField valAttrField = new ListGridField("value", "Значение");
 					valAttrField.setType(ListGridFieldType.TEXT);
 					findAttrGrid.setFields(nameAttrField, valAttrField);
-
 
 //					listGrid.addSelectionChangedHandler(new SelectionChangedHandler() {
 //						public void onSelectionChanged(SelectionEvent clickEvent) {
