@@ -32,20 +32,15 @@ public class ClassIDSorter
 //        com.google.gwt.user.client.Window.alert("0. ClassIDSorter : i = " + i + ", class_id = " + class_id + ", size = " + list.size());
         ClassIDItem item     = new ClassIDItem (i, id);
         boolean     is_added = false;
-        if (getItemCount() == 0)
+        if (list.size() == 0)
             list.add(item);
         else
         {
             for (int j = 0; j < list.size(); j++)
             {
-                if (list.get(j).class_id > id)
+                if (id < list.get(j).class_id)
                 {
                     list.insertElementAt(item, j);
-                    is_added = true;
-                    break;
-                } else if (list.get(j).class_id == id)
-                {
-                    list.add(item);
                     is_added = true;
                     break;
                 }

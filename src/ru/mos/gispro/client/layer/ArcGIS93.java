@@ -191,19 +191,19 @@ public class ArcGIS93 implements MapService
 					images = result;
 					isImage = true;
                     // Window.alert("ArcGIS93.callBack : legendsTrue.onSuccess");
-					for (TreeNode test : data.getAllNodes(treeNode))
+					for (TreeNode node : data.getAllNodes(treeNode))
                     {
-						List<LegendInfo> legendInfos = images.get(test.getAttributeAsString("layerID"));
+						List<LegendInfo> legendInfos = images.get(node.getAttributeAsString("layerID"));
 						if (legendInfos == null || legendInfos.size() == 0)
-							test.setIcon(null);
+							node.setIcon(null);
 						else
 							//                            	if (legendInfos != null && legendInfos.size() != 0)
 						{
 							if (legendInfos.size() == 1)
-								test.setIcon(legendInfos.get(0).getIcon());
+								node.setIcon(legendInfos.get(0).getIcon());
 							else
                             {
-								test.setIcon(null);
+								node.setIcon(null);
 								for (LegendInfo li : legendInfos)
                                 {
 									TreeNode legendNode = new TreeNode();
@@ -211,7 +211,8 @@ public class ArcGIS93 implements MapService
 									legendNode.setIcon(li.getIcon());
 									legendNode.setAttribute("isNodeGroup", false);
 									legendNode.setEnabled(false);
-									data.add(legendNode, test);
+                                    legendNode.setAttribute("canSelect", false);
+									data.add(legendNode, node);
 								}
 							}
 						}

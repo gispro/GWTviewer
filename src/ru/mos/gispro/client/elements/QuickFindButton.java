@@ -140,7 +140,7 @@ public class QuickFindButton extends ToolStripButton
                                 }
                                 if (!with_class_id)
                                 {
-                                    sorter.addItem(i, "-1");
+                                    sorter.addItem(i, "99999999");
 //                                    com.google.gwt.user.client.Window.alert("onRequestComplete : " + find.results().get(i).value() + ", i = " + i);
                                 }
 //                                com.google.gwt.user.client.Window.alert("1. onRequestComplete : attribs = " + attribs);

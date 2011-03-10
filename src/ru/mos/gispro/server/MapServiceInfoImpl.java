@@ -68,7 +68,8 @@ public class MapServiceInfoImpl extends RemoteServiceServlet implements MapServi
             ArrayOfMapServerLegendInfo response = stub.getLegendInfo(mapName, null, null, imageType);
 
             int iid = 0, gid = 0, cid = 0;
-            for (MapServerLegendInfo i : response.getMapServerLegendInfo()) {
+            for (MapServerLegendInfo i : response.getMapServerLegendInfo())
+            {
 //                System.out.println("layerID     : " + i.getLayerID());
 //                System.out.println("Name :      " + i.getName());
 
@@ -132,6 +133,8 @@ public class MapServiceInfoImpl extends RemoteServiceServlet implements MapServi
 
         String localPart = split[split.length - 2] + "_" + split[split.length - 1];
 
+//        System.out.println ("MapServiceInfoImpl.legendsTrue : address = " + address + ", localPart = " + localPart);
+
         UniversalMapServer server = null;
         try {
             // System.out.println ("MapServiceInfoImpl.legendsTrue : address = " + address + ", localPart=" + localPart);
@@ -157,8 +160,8 @@ public class MapServiceInfoImpl extends RemoteServiceServlet implements MapServi
             int iid = 0, gid = 0, cid = 0;
             for (MapServerLegendInfo i : response.getMapServerLegendInfo())
             {
-//                System.out.println("layerID     : " + i.getLayerID());
-//                System.out.println("Name :      " + i.getName());
+//                System.out.println("MapServiceInfoImpl.legendsTrue - layerID     : " + i.getLayerID());
+//                System.out.println("MapServiceInfoImpl.legendsTrue - Name :      " + i.getName());
 
                 String id = Integer.toString(i.getLayerID());
                 List<LegendInfo> legendInfos = new ArrayList<LegendInfo>();
@@ -166,7 +169,6 @@ public class MapServiceInfoImpl extends RemoteServiceServlet implements MapServi
                 int labelId = 0;
                 for (MapServerLegendGroup group : i.getLegendGroups().getMapServerLegendGroup())
                 {
-
 //                    System.out.println("group.getHeading() : " + group.getHeading());
                     for (MapServerLegendClass clas : group.getLegendClasses().getMapServerLegendClass())
                     {

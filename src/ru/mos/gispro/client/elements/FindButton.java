@@ -166,7 +166,7 @@ public class FindButton extends ToolStripButton
                                 }
                             }
                             if (!with_class_id)
-                                sorter.addItem(i, "-1");
+                                sorter.addItem(i, "99999999");
                         }
 
 						listGrid.setData(new ListGridRecord[]{});

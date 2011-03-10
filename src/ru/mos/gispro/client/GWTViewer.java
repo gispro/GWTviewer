@@ -653,10 +653,10 @@ public class GWTViewer implements EntryPoint
         treeGrid = new TreeGrid();
         treeGrid.setShowOpenIcons(false);
         treeGrid.setShowDropIcons(false);
-        treeGrid.setSelectionAppearance(SelectionAppearance.CHECKBOX);
+        treeGrid.setSelectionAppearance(SelectionAppearance.CHECKBOX); // ROW_STYLE); //
         treeGrid.setShowSelectedStyle(false);
         treeGrid.setShowPartialSelection(false);
-//		treeGrid.setCascadeSelection(false);
+//		treeGrid.setCascadeSelection(false); // ~~~~~~~~~~~ 11.03.10  // true); // (
         treeGrid.setCanSort(false);
         treeGrid.setCanReorderFields(false);
         treeGrid.setCanReorderRecords(false);
@@ -664,9 +664,10 @@ public class GWTViewer implements EntryPoint
         treeGrid.getField(0).setTitle("Картографические сервисы"); // todo косяк тут
         treeGrid.setHeaderHeight(0);
 
-
-        treeGrid.addCellClickHandler(new CellClickHandler() {
-            public void onCellClick(CellClickEvent event) {
+        treeGrid.addCellClickHandler(new CellClickHandler()
+        {
+            public void onCellClick(CellClickEvent event)
+            {
                 TreeNode node = treeGrid.getTree().findById(event.getRecord().getAttribute("id"));
                 while (treeGrid.getTree().getParent(node)!=root)node = treeGrid.getTree().getParent(node);
                 String s = node.getAttribute("Layout");
@@ -679,7 +680,6 @@ public class GWTViewer implements EntryPoint
         ToolStrip toolStrip2 = new ToolStrip();
         toolStrip2.setWidth100();
         toolStrip2.setHeight(40);
-
                                          // UNICODE - Список слоев
         Label contentLayers = new Label ("\u0421\u043F\u0438\u0441\u043E\u043A\u0020\u0441\u043B\u043E\u0435\u0432");
         contentLayers.setHeight(30);

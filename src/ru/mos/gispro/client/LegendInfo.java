@@ -2,8 +2,8 @@ package ru.mos.gispro.client;
 
 import java.io.Serializable;
 
-public class LegendInfo implements Serializable {
-
+public class LegendInfo implements Serializable
+{
 	private String id;
 	private String layerId;
 	private String labelId;
@@ -13,67 +13,83 @@ public class LegendInfo implements Serializable {
 	private String heading;
 	private String icon;
 
-	public String getId() {
+	public String getId()
+    {
 		return id;
 	}
 
-	public void setId(String id) {
+	public void setId(String id)
+    {
 		this.id = id;
 	}
 
-	public String getLayerId() {
+	public String getLayerId()
+    {
 		return layerId;
 	}
 
-	public void setLayerId(String layerId) {
+	public void setLayerId(String layerId)
+    {
 		this.layerId = layerId;
 	}
 
-	public String getName() {
+	public String getName()
+    {
 		return name;
 	}
 
-	public void setName(String name) {
+	public void setName(String name)
+    {
 		this.name = name;
 	}
 
-	public String getLabel() {
+	public String getLabel()
+    {
 		return label;
 	}
 
-	public void setLabel(String label) {
+	public void setLabel(String label)
+    {
 		this.label = label;
 	}
 
-	public String getDescription() {
+	public String getDescription()
+    {
 		return description;
 	}
 
-	public void setDescription(String description) {
+	public void setDescription(String description)
+    {
 		this.description = description;
 	}
 
-	public String getHeading() {
+	public String getHeading()
+    {
 		return heading;
 	}
 
-	public void setHeading(String heading) {
+	public void setHeading(String heading)
+    {
 		this.heading = heading;
 	}
 
-	public String getIcon() {
+	public String getIcon()
+    {
 		return icon;
 	}
 
-	public void setIcon(String icon) {
+	public void setIcon(String icon)
+    {
 		this.icon = icon;
 	}
 
-	public String getLabelId() {
+	public String getLabelId()
+    {
 		return labelId;
 	}
 
-	public void setLabelId(String labelId) {
+	public void setLabelId(String labelId)
+    {
 		this.labelId = labelId;
 	}
 }
