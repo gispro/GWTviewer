@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<Context docBase="MAD" path="/MAD" debug="0" reloadable="true" crossContext="true">
+<Context docBase="MosRegion" path="/MosRegion" debug="0" reloadable="true" crossContext="true">
     <Resource name="jdbc/gispro" auth="Container"
               type="javax.sql.DataSource"
               driverClassName="org.postgresql.Driver"
