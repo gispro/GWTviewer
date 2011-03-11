@@ -96,72 +96,49 @@
       <file leaf-file-name="GWTViewer.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/ru/mos/gispro/client/GWTViewer.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="651" column="84" selection-start="28108" selection-end="28108" vertical-scroll-proportion="0.0">
+            <state line="1126" column="7" selection-start="47221" selection-end="47221" vertical-scroll-proportion="0.0">
               <folding>
-                <marker date="1299770473924" expanded="true" signature="2661:2758" placeholder="{...}" />
-                <marker date="1299770473924" expanded="true" signature="2802:3228" placeholder="{...}" />
-                <marker date="1299770473924" expanded="true" signature="2875:3060" placeholder="{&quot;minZoomLevel&quot;: 3...}" />
-                <marker date="1299770473924" expanded="true" signature="3070:3186" placeholder="{&quot;singleTile&quot;: &quot;true&quot;...}" />
-                <marker date="1299770473924" expanded="true" signature="3296:3477" placeholder="{...}" />
-                <marker date="1299770473924" expanded="true" signature="3628:3665" placeholder="{...}" />
-                <marker date="1299770473924" expanded="true" signature="4664:4739" placeholder="{...}" />
-                <marker date="1299770473924" expanded="true" signature="4831:4902" placeholder="{...}" />
-                <marker date="1299770473924" expanded="true" signature="4986:5061" placeholder="{...}" />
-                <marker date="1299770473924" expanded="true" signature="5141:5208" placeholder="{...}" />
-                <marker date="1299770473924" expanded="true" signature="5266:5827" placeholder="{...}" />
-                <marker date="1299770473924" expanded="true" signature="5455:5555" placeholder="{...}" />
-                <marker date="1299770473924" expanded="true" signature="5625:5725" placeholder="{...}" />
-                <marker date="1299770473924" expanded="true" signature="5970:7898" placeholder="{...}" />
-                <marker date="1299770473924" expanded="true" signature="5974:6571" placeholder="//..." />
-                <marker date="1299770473924" expanded="true" signature="6682:7790" placeholder="{...}" />
-                <marker date="1299770473924" expanded="true" signature="6744:7771" placeholder="{&quot;pointRadius&quot;: &quot;${type}&quot;...}" />
-                <marker date="1299770473924" expanded="true" signature="6814:7291" placeholder="//..." />
-                <marker date="1299770473924" expanded="true" signature="7948:9288" placeholder="{...}" />
-                <marker date="1299770473924" expanded="true" signature="8061:9178" placeholder="{...}" />
-                <marker date="1299770473924" expanded="true" signature="8123:9159" placeholder="{&quot;pointRadius&quot;: &quot;${type}&quot;...}" />
-                <marker date="1299770473924" expanded="true" signature="8193:8675" placeholder="//..." />
-                <marker date="1299770473924" expanded="true" signature="9349:9743" placeholder="{...}" />
-                <marker date="1299770473924" expanded="true" signature="9440:9737" placeholder="{...}" />
-                <marker date="1299770473924" expanded="true" signature="35677:36197" placeholder="{...}" />
-                <marker date="1299770473924" expanded="true" signature="35792:36144" placeholder="{...}" />
-                <marker date="1299770473924" expanded="true" signature="36259:36433" placeholder="{...}" />
+                <element signature="imports" expanded="true" />
+                <marker date="1299851354777" expanded="true" signature="2661:2758" placeholder="{...}" />
+                <marker date="1299851354777" expanded="true" signature="2802:3228" placeholder="{...}" />
+                <marker date="1299851354777" expanded="true" signature="2875:3060" placeholder="{&quot;minZoomLevel&quot;: 3...}" />
+                <marker date="1299851354777" expanded="true" signature="3070:3186" placeholder="{&quot;singleTile&quot;: &quot;true&quot;...}" />
+                <marker date="1299851354777" expanded="true" signature="3296:3477" placeholder="{...}" />
+                <marker date="1299851354777" expanded="true" signature="3628:3665" placeholder="{...}" />
+                <marker date="1299851354777" expanded="true" signature="4664:4739" placeholder="{...}" />
+                <marker date="1299851354777" expanded="true" signature="4831:4902" placeholder="{...}" />
+                <marker date="1299851354777" expanded="true" signature="4986:5061" placeholder="{...}" />
+                <marker date="1299851354777" expanded="true" signature="5141:5208" placeholder="{...}" />
+                <marker date="1299851354777" expanded="true" signature="5266:5827" placeholder="{...}" />
+                <marker date="1299851354777" expanded="true" signature="5455:5555" placeholder="{...}" />
+                <marker date="1299851354777" expanded="true" signature="5625:5725" placeholder="{...}" />
+                <marker date="1299851354777" expanded="true" signature="5970:7898" placeholder="{...}" />
+                <marker date="1299851354777" expanded="true" signature="5974:6571" placeholder="//..." />
+                <marker date="1299851354777" expanded="true" signature="6682:7790" placeholder="{...}" />
+                <marker date="1299851354777" expanded="true" signature="6744:7771" placeholder="{&quot;pointRadius&quot;: &quot;${type}&quot;...}" />
+                <marker date="1299851354777" expanded="true" signature="6814:7291" placeholder="//..." />
+                <marker date="1299851354777" expanded="true" signature="7948:9288" placeholder="{...}" />
+                <marker date="1299851354777" expanded="true" signature="8061:9178" placeholder="{...}" />
+                <marker date="1299851354777" expanded="true" signature="8123:9159" placeholder="{&quot;pointRadius&quot;: &quot;${type}&quot;...}" />
+                <marker date="1299851354777" expanded="true" signature="8193:8675" placeholder="//..." />
+                <marker date="1299851354777" expanded="true" signature="9349:9743" placeholder="{...}" />
+                <marker date="1299851354777" expanded="true" signature="9440:9737" placeholder="{...}" />
+                <marker date="1299851354777" expanded="true" signature="35677:36197" placeholder="{...}" />
+                <marker date="1299851354777" expanded="true" signature="35792:36144" placeholder="{...}" />
+                <marker date="1299851354777" expanded="true" signature="36259:36433" placeholder="{...}" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="MapServiceInfoImpl.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/ru/mos/gispro/server/MapServiceInfoImpl.java">
+      <file leaf-file-name="LayerUtils.java" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/ru/mos/gispro/client/layer/LayerUtils.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="172" column="46" selection-start="7467" selection-end="7467" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ArcGIS93.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/ru/mos/gispro/client/layer/ArcGIS93.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="207" column="86" selection-start="8190" selection-end="8190" vertical-scroll-proportion="0.0">
+            <state line="91" column="0" selection-start="4082" selection-end="4082" vertical-scroll-proportion="-2.1298342">
               <folding>
-                <marker date="1299768255289" expanded="true" signature="2192:2400" placeholder="{...}" />
-                <marker date="1299768255289" expanded="true" signature="2507:2754" placeholder="{...}" />
-                <marker date="1299768255289" expanded="true" signature="2561:2691" placeholder="{...}" />
-                <marker date="1299768255289" expanded="true" signature="2963:3018" placeholder="{...}" />
-                <marker date="1299768255289" expanded="true" signature="3238:3291" placeholder="{...}" />
-                <marker date="1299768255289" expanded="true" signature="3527:4157" placeholder="{...}" />
-                <marker date="1299768255289" expanded="true" signature="3632:3893" placeholder="{&quot;minZoomLevel&quot;: 4...}" />
-                <marker date="1299768255289" expanded="true" signature="3907:4093" placeholder="{&quot;wrapDateLine&quot;: &quot;true&quot;...}" />
+                <marker date="1299851944163" expanded="true" signature="1415:1454" placeholder="{...}" />
+                <marker date="1299851944163" expanded="true" signature="1672:1714" placeholder="{...}" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="context.xml" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/war/META-INF/context.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="12" column="59" selection-start="499" selection-end="499" vertical-scroll-proportion="0.28176796">
-              <folding />
             </state>
           </provider>
         </entry>
@@ -169,16 +146,7 @@
       <file leaf-file-name="build.xml" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/build.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="82" column="28" selection-start="3267" selection-end="3276" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Project.js" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/war/Project.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="4" column="16" selection-start="104" selection-end="104" vertical-scroll-proportion="0.0">
+            <state line="78" column="66" selection-start="3102" selection-end="3102" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -198,22 +166,22 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/src/ru/mos/gispro/client/json/JSONIdentifyItem.java" />
-        <option value="$PROJECT_DIR$/src/ru/mos/gispro/client/elements/Sort_ClassID.java" />
-        <option value="$PROJECT_DIR$/src/ru/mos/gispro/client/elements/SortClassID.java" />
-        <option value="$PROJECT_DIR$/src/ru/mos/gispro/client/elements/Sort.java" />
         <option value="$PROJECT_DIR$/src/ru/mos/gispro/client/elements/SorterClassID.java" />
         <option value="$PROJECT_DIR$/src/ru/mos/gispro/client/elements/ClassIDItem.java" />
         <option value="$PROJECT_DIR$/src/ru/mos/gispro/client/LegendInfo.java" />
         <option value="$PROJECT_DIR$/src/ru/mos/gispro/server/MapServiceInfoImpl.java" />
-        <option value="$PROJECT_DIR$/src/ru/mos/gispro/client/layer/ArcGIS93.java" />
         <option value="$PROJECT_DIR$/src/ru/mos/gispro/client/elements/QuickFindButton.java" />
         <option value="$PROJECT_DIR$/src/ru/mos/gispro/client/elements/FindButton.java" />
-        <option value="$PROJECT_DIR$/src/ru/mos/gispro/client/GWTViewer.java" />
         <option value="$PROJECT_DIR$/src/ru/mos/gispro/client/elements/ClassIDSorter.java" />
         <option value="$PROJECT_DIR$/war/Project.js" />
-        <option value="$PROJECT_DIR$/build.xml" />
         <option value="$PROJECT_DIR$/war/META-INF/context.xml" />
+        <option value="$PROJECT_DIR$/src/ru/mos/gispro/client/layer/GoogleMaps.java" />
+        <option value="$PROJECT_DIR$/war/index.html" />
+        <option value="$PROJECT_DIR$/src/ru/mos/gispro/client/layer/BingMaps.java" />
+        <option value="$PROJECT_DIR$/src/ru/mos/gispro/client/layer/ArcGIS93.java" />
+        <option value="$PROJECT_DIR$/src/ru/mos/gispro/client/GWTViewer.java" />
+        <option value="$PROJECT_DIR$/src/ru/mos/gispro/client/layer/LayerUtils.java" />
+        <option value="$PROJECT_DIR$/build.xml" />
       </list>
     </option>
   </component>
@@ -260,7 +228,6 @@
       <sortByType />
     </navigator>
     <panes>
-      <pane id="Favorites" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -293,10 +260,81 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="GWTViewer" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="GWTViewer" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ru" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mos" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="gispro" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="GWTViewer" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="GWTViewer" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ru" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mos" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="gispro" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="client" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="GWTViewer" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="GWTViewer" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
       <pane id="Scope" />
+      <pane id="Favorites" />
+      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -320,6 +358,7 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="ru.mos.gispro.client.layer" />
       <recent name="ru.mos.gispro.server" />
       <recent name="ru.mos.gispro.client" />
       <recent name="ru.mos.gispro.client.elements" />
@@ -814,22 +853,22 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-4" y="-4" width="1448" height="874" extended-state="0" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32988507" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="true" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.5699068" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" x="21" y="511" width="1393" height="304" />
-      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.13783202" sideWeight="0.6021362" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.13783202" sideWeight="0.6021362" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4445928" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="IDEtalk Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="IDEtalk" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32950467" sideWeight="0.5" order="5" side_tool="true" content_ui="tabs" />
+      <window_info id="IDEtalk" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32950467" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32963374" sideWeight="0.0" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39680427" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.2623169" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.2942743" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.23187366" sideWeight="0.24432577" order="1" side_tool="true" content_ui="tabs" />
-      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32950467" sideWeight="0.6021362" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32950467" sideWeight="0.6021362" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39985642" sideWeight="0.73564756" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.25987077" sideWeight="0.6031957" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.23977028" sideWeight="0.7376831" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Dependency Viewer" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32977304" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="true" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.32843792" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Data Sources" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32950467" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -921,154 +960,160 @@
     </buildFile>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/ru/mos/gispro/client/json/JSONIdentify.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="9" column="62" selection-start="274" selection-end="274" vertical-scroll-proportion="0.1878453" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/ru/mos/gispro/client/json/JSONFindItem.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="15" column="57" selection-start="870" selection-end="885" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/ru/mos/gispro/client/json/JSONIdentifyItem.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="5" column="29" selection-start="151" selection-end="167" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/ru/mos/gispro/client/elements/IdentifyButton.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="323" column="0" selection-start="15759" selection-end="15967" vertical-scroll-proportion="0.4461326" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/ru/mos/gispro/client/LegendInfo.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="4" selection-start="4" selection-end="4" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
+        <state line="0" column="4" selection-start="4" selection-end="4" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/ru/mos/gispro/client/elements/QuickFindButton.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="142" column="63" selection-start="6169" selection-end="6177" vertical-scroll-proportion="0.0">
-          <folding>
-            <marker date="1299769176140" expanded="true" signature="2067:2348" placeholder="{...}" />
-            <marker date="1299769176140" expanded="true" signature="2465:2803" placeholder="{...}" />
-            <marker date="1299769176140" expanded="true" signature="2541:2711" placeholder="{...}" />
-          </folding>
-        </state>
+        <state line="142" column="63" selection-start="6169" selection-end="6177" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/ru/mos/gispro/client/elements/ClassIDItem.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="12" column="20" selection-start="273" selection-end="277" vertical-scroll-proportion="0.28176796">
-          <folding />
-        </state>
+        <state line="12" column="20" selection-start="273" selection-end="277" vertical-scroll-proportion="0.28176796" />
       </provider>
     </entry>
     <entry file="jar://C:/Program Files/Java/jdk1.6.0_19/src.zip!/java/util/Vector.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="547" column="29" selection-start="20698" selection-end="20698" vertical-scroll-proportion="0.33287293">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/ru/mos/gispro/server/MapServiceInfoImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="172" column="46" selection-start="7467" selection-end="7467" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
+        <state line="547" column="29" selection-start="20698" selection-end="20698" vertical-scroll-proportion="0.33287293" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/ru/mos/gispro/client/elements/FindButton.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="168" column="59" selection-start="7403" selection-end="7403" vertical-scroll-proportion="0.6652602">
-          <folding>
-            <marker date="1299769249890" expanded="true" signature="3291:3626" placeholder="{...}" />
-            <marker date="1299769249890" expanded="true" signature="3726:4056" placeholder="{...}" />
-            <marker date="1299769249890" expanded="true" signature="3780:3950" placeholder="{...}" />
-            <marker date="1299769249890" expanded="true" signature="4140:4550" placeholder="{...}" />
-            <marker date="1299769249890" expanded="true" signature="4235:4542" placeholder="{...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/ru/mos/gispro/client/GWTViewer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="651" column="84" selection-start="28108" selection-end="28108" vertical-scroll-proportion="0.0">
-          <folding>
-            <marker date="1299770473924" expanded="true" signature="2661:2758" placeholder="{...}" />
-            <marker date="1299770473924" expanded="true" signature="2802:3228" placeholder="{...}" />
-            <marker date="1299770473924" expanded="true" signature="2875:3060" placeholder="{&quot;minZoomLevel&quot;: 3...}" />
-            <marker date="1299770473924" expanded="true" signature="3070:3186" placeholder="{&quot;singleTile&quot;: &quot;true&quot;...}" />
-            <marker date="1299770473924" expanded="true" signature="3296:3477" placeholder="{...}" />
-            <marker date="1299770473924" expanded="true" signature="3628:3665" placeholder="{...}" />
-            <marker date="1299770473924" expanded="true" signature="4664:4739" placeholder="{...}" />
-            <marker date="1299770473924" expanded="true" signature="4831:4902" placeholder="{...}" />
-            <marker date="1299770473924" expanded="true" signature="4986:5061" placeholder="{...}" />
-            <marker date="1299770473924" expanded="true" signature="5141:5208" placeholder="{...}" />
-            <marker date="1299770473924" expanded="true" signature="5266:5827" placeholder="{...}" />
-            <marker date="1299770473924" expanded="true" signature="5455:5555" placeholder="{...}" />
-            <marker date="1299770473924" expanded="true" signature="5625:5725" placeholder="{...}" />
-            <marker date="1299770473924" expanded="true" signature="5970:7898" placeholder="{...}" />
-            <marker date="1299770473924" expanded="true" signature="5974:6571" placeholder="//..." />
-            <marker date="1299770473924" expanded="true" signature="6682:7790" placeholder="{...}" />
-            <marker date="1299770473924" expanded="true" signature="6744:7771" placeholder="{&quot;pointRadius&quot;: &quot;${type}&quot;...}" />
-            <marker date="1299770473924" expanded="true" signature="6814:7291" placeholder="//..." />
-            <marker date="1299770473924" expanded="true" signature="7948:9288" placeholder="{...}" />
-            <marker date="1299770473924" expanded="true" signature="8061:9178" placeholder="{...}" />
-            <marker date="1299770473924" expanded="true" signature="8123:9159" placeholder="{&quot;pointRadius&quot;: &quot;${type}&quot;...}" />
-            <marker date="1299770473924" expanded="true" signature="8193:8675" placeholder="//..." />
-            <marker date="1299770473924" expanded="true" signature="9349:9743" placeholder="{...}" />
-            <marker date="1299770473924" expanded="true" signature="9440:9737" placeholder="{...}" />
-            <marker date="1299770473924" expanded="true" signature="35677:36197" placeholder="{...}" />
-            <marker date="1299770473924" expanded="true" signature="35792:36144" placeholder="{...}" />
-            <marker date="1299770473924" expanded="true" signature="36259:36433" placeholder="{...}" />
-          </folding>
-        </state>
+        <state line="168" column="59" selection-start="7403" selection-end="7403" vertical-scroll-proportion="0.6652602" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/ru/mos/gispro/client/elements/ClassIDSorter.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="50" column="101" selection-start="1723" selection-end="1723" vertical-scroll-proportion="1.0717299">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/ru/mos/gispro/client/layer/ArcGIS93.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="207" column="86" selection-start="8190" selection-end="8190" vertical-scroll-proportion="0.0">
-          <folding>
-            <marker date="1299768255289" expanded="true" signature="2192:2400" placeholder="{...}" />
-            <marker date="1299768255289" expanded="true" signature="2507:2754" placeholder="{...}" />
-            <marker date="1299768255289" expanded="true" signature="2561:2691" placeholder="{...}" />
-            <marker date="1299768255289" expanded="true" signature="2963:3018" placeholder="{...}" />
-            <marker date="1299768255289" expanded="true" signature="3238:3291" placeholder="{...}" />
-            <marker date="1299768255289" expanded="true" signature="3527:4157" placeholder="{...}" />
-            <marker date="1299768255289" expanded="true" signature="3632:3893" placeholder="{&quot;minZoomLevel&quot;: 4...}" />
-            <marker date="1299768255289" expanded="true" signature="3907:4093" placeholder="{&quot;wrapDateLine&quot;: &quot;true&quot;...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/war/Project.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="4" column="16" selection-start="104" selection-end="104" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/build.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="82" column="28" selection-start="3267" selection-end="3276" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
+        <state line="50" column="101" selection-start="1723" selection-end="1723" vertical-scroll-proportion="1.0717299" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/war/META-INF/context.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state line="12" column="59" selection-start="499" selection-end="499" vertical-scroll-proportion="0.28176796">
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/war/Project.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="4" column="16" selection-start="104" selection-end="104" vertical-scroll-proportion="0.0" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ru/mos/gispro/server/MapServiceInfoImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="172" column="46" selection-start="7467" selection-end="7467" vertical-scroll-proportion="0.023909986">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/war/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="33" column="103" selection-start="2150" selection-end="2150" vertical-scroll-proportion="0.81897813">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ru/mos/gispro/client/layer/GoogleMaps.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="15" column="0" selection-start="363" selection-end="363" vertical-scroll-proportion="0.084254146">
+          <folding>
+            <marker date="1299838591668" expanded="true" signature="839:892" placeholder="{...}" />
+            <marker date="1299838591668" expanded="true" signature="1111:1834" placeholder="{...}" />
+            <marker date="1299838591668" expanded="true" signature="1172:1761" placeholder="{&quot;sphericalMercator&quot;: true...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ru/mos/gispro/client/GWTViewer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="1126" column="7" selection-start="47221" selection-end="47221" vertical-scroll-proportion="0.0">
+          <folding>
+            <element signature="imports" expanded="true" />
+            <marker date="1299851354777" expanded="true" signature="2661:2758" placeholder="{...}" />
+            <marker date="1299851354777" expanded="true" signature="2802:3228" placeholder="{...}" />
+            <marker date="1299851354777" expanded="true" signature="2875:3060" placeholder="{&quot;minZoomLevel&quot;: 3...}" />
+            <marker date="1299851354777" expanded="true" signature="3070:3186" placeholder="{&quot;singleTile&quot;: &quot;true&quot;...}" />
+            <marker date="1299851354777" expanded="true" signature="3296:3477" placeholder="{...}" />
+            <marker date="1299851354777" expanded="true" signature="3628:3665" placeholder="{...}" />
+            <marker date="1299851354777" expanded="true" signature="4664:4739" placeholder="{...}" />
+            <marker date="1299851354777" expanded="true" signature="4831:4902" placeholder="{...}" />
+            <marker date="1299851354777" expanded="true" signature="4986:5061" placeholder="{...}" />
+            <marker date="1299851354777" expanded="true" signature="5141:5208" placeholder="{...}" />
+            <marker date="1299851354777" expanded="true" signature="5266:5827" placeholder="{...}" />
+            <marker date="1299851354777" expanded="true" signature="5455:5555" placeholder="{...}" />
+            <marker date="1299851354777" expanded="true" signature="5625:5725" placeholder="{...}" />
+            <marker date="1299851354777" expanded="true" signature="5970:7898" placeholder="{...}" />
+            <marker date="1299851354777" expanded="true" signature="5974:6571" placeholder="//..." />
+            <marker date="1299851354777" expanded="true" signature="6682:7790" placeholder="{...}" />
+            <marker date="1299851354777" expanded="true" signature="6744:7771" placeholder="{&quot;pointRadius&quot;: &quot;${type}&quot;...}" />
+            <marker date="1299851354777" expanded="true" signature="6814:7291" placeholder="//..." />
+            <marker date="1299851354777" expanded="true" signature="7948:9288" placeholder="{...}" />
+            <marker date="1299851354777" expanded="true" signature="8061:9178" placeholder="{...}" />
+            <marker date="1299851354777" expanded="true" signature="8123:9159" placeholder="{&quot;pointRadius&quot;: &quot;${type}&quot;...}" />
+            <marker date="1299851354777" expanded="true" signature="8193:8675" placeholder="//..." />
+            <marker date="1299851354777" expanded="true" signature="9349:9743" placeholder="{...}" />
+            <marker date="1299851354777" expanded="true" signature="9440:9737" placeholder="{...}" />
+            <marker date="1299851354777" expanded="true" signature="35677:36197" placeholder="{...}" />
+            <marker date="1299851354777" expanded="true" signature="35792:36144" placeholder="{...}" />
+            <marker date="1299851354777" expanded="true" signature="36259:36433" placeholder="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ru/mos/gispro/client/layer/ArcGIS93.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="302" column="79" selection-start="12389" selection-end="12389" vertical-scroll-proportion="0.16315049">
+          <folding>
+            <marker date="1299846278085" expanded="true" signature="2192:2400" placeholder="{...}" />
+            <marker date="1299846278085" expanded="true" signature="2192:2400" placeholder="{...}" />
+            <marker date="1299846278085" expanded="true" signature="2507:2754" placeholder="{...}" />
+            <marker date="1299846278085" expanded="true" signature="2561:2691" placeholder="{...}" />
+            <marker date="1299846278085" expanded="true" signature="2561:2691" placeholder="{...}" />
+            <marker date="1299846278085" expanded="true" signature="2963:3018" placeholder="{...}" />
+            <marker date="1299846278085" expanded="true" signature="2963:3018" placeholder="{...}" />
+            <marker date="1299846278085" expanded="true" signature="3238:3291" placeholder="{...}" />
+            <marker date="1299846278085" expanded="true" signature="3238:3291" placeholder="{...}" />
+            <marker date="1299846278085" expanded="true" signature="3527:4157" placeholder="{...}" />
+            <marker date="1299846278085" expanded="true" signature="3632:3893" placeholder="{&quot;minZoomLevel&quot;: 4...}" />
+            <marker date="1299846278085" expanded="true" signature="3632:3893" placeholder="{&quot;minZoomLevel&quot;: 4...}" />
+            <marker date="1299846278085" expanded="true" signature="3907:4093" placeholder="{&quot;wrapDateLine&quot;: &quot;true&quot;...}" />
+            <marker date="1299846278085" expanded="true" signature="3907:4093" placeholder="{&quot;wrapDateLine&quot;: &quot;true&quot;...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ru/mos/gispro/client/layer/BingMaps.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="13" column="28" selection-start="336" selection-end="342" vertical-scroll-proportion="0.23895028">
+          <folding>
+            <marker date="1299841649008" expanded="true" signature="820:873" placeholder="{...}" />
+            <marker date="1299841649008" expanded="true" signature="1093:1811" placeholder="{...}" />
+            <marker date="1299841649008" expanded="true" signature="1093:1811" placeholder="{...}" />
+            <marker date="1299841649008" expanded="true" signature="1093:1811" placeholder="{...}" />
+            <marker date="1299841649008" expanded="true" signature="1160:1738" placeholder="{&quot;sphericalMercator&quot;: true...}" />
+            <marker date="1299841649008" expanded="true" signature="1160:1738" placeholder="{&quot;sphericalMercator&quot;: true...}" />
+            <marker date="1299841649008" expanded="true" signature="1160:1738" placeholder="{&quot;sphericalMercator&quot;: true...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/build.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="78" column="66" selection-start="3102" selection-end="3102" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ru/mos/gispro/client/layer/LayerUtils.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="91" column="0" selection-start="4082" selection-end="4082" vertical-scroll-proportion="-2.1298342">
+          <folding>
+            <marker date="1299851944163" expanded="true" signature="1415:1454" placeholder="{...}" />
+            <marker date="1299851944163" expanded="true" signature="1672:1714" placeholder="{...}" />
+          </folding>
         </state>
       </provider>
     </entry>
