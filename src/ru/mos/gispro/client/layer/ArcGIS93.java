@@ -294,7 +294,7 @@ public class ArcGIS93 implements MapService
 		if (layer != null)
 			setVisibility(layer, isServiceVisible);
 
-		LayerUtils.initLayerOrder(treeGrid);
+//		LayerUtils.initLayerOrder(treeGrid);
 	}
     //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	public void layerVisibility(String id, boolean isLayerVisible)

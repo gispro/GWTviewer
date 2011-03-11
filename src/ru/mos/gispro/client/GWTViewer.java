@@ -1119,11 +1119,29 @@ public class GWTViewer implements EntryPoint
                 LayerUtils.addWMSLayer (layer.name(), layer.serviceUrl(), layer.serviceName(), treeGrid, layer.selected() );
         }
 
-        LayerUtils.addGoogleStreetsLayer  (treeGrid);
-        LayerUtils.addGoogleHybridLayer   (treeGrid);
-        LayerUtils.addGoogleSatelliteLayer(treeGrid);
-//		LayerUtils.addOSMLayer(treeGrid);
+        TreeNode treeNodeGoogle = new TreeNode();
+        treeNodeGoogle.setAttribute (LayerUtils.String_Layout , "Google");
+        treeNodeGoogle.setAttribute (LayerUtils.String_isService, false   );
+        treeNodeGoogle.setEnabled   (true);
+        treeNodeGoogle.setAttribute("canSelect", false);
+        data.add(treeNodeGoogle, data.getRoot());
 
+        LayerUtils.addGoogleStreetsLayer    (treeGrid, treeNodeGoogle);
+        LayerUtils.addGoogleHybridLayer     (treeGrid, treeNodeGoogle);
+        LayerUtils.addGoogleSatelliteLayer  (treeGrid, treeNodeGoogle);
+
+        TreeNode treeNodeBM = new TreeNode();
+        treeNodeBM.setAttribute (LayerUtils.String_Layout , "Bing Map");
+        treeNodeBM.setAttribute (LayerUtils.String_isService, false   );
+        treeNodeBM.setEnabled   (true);
+        treeNodeBM.setAttribute("canSelect", false);
+        data.add(treeNodeBM, data.getRoot());
+
+        LayerUtils.addBingMapRoadLayer      (treeGrid, treeNodeBM);
+        LayerUtils.addBingMapSatelliteLayer (treeGrid, treeNodeBM);
+        LayerUtils.addBingMapHybridLayer    (treeGrid, treeNodeBM);
+
+//		LayerUtils.addOSMLayer(treeGrid);
         // addYandex();
 
         addVectorLayer();
