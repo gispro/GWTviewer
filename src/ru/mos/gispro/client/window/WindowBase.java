@@ -4,8 +4,6 @@ import com.smartgwt.client.widgets.Window;
 import com.smartgwt.client.widgets.events.CloseClickHandler;
 import com.smartgwt.client.widgets.events.CloseClientEvent;
 
-// import com.gispro.client.EastLineConstants;
-
 import com.google.gwt.user.client.rpc.AsyncCallback;
 
 public class WindowBase extends Window

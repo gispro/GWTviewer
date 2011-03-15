@@ -4,11 +4,12 @@ import com.google.gwt.core.client.JavaScriptObject;
 
 public class WMS implements MapService {
 
-	private String name;
-	private String url;
-	private String layers;
-	private String projection;
-	private JavaScriptObject layer;
+	private  String            name;
+	private  String            url;
+	private  String            layers;
+	private  String            projection;
+	private  JavaScriptObject  layer;
+    private  float             layerOpacity = 1;
 
 	public WMS(String name, String url, String layers, String projection) {
 		this.name = name;
@@ -68,4 +69,15 @@ public class WMS implements MapService {
 	public void setLayer(JavaScriptObject layer) {
 		this.layer = layer;
 	}
+    //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    public float getLayerOpacity()
+    {
+        return layerOpacity;
+    }
+    //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    public void setLayerOpacity (float layerOpacity)
+    {
+        this.layerOpacity = layerOpacity;
+    }
+    //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 }

@@ -8,6 +8,7 @@ public class BingMaps implements MapService
 	private  MapTypeId         mapTypeId;
 	private  boolean           isServiceVisible;
 	private  String            name;
+    private  float             layerOpacity = 1;
 
 	public enum MapTypeId
     {
@@ -28,7 +29,10 @@ public class BingMaps implements MapService
     //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     private native JavaScriptObject addBingMapSatellite(String name, String mapTypeId)
     /*-{
+//        var apiKey = "AqTGBsziZHIJYYxgivLBf0hVdrAk9mWO5cQcb8Yux8sW5M8c8opEC2lZqKR1ZZXf";
+        var apiKey = "ABQIAAAAM_ejcYTqeRfO5Abp5T9X_hT7oFQ2Hm-xhP2kR8_dRO8KTvpv8hQ7mnvvv9J7l1qvC6VKdCHbNpVeoQ";
         var layer = new $wnd.OpenLayers.Layer.VirtualEarth(name, {
+                                                            key: apiKey,
                                                             type: eval("$wnd.VEMapStyle." + mapTypeId),
                                                             sphericalMercator:true,
                                                             minZoomLevel: 4,
@@ -62,5 +66,15 @@ public class BingMaps implements MapService
     {
 		this.layer = layer;
 	}
+    //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    public float getLayerOpacity()
+    {
+        return layerOpacity;
+    }
+    //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    public void setLayerOpacity (float layerOpacity)
+    {
+        this.layerOpacity = layerOpacity;
+    }
     //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 }

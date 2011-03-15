@@ -31,6 +31,7 @@ public class ArcGIS93 implements MapService
 	private       Tree                             data;
 	private       TreeGrid                         treeGrid;
 
+    private       float                            layerOpacity = 1;
     private       WebService                       zipCodeService;
 
     private final MapServiceInfoAsync              mapServiceInfo = GWT.create(MapServiceInfo.class);
@@ -307,7 +308,8 @@ public class ArcGIS93 implements MapService
 			ids.add(id);
 			layers = ids.toString();
 			layers = layers.substring(1, layers.length() - 1);
-		} else
+		}
+        else
         {
 			if (!ids.contains(id))
 				return;
@@ -327,5 +329,15 @@ public class ArcGIS93 implements MapService
     {
 		this.layer = layer;
 	}
+    //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    public float getLayerOpacity ()
+    {
+        return layerOpacity;
+    }
+    //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    public void  setLayerOpacity (float layerOpacity)
+    {
+        this.layerOpacity = layerOpacity;
+    }
     //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 }

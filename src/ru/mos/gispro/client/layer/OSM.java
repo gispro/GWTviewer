@@ -4,9 +4,10 @@ import com.google.gwt.core.client.JavaScriptObject;
 
 public class OSM implements MapService {
 
-	private JavaScriptObject layer;
-	private boolean isServiceVisible;
-	private String name;
+	private  JavaScriptObject  layer;
+	private  boolean           isServiceVisible;
+	private  String            name;
+    private  float             layerOpacity = 1;
 
 	public OSM(String name) {
 		this.name = name;
@@ -49,5 +50,15 @@ public class OSM implements MapService {
 	public void setLayer(JavaScriptObject layer) {
 		this.layer = layer;
 	}
-
+    //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    public float getLayerOpacity()
+    {
+        return layerOpacity;
+    }
+    //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    public void setLayerOpacity (float layerOpacity)
+    {
+        this.layerOpacity = layerOpacity;
+    }
+    //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 }

@@ -9,6 +9,8 @@ public class GoogleMaps implements MapService
 	private  boolean           isServiceVisible;
 	private  String            name;
 
+    private  float             layerOpacity = 1;
+
 	public enum MapTypeId
     {
 		HYBRID, ROADMAP, SATELLITE, TERRAIN
@@ -62,5 +64,15 @@ public class GoogleMaps implements MapService
     {
 		this.layer = layer;
 	}
+    //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    public float getLayerOpacity()
+    {
+        return layerOpacity;
+    }
+    //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    public void setLayerOpacity (float layerOpacity)
+    {
+        this.layerOpacity = layerOpacity;
+    }
     //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 }

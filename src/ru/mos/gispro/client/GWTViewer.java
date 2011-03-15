@@ -5,13 +5,13 @@ import com.google.gwt.core.client.JavaScriptObject;
 import com.google.gwt.dom.client.Document;
 import com.google.gwt.dom.client.Style.Cursor;
 import com.google.gwt.event.shared.HandlerRegistration;
-import com.google.gwt.http.client.*;
+// import com.google.gwt.http.client.*;
 import com.google.gwt.user.client.Timer;
 import com.google.gwt.core.client.GWT;
 
 import com.smartgwt.client.types.*;
 import com.smartgwt.client.widgets.*;
-import com.smartgwt.client.widgets.events.*;
+// import com.smartgwt.client.widgets.events.*;
 import com.smartgwt.client.widgets.events.ClickEvent;
 import com.smartgwt.client.widgets.events.ClickHandler;
 import com.smartgwt.client.widgets.form.fields.TextItem;
@@ -39,74 +39,119 @@ import ru.mos.gispro.client.tad.VideoButton;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 
 import ru.mos.gispro.client.window.Authorization;
+import ru.mos.gispro.client.window.PropertyLayerWindow;
 import ru.mos.gispro.client.window.Registration;
 
-import ru.mos.gispro.client.window.Contractors;
+import com.smartgwt.client.widgets.layout.SectionStack;
+import com.smartgwt.client.widgets.layout.SectionStackSection;
 
 import java.util.*;
 
 public class GWTViewer implements EntryPoint
 {
-    public static JSONConfig      config       ;
-    public        JSONProject     project      ;
-    private       Authorization   authorization;
-    private       Registration    registration ;
-                  JSONTerrs       terrs;
-    private       VLayout         pageLayout;
+    public static       JSONConfig            config       ;
+    public              JSONProject           project      ;
+    private              Authorization        authorization;
+    private              Registration         registration ;
+                         JSONTerrs            terrs;
+    private              VLayout              pageLayout;
 
-                  Tree            data;
-                  TreeGrid        treeGrid;
+    private              Tree                 data;
+    private              Tree                 baseData;
+    private              TreeGrid             treeGrid;
+    private              TreeGrid             baseTree;
 
-                  String          currentLayer;
-                  TreeNode        currentNode;
-                  Label           currentLayerLabel = new Label("");
+    private PropertyLayerWindow               propertyLayerWindow;
+    private HandlerRegistration               handlerRegistration;
 
-                  Window          propertyLayerWindow;
+    public static final  String               ACTION_RESULT_SUCCESS = "success";
+//    public static final  String               ATTRIBUTE_LAYOUT      = "Layout" ;
 
-    public static final  String   ACTION_RESULT_SUCCESS = "success";
+    public static final  MapServiceInfoAsync  MapServiceInfoServlet = GWT.create(MapServiceInfo.class);
 
-    public static final MapServiceInfoAsync MapServiceInfoServlet = GWT.create(MapServiceInfo.class);
+    public static final  String               LAYER_TYPE_ARC_GIS_93 = "ArcGIS93";
+    public static final  String               LAYER_TYPE_WMS        = "WMS";
 
-    public static final String LAYER_TYPE_ARC_GIS_93 = "ArcGIS93";
-    public static final String LAYER_TYPE_WMS        = "WMS";
-
-    public native void initMap() /*-{
+    private              boolean              withBaseMap           = true;
+    //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    public native void initMap()
+    /*-{
         $wnd.map = new $wnd.OpenLayers.Map("map", $wnd.options);
         $wnd.initMap2();
     }-*/;
-
-    public native void addYandex() /*-{
+    //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    public native void addYandex()
+    /*-{
         var layer = new $wnd.OpenLayers.Layer.Yandex("Yandex",
-        {
-        minZoomLevel: 3,
-        maxZoomLevel: 12,
-        maxExtent:new $wnd.OpenLayers.Bounds(-20037508, -20037508, 20037508, 20037508.34),
-        sphericalMercator: true
-        },
-        {
-        singleTile: "true",
-        ratio: 1,
-        buffer: 0,
-        displayOutsideMaxExtent: "true"
+            {
+                minZoomLevel: 3,
+                maxZoomLevel: 12,
+                maxExtent:new $wnd.OpenLayers.Bounds(-20037508, -20037508, 20037508, 20037508.34),
+                sphericalMercator: true
+            },
+            {
+                singleTile: "true",
+                ratio: 1,
+                buffer: 0,
+                displayOutsideMaxExtent: "true"
         });
         $wnd.map.addLayer(layer);
     }-*/;
-
-    public native void mapToCenter(double lon, double lat) /*-{
+    //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    public native void mapToCenter(double lon, double lat)
+    /*-{
         $wnd.map.setCenter(new $wnd.OpenLayers.LonLat(lon,lat),3);
 //		$wnd.map.setCenter(new $wnd.OpenLayers.LonLat($wnd.configLayers.centerX,$wnd.configLayers.centerY),3);
     }-*/;
-
+    //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 //    public native void zoomToMaxExtent() /*-{
 //        $wnd.map.zoomToMaxExtent();
 //    }-*/;
-
-    public native void zoomTo(Integer lvl) /*-{
+    //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    public native void zoomTo(Integer lvl)
+    /*-{
         $wnd.map.zoomTo(lvl);
     }-*/;
-
+    //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     class NavigationHistory
     {
+        ToolStripButton          prev, next;
+        public JavaScriptObject  navigationHistory;
+
+        public native boolean isPreviousStackEmpty(JavaScriptObject navigationHistory)
+        /*-{
+            return navigationHistory.previousStack.length <= 1;
+        }-*/;
+
+        public native boolean isNextStackEmpty(JavaScriptObject navigationHistory)
+        /*-{
+            return navigationHistory.nextStack.length == 0;
+        }-*/;
+
+        public native boolean previous(JavaScriptObject navigationHistory)
+        /*-{
+            return navigationHistory.previousTrigger() == null;
+        }-*/;
+
+        public native boolean next(JavaScriptObject navigationHistory)
+        /*-{
+            return navigationHistory.nextTrigger() == null;
+        }-*/;
+
+        protected native JavaScriptObject test()
+        /*-{
+            var navigationHistory = new $wnd.OpenLayers.Control.NavigationHistory();
+            var this_ = this;
+            navigationHistory.onPreviousChange = function(state, lendth){
+                this_.@ru.mos.gispro.client.GWTViewer.NavigationHistory::update()();
+            };
+            navigationHistory.onNextChange = function(state, lendth){
+                this_.@ru.mos.gispro.client.GWTViewer.NavigationHistory::update()();
+            };
+
+            $wnd.map.addControl(navigationHistory);
+            return navigationHistory;
+        }-*/;
         NavigationHistory(ToolStripButton prev, ToolStripButton next)
         {
             this.prev = prev;
@@ -128,52 +173,18 @@ public class GWTViewer implements EntryPoint
                     next(navigationHistory);
                 }
             });
-
             update();
         }
 
-        void update() {
+        void update()
+        {
             prev.setDisabled(isPreviousStackEmpty(navigationHistory));
             next.setDisabled(isNextStackEmpty(navigationHistory));
         }
-
-        public native boolean isPreviousStackEmpty(JavaScriptObject navigationHistory) /*-{
-            return navigationHistory.previousStack.length <= 1;
-        }-*/;
-
-        public native boolean isNextStackEmpty(JavaScriptObject navigationHistory) /*-{
-            return navigationHistory.nextStack.length == 0;
-        }-*/;
-
-        public native boolean previous(JavaScriptObject navigationHistory) /*-{
-            return navigationHistory.previousTrigger() == null;
-        }-*/;
-
-        public native boolean next(JavaScriptObject navigationHistory) /*-{
-        return navigationHistory.nextTrigger() == null;
-        }-*/;
-
-        protected native JavaScriptObject test() /*-{
-            var navigationHistory = new $wnd.OpenLayers.Control.NavigationHistory();
-            var this_ = this;
-            navigationHistory.onPreviousChange = function(state, lendth){
-                this_.@ru.mos.gispro.client.GWTViewer.NavigationHistory::update()();
-            };
-            navigationHistory.onNextChange = function(state, lendth){
-                this_.@ru.mos.gispro.client.GWTViewer.NavigationHistory::update()();
-            };
-
-            $wnd.map.addControl(navigationHistory);
-            return navigationHistory;
-        }-*/;
-
-        ToolStripButton prev, next;
-        public JavaScriptObject navigationHistory;
     }
-
-    public native void addVectorLayer() /*-{
-
-
+    //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    public native void addVectorLayer()
+    /*-{
 //            var myStyles = new OpenLayers.StyleMap({
 //                "default": new OpenLayers.Style({
 //                    pointRadius: "${type}", // sized according to type attribute
@@ -200,19 +211,20 @@ public class GWTViewer implements EntryPoint
 //                                          fillColor : $wnd.configLayers.fillColor,
 //                                          fillOpacity : $wnd.configLayers.fillOpacity
 
-                                            strokeWidth: $wnd.layerParams.strokeWidth,
-                                            strokeColor: $wnd.layerParams.strokeColor,
+                                            strokeWidth   : $wnd.layerParams.strokeWidth,
+                                            strokeColor   : $wnd.layerParams.strokeColor,
                                             strokeOpacity : $wnd.layerParams.strokeOpacity,
-                                            fillColor : $wnd.layerParams.fillColor,
-                                            fillOpacity : $wnd.layerParams.fillOpacity
+                                            fillColor     : $wnd.layerParams.fillColor,
+                                            fillOpacity   : $wnd.layerParams.fillOpacity
                                         })
                 }
             );
             $wnd.map.addLayer($wnd.vectors);
             $wnd.vectors.setZIndex(2000);
     }-*/;
-
-    public native void addVectorLayer1() /*-{
+    //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    public native void addVectorLayer1()
+    /*-{
             $wnd.vectors1 = new $wnd.OpenLayers.Layer.Vector(
                 "Vector Layer1",
                 {
@@ -234,201 +246,17 @@ public class GWTViewer implements EntryPoint
             $wnd.map.addLayer($wnd.vectors1);
             $wnd.vectors1.setZIndex(2001);
     }-*/;
-
-
-    public static native void deactivateControls() /*-{
-    for (indexControl = 0;  indexControl < $wnd.map.controls.length; ++indexControl)
-    {
-        if ($wnd.map.controls[indexControl].displayClass != "olControlNavigationHistory")
-            $wnd.map.controls[indexControl].deactivate();
-        if ($wnd.map.controls[indexControl].displayClass == "olControlMousePosition")
-            $wnd.map.controls[indexControl].activate();
-    }
+    //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    public static native void deactivateControls()
+    /*-{
+        for (indexControl = 0;  indexControl < $wnd.map.controls.length; ++indexControl)
+        {
+            if ($wnd.map.controls[indexControl].displayClass != "olControlNavigationHistory")
+                $wnd.map.controls[indexControl].deactivate();
+            if ($wnd.map.controls[indexControl].displayClass == "olControlMousePosition")
+                $wnd.map.controls[indexControl].activate();
+        }
     }-*/;
-
-
-    public void createPropertyLayerWindow() {
-
-        propertyLayerWindow = new Window();
-                                     // Настройки сервиса
-        propertyLayerWindow.setTitle("\u041D\u0430\u0441\u0442\u0440\u043E\u0439\u043A\u0438\u0020\u0441\u0435\u0440\u0432\u0438\u0441\u0430");
-        propertyLayerWindow.setHeight(190);
-        propertyLayerWindow.setWidth(500);
-        propertyLayerWindow.setShowMaximizeButton(true);
-        propertyLayerWindow.centerInPage();
-        propertyLayerWindow.setCanDragResize(false);
-
-
-        Canvas layerManageCanvas = new Canvas();
-        layerManageCanvas.setWidth100();
-        layerManageCanvas.setHeight100();
-                                             // Слой:
-        Label infoLayerNameLabel = new Label("\u0421\u043B\u043E\u0439\u003A");
-        infoLayerNameLabel.setHeight(30);
-        infoLayerNameLabel.setWidth(50);
-        infoLayerNameLabel.setTop(10);
-        infoLayerNameLabel.setLeft(10);
-
-
-        currentLayerLabel.setHeight(30);
-        currentLayerLabel.setWidth(300);
-        currentLayerLabel.setTop(10);
-        currentLayerLabel.setLeft(100);
-
-        Button upLayerButton = new Button("");
-        upLayerButton.setIcon("upcontrol.png");
-        upLayerButton.setIconSize(16);
-        upLayerButton.setIconAlign("center");
-        upLayerButton.setHeight(30);
-        upLayerButton.setWidth(24);
-        upLayerButton.setTop(10);
-        upLayerButton.setLeft(410);
-
-                                  // Поднять слой вверх. (отдалить)
-        upLayerButton.setTooltip("\u041F\u043E\u0434\u043D\u044F\u0442\u044C\u0020\u0441\u043B\u043E\u0439\u0020\u0432\u0432\u0435\u0440\u0445\u002E\u0020\u0028\u043E\u0442\u0434\u0430\u043B\u0438\u0442\u044C\u0029");
-        upLayerButton.addClickHandler(new ClickHandler() {
-
-            public void onClick(ClickEvent clickEvent) {
-
-                TreeNode root = treeGrid.getTree().getRoot();
-
-                List<TreeNode> rootNodes = new ArrayList<TreeNode>();
-                List<TreeNode> newRootNodes = new ArrayList<TreeNode>();
-                List<Integer> rootIds = new ArrayList<Integer>();
-
-                TreeNode[] nodes = treeGrid.getTree().getChildren(root);
-
-                int i = -1;
-                for (TreeNode n : nodes) {
-                    i++;
-                    if (treeGrid.getTree().getParent(n)!=root)continue;
-                    rootNodes.add(n);
-                    rootIds.add(i);
-                    newRootNodes.add(n);
-                }
-
-                for (int k = 0; k < rootNodes.size(); k++) {
-                    if (rootNodes.get(k) == currentNode) {
-                        if (k == 0) break;
-                        treeGrid.getTree().move(currentNode, root, rootIds.get(k-1));
-
-                        TreeNode tn = newRootNodes.get(k-1);
-                        newRootNodes.set(k-1, currentNode);
-                        newRootNodes.set(k, tn);
-                        break;
-                    }
-                }
-
-                for (int k = 0; k < newRootNodes.size(); k++) {
-                    JavaScriptObject layer = ((MapService)newRootNodes.get(k).getAttributeAsObject("service")).getLayer();
-                    if (layer == null) continue;
-                    LayerUtils.setLayerZOrder(layer, 1000-k);
-                }
-
-            }
-        });
-
-        Button downLayerButton = new Button("");
-        downLayerButton.setIcon("downcontrol.png");
-        downLayerButton.setIconSize(16);
-        downLayerButton.setIconAlign("center");
-        downLayerButton.setHeight(30);
-        downLayerButton.setWidth(24);
-        downLayerButton.setTop(10);
-        downLayerButton.setLeft(444);
-        downLayerButton.setValign(VerticalAlignment.CENTER);
-                                   // Опустить слой вниз. (приблизить)
-        downLayerButton.setTooltip("\u041E\u043F\u0443\u0441\u0442\u0438\u0442\u044C\u0020\u0441\u043B\u043E\u0439\u0020\u0432\u043D\u0438\u0437\u002E\u0020\u0028\u043F\u0440\u0438\u0431\u043B\u0438\u0437\u0438\u0442\u044C\u0029");
-        downLayerButton.addClickHandler(new ClickHandler() {
-            public void onClick(ClickEvent clickEvent) {
-
-                TreeNode root = treeGrid.getTree().getRoot();
-
-                List<TreeNode> rootNodes = new ArrayList<TreeNode>();
-                List<TreeNode> newRootNodes = new ArrayList<TreeNode>();
-                List<Integer> rootIds = new ArrayList<Integer>();
-
-                TreeNode[] nodes = treeGrid.getTree().getChildren(root);
-
-                int i = -1;
-                for (TreeNode n : nodes) {
-                    i++;
-                    if (treeGrid.getTree().getParent(n)!=root)continue;
-                    rootNodes.add(n);
-                    rootIds.add(i);
-                    newRootNodes.add(n);
-                }
-
-                for (int k = 0; k < rootNodes.size(); k++) {
-                    if (rootNodes.get(k) == currentNode) {
-                        if (k == rootNodes.size()) break;
-                        treeGrid.getTree().move(rootNodes.get(k+1), root, rootIds.get(k));
-                        TreeNode tn = newRootNodes.get(k+1);
-                        newRootNodes.set(k+1, currentNode);
-                        newRootNodes.set(k, tn);
-                        break;
-                    }
-                }
-
-                for (int k = 0; k < newRootNodes.size(); k++) {
-                    JavaScriptObject layer = ((MapService)newRootNodes.get(k).getAttributeAsObject("service")).getLayer();
-                    if (layer == null) continue;
-                    LayerUtils.setLayerZOrder(layer, 1000-k);
-                }
-            }
-        });
-                                              // Прозрачность:
-        Label infoSliderNameLabel = new Label("\u041F\u0440\u043E\u0437\u0440\u0430\u0447\u043D\u043E\u0441\u0442\u044C\u003A");
-        infoSliderNameLabel.setHeight(60);
-        infoSliderNameLabel.setWidth(60);
-        infoSliderNameLabel.setTop(50);
-        infoSliderNameLabel.setLeft(10);
-
-        final Slider opacitySlider = new Slider("");
-        opacitySlider.setPadding(10);
-        opacitySlider.setVertical(false);
-        opacitySlider.setHeight(60);
-        opacitySlider.setWidth(368);
-        opacitySlider.setMinValue(0);
-        opacitySlider.setMaxValue(100);
-        opacitySlider.setNumValues(101);
-        opacitySlider.setTop(50);
-        opacitySlider.setLeft(100);
-        opacitySlider.setShowTitle(false);
-
-        opacitySlider.addDrawHandler(new DrawHandler() {
-            public void onDraw(DrawEvent drawEvent) {
-                opacitySlider.addValueChangedHandler(new ValueChangedHandler() {
-                    public void onValueChanged(ValueChangedEvent event) {
-                        JavaScriptObject layer = ((MapService)currentNode.getAttributeAsObject("service")).getLayer();
-                        LayerUtils.setLayerOpacity(layer, (float) event.getValue() / 100f);
-                    }
-                });
-            }
-        });
-                                        // Порядок слоев влияет на их видимость при отображении
-        Label attentionLabel = new Label("\u041F\u043E\u0440\u044F\u0434\u043E\u043A\u0020\u0441\u043B\u043E\u0435\u0432\u0020\u0432\u043B\u0438\u044F\u0435\u0442\u0020\u043D\u0430\u0020\u0438\u0445\u0020\u0432\u0438\u0434\u0438\u043C\u043E\u0441\u0442\u044C\u0020\u043F\u0440\u0438\u0020\u043E\u0442\u043E\u0431\u0440\u0430\u0436\u0435\u043D\u0438\u0438");
-        attentionLabel.setHeight(30);
-        attentionLabel.setTop(120);
-//		attentionLabel.setLeft(10);
-        attentionLabel.setWidth100();
-        attentionLabel.setMargin(10);
-        attentionLabel.setStyleName("attentionLabel");
-
-        layerManageCanvas.addChild(infoLayerNameLabel);
-        layerManageCanvas.addChild(currentLayerLabel);
-        layerManageCanvas.addChild(upLayerButton);
-        layerManageCanvas.addChild(downLayerButton);
-
-        layerManageCanvas.addChild(infoSliderNameLabel);
-        layerManageCanvas.addChild(opacitySlider);
-        layerManageCanvas.addChild(attentionLabel);
-
-        propertyLayerWindow.addItem(layerManageCanvas);
-    }
-
-    HandlerRegistration hendlerRegistration;
-
     //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 /*
 	class JSONRequest
@@ -631,16 +459,15 @@ public class GWTViewer implements EntryPoint
     public void createUserInterface()
     {
         Document.get().setTitle(config.getPageTitle());
-        createPropertyLayerWindow();
 
         HLayout mainLayout = new HLayout();
         mainLayout.setWidth100();
         mainLayout.setHeight100();
         mainLayout.setDefaultResizeBars(LayoutResizeBarPolicy.MIDDLE);
 
-        VLayout layout2 = new VLayout();
-        layout2.setHeight100();
-        layout2.setWidth("20%");
+        VLayout layoutLayers = new VLayout();
+        layoutLayers.setHeight100();
+        layoutLayers.setWidth("20%");
 
         final TreeNode root = new TreeNode("");
 
@@ -648,45 +475,48 @@ public class GWTViewer implements EntryPoint
         data.setModelType(TreeModelType.PARENT);
         data.setRootValue(1);
         data.setRoot(root);
-        data.setNameProperty("Layout");
+        data.setNameProperty(LayerUtils.ATTRIBUTE_LAYOUT);
 
         treeGrid = new TreeGrid();
         treeGrid.setShowOpenIcons(false);
         treeGrid.setShowDropIcons(false);
-        treeGrid.setSelectionAppearance(SelectionAppearance.CHECKBOX); // ROW_STYLE); //
+        treeGrid.setSelectionAppearance(SelectionAppearance.CHECKBOX);
         treeGrid.setShowSelectedStyle(false);
         treeGrid.setShowPartialSelection(false);
-//		treeGrid.setCascadeSelection(false); // ~~~~~~~~~~~ 11.03.10  // true); // (
         treeGrid.setCanSort(false);
         treeGrid.setCanReorderFields(false);
         treeGrid.setCanReorderRecords(false);
         treeGrid.setData(data);
         treeGrid.getField(0).setTitle("Картографические сервисы"); // todo косяк тут
         treeGrid.setHeaderHeight(0);
+        treeGrid.setCascadeSelection(true);
 
         treeGrid.addCellClickHandler(new CellClickHandler()
         {
             public void onCellClick(CellClickEvent event)
             {
                 TreeNode node = treeGrid.getTree().findById(event.getRecord().getAttribute("id"));
-                while (treeGrid.getTree().getParent(node)!=root)node = treeGrid.getTree().getParent(node);
-                String s = node.getAttribute("Layout");
-                currentLayer = s;
-                currentLayerLabel.setContents(s);
-                currentNode = node;
+                while (treeGrid.getTree().getParent(node) != root)
+                    node = treeGrid.getTree().getParent(node);
+//                String s = node.getAttribute(ATTRIBUTE_LAYOUT);
+//                currentLayer = s;
+//                currentLayerLabel.setContents(s);
+//                currentNode = node;
             }
         });
 
-        ToolStrip toolStrip2 = new ToolStrip();
-        toolStrip2.setWidth100();
-        toolStrip2.setHeight(40);
+        ToolStrip toolStripLayers = new ToolStrip();
+        toolStripLayers.setWidth100();
+        toolStripLayers.setHeight(40);
                                          // UNICODE - Список слоев
-        Label contentLayers = new Label ("\u0421\u043F\u0438\u0441\u043E\u043A\u0020\u0441\u043B\u043E\u0435\u0432");
+//        Label contentLayers = new Label ("\u0421\u043F\u0438\u0441\u043E\u043A\u0020\u0441\u043B\u043E\u0435\u0432");
+                                         // Настройка
+        Label contentLayers = new Label ("\u041D\u0430\u0441\u0442\u0440\u043E\u0439\u043A\u0430");
         contentLayers.setHeight(30);
         contentLayers.setStyleName("contentLabel");
 
-        toolStrip2.addSpacer(10);
-        toolStrip2.addMember(contentLayers);
+        toolStripLayers.addSpacer(10);
+        toolStripLayers.addMember(contentLayers);
 
         ToolStripButton addMapButton = null;
 //		addMapButton.setTooltip("Добавить сервис");
@@ -703,52 +533,87 @@ public class GWTViewer implements EntryPoint
         propertyLayerButton.setIconSize(24);
         propertyLayerButton.setHeight(30);
 
-        propertyLayerButton.addClickHandler(new ClickHandler() {
-            public void onClick(ClickEvent event) {
-                propertyLayerWindow.show();
+        propertyLayerButton.addClickHandler(new ClickHandler()
+        {
+            public void onClick(ClickEvent event)
+            {
+                if (propertyLayerWindow == null)
+                    propertyLayerWindow = new PropertyLayerWindow(treeGrid);
+                propertyLayerWindow.setCurrentNode();
+                if (propertyLayerWindow.getCurrentNode() != null)
+                    propertyLayerWindow.show();
             }
         });
 
         if (config.debug_serviceADD())
         {
-            toolStrip2.addSpacer(5);
-            toolStrip2.addButton(addMapButton);
+            toolStripLayers.addSpacer(5);
+            toolStripLayers.addButton(addMapButton);
         }
-//		toolStrip2.addButton(propertyLayerButton);
+//		toolStripLayers.addButton(propertyLayerButton);
 
         TerrTreePickTree treePickTreeItem = null;
         if (config.municipalities())
         {
             treePickTreeItem = new TerrTreePickTree();
-//		treePickTreeItem.setCanSelectParentItems(true);
-//		treePickTreeItem.setTitle("Территория");
-//		treePickTreeItem.setEmptyMenuMessage("Выберите территорию");
-//		treePickTreeItem.setName("Выберите территорию");
-//		treePickTreeItem.setEmptyMenuMessage("Нет данных");
-//		treePickTreeItem.setEmptyDisplayValue("Выберите территорию");
-//		treePickTreeItem.setDefaultValue("Выберите территорию");
-//		treePickTreeItem.setHeight(30);
-//		treePickTreeItem.addChangedHandler(new com.smartgwt.client.widgets.form.fields.events.ChangedHandler() {
-//			public void onChanged(ChangedEvent changedEvent) {
-//				com.google.gwt.user.client.Window.alert("" + changedEvent.getValue());
-//
-//				TreeFind find = new TreeFind();
-//				find.find("Каши");
-//
-//			}
-//		});
-
             terrs = new TerrTreeLoader().getTerrTree();
 
             TerrTree terrTree = new TerrTree();
             terrTree.createTerrTree(terrs);
             treePickTreeItem.setValueTree(terrTree);
-//		    toolStrip2.addFormItem(treePickTreeItem);      //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+//		    toolStripLayers.addFormItem(treePickTreeItem);      //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
         }
 
-        layout2.addMember(toolStrip2);
-        layout2.addMember(treeGrid);
-        mainLayout.addMember(layout2);
+        final TreeNode baseRoot = new TreeNode("");
+
+        baseData = new Tree    ();
+        baseTree = new TreeGrid();
+        if (withBaseMap)
+        {
+            baseData.setModelType(TreeModelType.PARENT);
+            baseData.setRootValue(1);
+            baseData.setRoot(baseRoot);
+            baseData.setNameProperty(LayerUtils.ATTRIBUTE_LAYOUT);
+
+            baseTree.setShowOpenIcons       (false);
+            baseTree.setShowDropIcons       (false);
+            baseTree.setShowSelectedStyle   (false);
+            baseTree.setShowPartialSelection(false);
+            baseTree.setCanSort             (false);
+            baseTree.setCanReorderFields    (false);
+            baseTree.setCanReorderRecords   (false);
+            baseTree.setSelectionAppearance(SelectionAppearance.CHECKBOX);
+            baseTree.setData(baseData);
+            baseTree.getField(0).setTitle("BaseLayerRoot");
+            baseTree.setHeaderHeight(0);
+            baseTree.setCascadeSelection(true);
+        }
+
+        SectionStack sectionStack = new SectionStack();
+        sectionStack.setHeight(600);
+        sectionStack.setVisibilityMode(VisibilityMode.MULTIPLE);
+        sectionStack.setAnimateSections(true);
+        sectionStack.setOverflow(Overflow.HIDDEN);
+
+        SectionStackSection layersSection = new SectionStackSection();
+                                             // Список слоев
+        layersSection.setTitle("\u0421\u043F\u0438\u0441\u043E\u043A\u0020\u0441\u043B\u043E\u0435\u0432");
+        layersSection.setExpanded(true);
+        layersSection.setItems(treeGrid);
+
+        sectionStack.setSections(layersSection);
+        if (withBaseMap)
+        {
+            SectionStackSection baseLayerSection = new SectionStackSection();
+                                             // Картооснова
+            baseLayerSection.setTitle("\u041A\u0430\u0440\u0442\u043E\u043E\u0441\u043D\u043E\u0432\u0430");
+            baseLayerSection.setExpanded(true);
+            baseLayerSection.setItems(baseTree);
+            sectionStack.setSections(baseLayerSection);
+        }
+        layoutLayers.addMember(toolStripLayers);
+        layoutLayers.addMember(sectionStack   );
+        mainLayout.addMember(layoutLayers);
 
         VLayout layout = new VLayout();
         final Canvas canvas = new Canvas();
@@ -775,7 +640,7 @@ public class GWTViewer implements EntryPoint
         zoomIn.setActionType(SelectionType.RADIO);
         zoomIn.setRadioGroup("mapAction");
         zoomIn.setTooltip("\u041F\u0440\u0438\u0431\u043B\u0438\u0437\u0438\u0442\u044C"); // "Приблизить");
-        zoomIn.addClickHandler(new ZoomClickHandler(hendlerRegistration, false));
+        zoomIn.addClickHandler(new ZoomClickHandler(handlerRegistration, false));
 
         final ToolStripButton zoomOut = new ToolStripButton();
         zoomOut.setIcon("MActionZoomOut.png");
@@ -785,7 +650,7 @@ public class GWTViewer implements EntryPoint
         zoomOut.setRadioGroup("mapAction");
                                                           // "Отдалить"
         zoomOut.setTooltip("\u041E\u0442\u0434\u0430\u043B\u0438\u0442\u044C");
-        zoomOut.addClickHandler(new ZoomClickHandler(hendlerRegistration, true));
+        zoomOut.addClickHandler(new ZoomClickHandler(handlerRegistration, true));
 
         ToolStripButton zoomFullExtent = null;
         if (config.toolButtonFullExtent())
@@ -806,10 +671,13 @@ public class GWTViewer implements EntryPoint
         pan.setIconSize(24);
         pan.setHeight(30);
         pan.setActionType(SelectionType.RADIO);
-        pan.setRadioGroup("mapAction");    // ""Панорамирование"
+        pan.setRadioGroup("mapAction");    // "Панорамирование"
         pan.setTooltip("\u041F\u0430\u043D\u043E\u0440\u0430\u043C\u0438\u0440\u043E\u0432\u0430\u043D\u0438\u0435");
+
         class Navigation implements ClickHandler
         {
+            private JavaScriptObject navigation;
+
             public void onClick(ClickEvent event)
             {
                 deactivateControls();
@@ -821,14 +689,16 @@ public class GWTViewer implements EntryPoint
                 if (navigation == null)
                     navigation = test();
                 activate(navigation);
-                if (hendlerRegistration != null) {
+                if (handlerRegistration != null)
+                {
                     Document.get().getElementById("map").getStyle().setCursor(Cursor.DEFAULT);
-                    hendlerRegistration.removeHandler();
-                    hendlerRegistration = null;
+                    handlerRegistration.removeHandler();
+                    handlerRegistration = null;
                 }
             }
 
-            protected native void activate(JavaScriptObject navigation) /*-{
+            protected native void activate(JavaScriptObject navigation)
+            /*-{
                 for (indexControl = 0;  indexControl < $wnd.map.controls.length; ++indexControl)
                 {
                     if ($wnd.map.controls[indexControl].active
@@ -839,13 +709,12 @@ public class GWTViewer implements EntryPoint
                 navigation.activate();
             }-*/;
 
-            protected native JavaScriptObject test() /*-{
+            protected native JavaScriptObject test()
+            /*-{
                 var navigation = new $wnd.OpenLayers.Control.Navigation();
                 $wnd.map.addControl(navigation);
                 return navigation;
             }-*/;
-
-            private JavaScriptObject navigation;
         }
 
         Navigation navigation = new Navigation();
@@ -892,7 +761,7 @@ public class GWTViewer implements EntryPoint
         TextItem quickSearchTextItem = new TextItem("\u041F\u043E\u0438\u0441\u043A");
 //		quickSearchTextItem.setHeight(30);
         QuickFindButton quickFindButton = new QuickFindButton(quickSearchTextItem);
-                                   // Поиск
+                                                     // Поиск
         quickFindButton.setTooltip("\u041F\u043E\u0438\u0441\u043A");
 
 //		toolStrip.setAlign(Alignment.LEFT);
@@ -1034,12 +903,13 @@ public class GWTViewer implements EntryPoint
             public void onSelectionChanged(SelectionEvent event)
             {
                 TreeNode node = treeGrid.getTree().findById(event.getRecord().getAttribute("id"));
+//    com.google.gwt.user.client.Window.alert("treeGrid.onSelectionChanged : node = " + node.getAttribute(LayerUtils.ATTRIBUTE_LAYOUT));
                 while (treeGrid.getTree().getParent(node) != root)
                     node = treeGrid.getTree().getParent(node);
-                String s = node.getAttribute("Layout");
-                currentLayer = s;
-                currentLayerLabel.setContents(s);
-                currentNode = node;
+//                String s = node.getAttribute(ATTRIBUTE_LAYOUT);
+//                currentLayer = s;
+//                currentLayerLabel.setContents(s);
+//                currentNode = node;
 
                 if (ser == null)
                     ser = new HashSet<MapService>();
@@ -1063,7 +933,8 @@ public class GWTViewer implements EntryPoint
                 if (mapService == null)
                     return;
 
-                if (treeNode.getAttributeAsBoolean("isService")) {
+                if (treeNode.getAttributeAsBoolean("isService"))
+                {
                     ((MapService) mapService).visibility(event.getState());
                     ser.add((MapService) mapService);
 
@@ -1087,7 +958,8 @@ public class GWTViewer implements EntryPoint
                 if (layerID == null)
                     return;
 
-                while ((treeNode = data.getParent(treeNode)) != null) {
+                while ((treeNode = data.getParent(treeNode)) != null)
+                {
                     try {
                         if (!treeGrid.isSelected(treeNode))
                             return;
@@ -1105,42 +977,179 @@ public class GWTViewer implements EntryPoint
             }
         });
 
-        String   idPrefix = "";
-        TreeNode treeNode = new TreeNode();
-
-        for (int i = 0; i < config.layers().length(); i++)
+        baseTree.addSelectionChangedHandler(new SelectionChangedHandler()
         {
-            JSONLayerConfig layer = config.layer(i).cast();
-//			com.google.gwt.user.client.Window.alert(layer.select() + "");
+            Set<MapService> ser;
+            Timer timer;
 
-            if (LAYER_TYPE_ARC_GIS_93.equals(layer.type()))
-                LayerUtils.addArcGIS93Layer (layer.name(), layer.serviceUrl(), layer.infoServiceUrl(), treeGrid, layer.selected());
-            else if (LAYER_TYPE_WMS.equals(layer.type()))
-                LayerUtils.addWMSLayer (layer.name(), layer.serviceUrl(), layer.serviceName(), treeGrid, layer.selected() );
+            protected void updateSelectedLayers(MapService mapService, TreeNode treeNode, boolean isSelected)
+            {
+//    com.google.gwt.user.client.Window.alert("baseTree.updateSelectedLayers : " + mapService.getLayer().toString());
+                for (TreeNode childNode : baseData.getChildren(treeNode))
+                {
+                    try
+                    {
+                        if (!baseTree.isSelected(childNode))
+                            continue;
+                    }
+                    catch (Exception e) {
+                        continue;
+                    }
+
+                    if (baseData.hasChildren(childNode))
+                        updateSelectedLayers(mapService, childNode, isSelected);
+                    else {
+                        String layerID = childNode.getAttributeAsString("layerID");
+                        if (layerID == null)
+                            continue;
+                        mapService.layerVisibility(layerID, isSelected);
+                    }
+                }
+            }
+            public void onSelectionChanged(SelectionEvent event)
+            {
+                TreeNode node = baseTree.getTree().findById(event.getRecord().getAttribute("id"));
+//    com.google.gwt.user.client.Window.alert("baseTree.onSelectionChanged : node = " + node);
+                while (baseTree.getTree().getParent(node) != baseRoot)
+                    node = baseTree.getTree().getParent(node);
+//                String s = node.getAttribute(ATTRIBUTE_LAYOUT);
+//                currentLayer = s;
+//                currentLayerLabel.setContents(s);
+//                currentNode = node;
+
+                if (ser == null)
+                    ser = new HashSet<MapService>();
+
+                if (timer == null)
+                    timer = new Timer()
+                    {
+                        public void run()
+                        {
+                            for (MapService d : ser)
+                            {
+                                com.google.gwt.user.client.Window.alert("baseTree.onSelectionChanged : invalidate = " + d.getLayer().toString());
+                                d.invalidate();
+                            }
+                            ser.clear();
+                        }
+                    };
+
+                TreeNode treeNode = (TreeNode) event.getRecord();
+
+                Object mapService = treeNode.getAttributeAsObject(LayerUtils.String_isService);
+                com.google.gwt.user.client.Window.alert("baseTree.onSelectionChanged : mapService = " + mapService );
+                if (mapService == null)
+                    return;
+
+                com.google.gwt.user.client.Window.alert("baseTree.onSelectionChanged : treeNode.getAttributeAsBoolean(LayerUtils.String_isService) = " +
+                                treeNode.getAttributeAsBoolean(LayerUtils.String_isService) );
+                if (treeNode.getAttributeAsBoolean(LayerUtils.String_isService))
+                {
+
+                    ((MapService) mapService).visibility(event.getState());
+                    ser.add((MapService) mapService);
+
+                    timer.cancel();
+                    timer.schedule(500);
+                    return;
+                }
+
+                if (treeNode.getAttributeAsBoolean("isNodeGroup"))
+                {
+                    updateSelectedLayers((MapService) mapService, treeNode, event.getState());
+
+                    ser.add((MapService) mapService);
+
+                    timer.cancel();
+                    timer.schedule(500);
+                    return;
+                }
+
+                String layerID = treeNode.getAttributeAsString("layerID");
+                if (layerID == null)
+                    return;
+
+                while ((treeNode = baseData.getParent(treeNode)) != null)
+                {
+                    try {
+                        if (!baseTree.isSelected(treeNode))
+                            return;
+                    }
+                    catch (Exception e) {
+                        if (baseData.getRoot() != treeNode)
+                            return;
+                    }
+                }
+
+                ((MapService) mapService).layerVisibility(layerID, event.getState());
+                ser.add((MapService) mapService);
+                timer.cancel();
+                timer.schedule(500);
+            }
+        });
+
+        if (!withBaseMap)
+        {
+//		    com.google.gwt.user.client.Window.alert("Add layers : " + withBaseMap + ", config.layers().length() = " + config.layers().length());
+            for (int i = 0; i < config.layers().length(); i++)
+            {
+                JSONLayerConfig layer = config.layer(i).cast();
+                if (LAYER_TYPE_ARC_GIS_93.equals(layer.type()))
+                    LayerUtils.addArcGIS93Layer (layer.name(), layer.serviceUrl(), layer.infoServiceUrl(), treeGrid, layer.selected());
+                else if (LAYER_TYPE_WMS.equals(layer.type()))
+                    LayerUtils.addWMSLayer (layer.name(), layer.serviceUrl(), layer.serviceName(), treeGrid, layer.selected() );
+            }
+            LayerUtils.addGoogleStreetsLayer    (treeGrid);
+            LayerUtils.addGoogleHybridLayer     (treeGrid);
+            LayerUtils.addGoogleSatelliteLayer  (treeGrid);
+
+            LayerUtils.addBingMapRoadLayer      (treeGrid);
+            LayerUtils.addBingMapSatelliteLayer (treeGrid);
+            LayerUtils.addBingMapHybridLayer    (treeGrid);
         }
+        else
+        {
+            String baseMapURL   = config.getBaseMapURL  ();
+            String baseMapTitle = config.getBaseMapTitle();
+            String baseMapType  = config.getBaseMapType ();
 
-        TreeNode treeNodeGoogle = new TreeNode();
-        treeNodeGoogle.setAttribute (LayerUtils.String_Layout , "Google");
-        treeNodeGoogle.setAttribute (LayerUtils.String_isService, false   );
-        treeNodeGoogle.setEnabled   (true);
-        treeNodeGoogle.setAttribute("canSelect", false);
-        data.add(treeNodeGoogle, data.getRoot());
+            for (int i = 0; i < config.layers().length(); i++)
+            {
+                JSONLayerConfig layer = config.layer(i).cast();
+                if (!layer.serviceUrl().equals(baseMapURL))
+                {
+//			com.google.gwt.user.client.Window.alert(layer.select() + "");
+                    if (LAYER_TYPE_ARC_GIS_93.equals(layer.type()))
+                        LayerUtils.addArcGIS93Layer (layer.name(), layer.serviceUrl(), layer.infoServiceUrl(), treeGrid, layer.selected());
+                    else if (LAYER_TYPE_WMS.equals(layer.type()))
+                        LayerUtils.addWMSLayer (layer.name(), layer.serviceUrl(), layer.serviceName(), treeGrid, layer.selected() );
+                }
+            }
+            if (LAYER_TYPE_ARC_GIS_93.equalsIgnoreCase(baseMapType))
+                LayerUtils.addArcGIS93Layer (baseMapTitle, baseMapURL, "", baseTree, true);
 
-        LayerUtils.addGoogleStreetsLayer    (treeGrid, treeNodeGoogle);
-        LayerUtils.addGoogleHybridLayer     (treeGrid, treeNodeGoogle);
-        LayerUtils.addGoogleSatelliteLayer  (treeGrid, treeNodeGoogle);
+//        TreeNode treeNodeGoogle = new TreeNode();
+//        treeNodeGoogle.setAttribute (LayerUtils.String_Layout , "Google");
+//        treeNodeGoogle.setAttribute (LayerUtils.String_isService, false   );
+//        treeNodeGoogle.setEnabled   (true);
+//        treeNodeGoogle.setAttribute("canSelect", false);
+//        data.add(treeNodeGoogle, data.getRoot());
 
-        TreeNode treeNodeBM = new TreeNode();
-        treeNodeBM.setAttribute (LayerUtils.String_Layout , "Bing Map");
-        treeNodeBM.setAttribute (LayerUtils.String_isService, false   );
-        treeNodeBM.setEnabled   (true);
-        treeNodeBM.setAttribute("canSelect", false);
-        data.add(treeNodeBM, data.getRoot());
+            LayerUtils.addGoogleStreetsLayer    (baseTree); //, treeNodeGoogle);
+            LayerUtils.addGoogleHybridLayer     (baseTree); //, treeNodeGoogle);
+            LayerUtils.addGoogleSatelliteLayer  (baseTree); //, treeNodeGoogle);
 
-        LayerUtils.addBingMapRoadLayer      (treeGrid, treeNodeBM);
-        LayerUtils.addBingMapSatelliteLayer (treeGrid, treeNodeBM);
-        LayerUtils.addBingMapHybridLayer    (treeGrid, treeNodeBM);
+//        TreeNode treeNodeBM = new TreeNode();
+//        treeNodeBM.setAttribute (LayerUtils.String_Layout , "Bing Map");
+//        treeNodeBM.setAttribute (LayerUtils.String_isService, false   );
+//        treeNodeBM.setEnabled   (true);
+//        treeNodeBM.setAttribute("canSelect", false);
+//        data.add(treeNodeBM, data.getRoot());
 
+            LayerUtils.addBingMapRoadLayer      (baseTree); //, treeNodeBM);
+            LayerUtils.addBingMapSatelliteLayer (baseTree); //, treeNodeBM);
+            LayerUtils.addBingMapHybridLayer    (baseTree); //, treeNodeBM);
+        }
 //		LayerUtils.addOSMLayer(treeGrid);
         // addYandex();
 
@@ -1154,6 +1163,8 @@ public class GWTViewer implements EntryPoint
         navigationHistory.activate();
 
         zoomTo (4);
+        if (withBaseMap)
+            LayerUtils.initLayerOrder(baseTree);
         LayerUtils.initLayerOrder(treeGrid);
 /*
         //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
