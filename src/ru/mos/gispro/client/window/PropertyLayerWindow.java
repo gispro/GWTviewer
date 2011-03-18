@@ -24,13 +24,16 @@ import java.util.List;
 public class PropertyLayerWindow extends Window
 {
     private   TreeGrid   tree;
-    private   TreeNode   node;
-    private   Label      label;
+    private   TreeNode   currentNode;
+//    private   Label      label;
     private   Slider     opacitySlider = null;
     //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-    public PropertyLayerWindow (TreeGrid treeGrid)
+//    public PropertyLayerWindow (TreeGrid treeGrid)
+    public PropertyLayerWindow (TreeGrid treeGrid, final TreeNode node, Label label)
     {
-        this.tree = treeGrid;
+        this.tree        = treeGrid;
+        this.currentNode = node    ;
+//        this.label = label   ;
 
         setTitle("\u041D\u0430\u0441\u0442\u0440\u043E\u0439\u043A\u0438\u0020\u0441\u0435\u0440\u0432\u0438\u0441\u0430");
         setHeight(190);
@@ -51,7 +54,7 @@ public class PropertyLayerWindow extends Window
         infoLayerNameLabel.setTop(10);
         infoLayerNameLabel.setLeft(10);
 
-        label = new Label();
+//        label = new Label();
         label.setHeight(30);
         label.setWidth(300);
         label.setTop(10);
@@ -121,7 +124,7 @@ public class PropertyLayerWindow extends Window
                 {
                     public void onValueChanged(ValueChangedEvent event)
                     {
-                        MapService service = (MapService) node.getAttributeAsObject(LayerUtils.String_service);
+                        MapService service = (MapService) currentNode.getAttributeAsObject(LayerUtils.String_service);
                         if (service != null)
                         {
                             JavaScriptObject layer = service.getLayer();
@@ -155,6 +158,16 @@ public class PropertyLayerWindow extends Window
         addItem(layerManageCanvas);
     }
     //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    public void setCurrentNode (TreeNode node)
+    {
+        this.currentNode = node;
+        MapService service = (MapService) currentNode.getAttributeAsObject(LayerUtils.String_service);
+        if (service != null)
+            opacitySlider.setValue(LayerUtils.getLayerOpacity(service) * 100f);
+//    com.google.gwt.user.client.Window.alert("PropertyLayerWindow.setCurrentNode : currentNode = " + currentNode.getAttribute(LayerUtils.ATTRIBUTE_LAYOUT));
+    }
+    //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/*
     public void setCurrentNode ()
     {
         TreeNode[] nodes = tree.getTree().getChildren(tree.getTree().getRoot());
@@ -172,18 +185,21 @@ public class PropertyLayerWindow extends Window
         if (service != null)
             opacitySlider.setValue(LayerUtils.getLayerOpacity(service) * 100f);
     }
+*/
     //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/*
     public TreeNode getCurrentNode ()
     {
         return node;
     }
+*/
     //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     private void moveLayer (boolean moveUp)
     {
-        TreeNode root = tree.getTree().getRoot();
-        List<TreeNode>  rootNodes     = new ArrayList<TreeNode>();
-        List<TreeNode>  newRootNodes  = new ArrayList<TreeNode>();
-        List<Integer>   rootIds       = new ArrayList<Integer>();
+        TreeNode        root         = tree.getTree().getRoot();
+        List<TreeNode>  rootNodes    = new ArrayList<TreeNode>();
+        List<TreeNode>  newRootNodes = new ArrayList<TreeNode>();
+        List<Integer>   rootIds      = new ArrayList<Integer>();
 
         TreeNode[] nodes = tree.getTree().getChildren(root);
 
@@ -201,13 +217,13 @@ public class PropertyLayerWindow extends Window
         {
             for (int k = 0; k < rootNodes.size(); k++)
             {
-                if (rootNodes.get(k) == node)
+                if (rootNodes.get(k) == currentNode)
                 {
                     if (k == 0) break;
-                    tree.getTree().move(node, root, rootIds.get(k-1));
+                    tree.getTree().move(currentNode, root, rootIds.get(k-1));
 
                     TreeNode tn = newRootNodes.get(k-1);
-                    newRootNodes.set(k-1, node);
+                    newRootNodes.set(k-1, currentNode);
                     newRootNodes.set(k, tn);
                     break;
                 }
@@ -217,26 +233,19 @@ public class PropertyLayerWindow extends Window
         {
             for (int k = 0; k < rootNodes.size(); k++)
             {
-                if (rootNodes.get(k) == node)
+                if (rootNodes.get(k) == currentNode)
                 {
                     if (k == rootNodes.size()) break;
                     tree.getTree().move(rootNodes.get(k+1), root, rootIds.get(k));
 
                     TreeNode tn = newRootNodes.get(k+1);
-                    newRootNodes.set(k+1, node);
+                    newRootNodes.set(k+1, currentNode);
                     newRootNodes.set(k, tn);
                     break;
                 }
             }
         }
-
-        for (int k = 0; k < newRootNodes.size(); k++)
-        {
-            JavaScriptObject layer = ((MapService) newRootNodes.get(k).
-                                                         getAttributeAsObject(LayerUtils.String_service)).getLayer();
-            if (layer == null) continue;
-            LayerUtils.setLayerZOrder(layer, 1000 - k);
-        }
+        LayerUtils.setLayerZIndex(newRootNodes);
     }
     //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 }

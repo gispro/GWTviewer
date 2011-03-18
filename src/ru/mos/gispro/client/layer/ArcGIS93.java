@@ -34,6 +34,7 @@ public class ArcGIS93 implements MapService
     private       float                            layerOpacity = 1;
     private       WebService                       zipCodeService;
 
+    private       LayerUtils                       layerUtils     = null;
     private final MapServiceInfoAsync              mapServiceInfo = GWT.create(MapServiceInfo.class);
 
     private       Map<String, List<LegendInfo>>    images         = new HashMap<String, List<LegendInfo>>();
@@ -103,7 +104,8 @@ public class ArcGIS93 implements MapService
         return layer;
     }-*/;
     //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-	public ArcGIS93(String name, String url, String projection, TreeNode treeNode, Tree data, TreeGrid treeGrid)
+	public ArcGIS93(String name, String url, String projection, TreeNode treeNode, Tree data, TreeGrid treeGrid,
+                    LayerUtils layerUtils)
     {
 		this.name        = name;
 		this.url         = url;
@@ -114,10 +116,11 @@ public class ArcGIS93 implements MapService
 		this.treeGrid    = treeGrid;
 		this.ids         = new ArrayList<String>();
 		this.layers      = "";
+        this.layerUtils  = layerUtils;
 	}
     //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	public ArcGIS93(String name, String url, String urlIdentify, String projection, TreeNode treeNode, Tree data,
-                                                                                    TreeGrid treeGrid)
+                                                                 TreeGrid treeGrid, LayerUtils layerUtils)
     {
 		this.name        = name;
 		this.url         = url;
@@ -128,6 +131,7 @@ public class ArcGIS93 implements MapService
 		this.treeGrid    = treeGrid;
 		this.ids         = new ArrayList<String>();
 		this.layers      = "";
+        this.layerUtils  = layerUtils;
 	}
     //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	public String Url()
@@ -175,7 +179,7 @@ public class ArcGIS93 implements MapService
 		if (layer == null)
         {
 			layer = addArcgisMapService(name, url + "/export", projection);
-
+//            com.google.gwt.user.client.Window.alert("ARCGIS93.invalidate : name = " + name + "\n url = " + url);
 			mapServiceInfo.legendsTrue(url, new AsyncCallback<Map<String, List<LegendInfo>>>()
             {
 				public void onFailure(Throwable caught)
@@ -223,7 +227,7 @@ public class ArcGIS93 implements MapService
 				}
 			});
 
-			new JSONRequest().get(url + "?f=json",	new JSONRequestHandler()
+			new JSONRequest().get(url + "?f=json", new JSONRequestHandler()
             {
 				public void onRequestComplete(JavaScriptObject json)
                 {
@@ -233,6 +237,7 @@ public class ArcGIS93 implements MapService
 
 					List<TreeNode> treeNodes = new ArrayList(); //TreeNode[service.layers().length()]
 
+//                    com.google.gwt.user.client.Window.alert("ArcGIS93.JSONRequest : name = " + name + "\n url = " + url + ", json = " + json);
                     // int cycle = 0;
 					for (int i = 0; i < service.layers().length(); ++i)
                     {
@@ -295,7 +300,7 @@ public class ArcGIS93 implements MapService
 		if (layer != null)
 			setVisibility(layer, isServiceVisible);
 
-//		LayerUtils.initLayerOrder(treeGrid);
+		layerUtils.initLayerOrder(treeGrid);
 	}
     //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	public void layerVisibility(String id, boolean isLayerVisible)

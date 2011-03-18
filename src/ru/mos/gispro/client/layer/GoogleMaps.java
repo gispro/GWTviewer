@@ -18,8 +18,8 @@ public class GoogleMaps implements MapService
     //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	public GoogleMaps(String name, MapTypeId mapTypeId)
     {
-		this.mapTypeId = mapTypeId;
-		this.name = name;
+		this.mapTypeId   = mapTypeId;
+		this.name        = name;
 		isServiceVisible = false;
 	}
     //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -28,7 +28,7 @@ public class GoogleMaps implements MapService
         layer.setVisibility(isLayoutVisible);
     }-*/;
     //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-    private native JavaScriptObject addGoogleSatellite(String name, String mapTypeId)
+    private native JavaScriptObject addGoogleLayer(String name, String mapTypeId)
     /*-{
         var layer = new $wnd.OpenLayers.Layer.Google(name, {
                                                             type: eval("$wnd.google.maps.MapTypeId." + mapTypeId),
@@ -46,7 +46,7 @@ public class GoogleMaps implements MapService
 	public void visibility(boolean isServiceVisible)
     {
 		if (layer == null)
-			layer = addGoogleSatellite(name, mapTypeId.toString());
+			layer = addGoogleLayer(name, mapTypeId.toString());
 		if (layer != null)
 			setVisibility(layer, isServiceVisible);
 	}

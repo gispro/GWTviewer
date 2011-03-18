@@ -10,23 +10,35 @@ import java.util.List;
 
 public class LayerUtils
 {
-    public    final   static    String   ATTRIBUTE_LAYOUT = "Layout";
-    public    final   static    String   String_service   = "service";
-    public    final   static    String   String_isService = "isService";
+    public    final   static    String      ATTRIBUTE_LAYOUT          = "Layout";
+    public    final   static    String      String_service            = "service";
+    public    final   static    String      String_isService          = "isService";
 
-    public    final   static    String   GLOBE_ICON       = "globe-green.ico";
+//    public    final   static    String      GLOBE_ICON                = "globe-green.ico";
 
-//    private           static    TreeNode googleStreets    = null;
-//    private           static    TreeNode googleSattelite  = null;
-//    private           static    TreeNode googleHybrid     = null;
+    public                      TreeNode[]  baseMaps                  = {null, null, null, null, null, null, null};
 
-//    private           static    TreeNode bmRoad           = null;
-//    private           static    TreeNode bmSattelite      = null;
-//    private           static    TreeNode bmHybrid         = null;
+    public                      String[][]  baseMapsCaptions          = {{"", ""},
+                                                                         {"Google Карта"    , "Google streets"      },
+                                                                         {"Google Гибрид"   , "Google hybrid"       },
+                                                                         {"Google Спутник"  , "Google satellite"    },
+                                                                         {"Bing Map Карта"  , "Bing Map Road"       },
+                                                                         {"Bing Map Гибрид" , "Bing Maps Hybrid"    },
+                                                                         {"Bing Map Спутник", "Bing Maps Satellite"}};
+    public    final   static    int         BASEMAP_COMMON            = 0;
+    public    final   static    int         BASEMAP_GOOGLE_STREETS    = 1;
+    public    final   static    int         BASEMAP_GOOGLE_HYBRID     = 2;
+    public    final   static    int         BASEMAP_GOOGLE_SATTELITE  = 3;
+    public    final   static    int         BASEMAP_BINGMAP_STREETS   = 4;
+    public    final   static    int         BASEMAP_BINGMAP_HYBRID    = 5;
+    public    final   static    int         BASEMAP_BINGMAP_SATTELITE = 6;
     //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-	public static void addArcGIS93Layer(String name, String url, TreeGrid treeGrid, Boolean select)
+    public LayerUtils(){};
+    //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	public static void addArcGIS93Layer(String name, String url, TreeGrid treeGrid, Boolean select,
+                                        LayerUtils layerUtils)
     {
-		addArcGIS93Layer(name, url, url, treeGrid, select);
+		addArcGIS93Layer(name, url, url, treeGrid, select, layerUtils);
 	}
     //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     public static native void setLayerZOrder(JavaScriptObject layer, int order)
@@ -47,23 +59,39 @@ public class LayerUtils
             return 1;
     }
     //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-	public static void addArcGIS93Layer(String name, String url, String urlIdentify, TreeGrid treeGrid, boolean select)
+	public void addArcGIS93Layer(String name, String url, TreeGrid baseTree, LayerUtils layerUtils)
     {
-		Tree data = treeGrid.getData();
+        baseMaps[BASEMAP_COMMON] = new TreeNode();
+		baseMaps[BASEMAP_COMMON] = new TreeNode();
+		baseMaps[BASEMAP_COMMON].setAttribute(ATTRIBUTE_LAYOUT, name + " ");
+		String idPrefix = Integer.toString(baseMaps[BASEMAP_COMMON].hashCode()) + "_";
+		baseMaps[BASEMAP_COMMON].setID(idPrefix + "-1");
 
+        baseMaps[BASEMAP_COMMON].setAttribute(String_service, new ArcGIS93 (name, url, "", "EPSG:102113",
+                                              baseMaps[BASEMAP_COMMON], baseTree.getData(), baseTree, layerUtils));
+        baseMaps[BASEMAP_COMMON].setAttribute (String_isService, true);
+
+        baseTree.getData().add(baseMaps[BASEMAP_COMMON], baseTree.getData().getRoot());
+        baseTree.selectRecord (baseMaps[BASEMAP_COMMON]);
+	}
+    //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	public static void addArcGIS93Layer(String name, String url, String urlIdentify, TreeGrid treeGrid, boolean select,
+                                                                                                 LayerUtils layerUtils)
+    {
 		TreeNode treeNode = new TreeNode();
 		treeNode.setAttribute(ATTRIBUTE_LAYOUT, name + " ");
 		String idPrefix = Integer.toString(treeNode.hashCode()) + "_";
 		treeNode.setID(idPrefix + "-1");
-		treeNode.setAttribute(String_service  , new ArcGIS93 (name, url, urlIdentify, "EPSG:102113",
-                                                              treeNode, data, treeGrid));
-		treeNode.setAttribute(String_isService, true);
 
-		data.add(treeNode, data.getRoot());
+		treeNode.setAttribute(String_service, new ArcGIS93 (name, url, urlIdentify, "EPSG:102113", treeNode,
+                                                                       treeGrid.getData(), treeGrid, layerUtils));
+        treeNode.setAttribute(String_isService, true);
 
-		treeGrid.selectRecord(treeNode);
-		if (!select)
-			treeGrid.deselectRecord(treeNode);
+        treeGrid.getData().add(treeNode, treeGrid.getData().getRoot());
+
+        treeGrid.selectRecord(treeNode);
+        if (!select)
+            treeGrid.deselectRecord(treeNode);
 	}
     //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	public static void addWMSLayer(String name, String url, String layerName, TreeGrid treeGrid, Boolean select)
@@ -82,91 +110,66 @@ public class LayerUtils
 			treeGrid.selectRecord(treeNode);
 	}
     //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-	public static void addGoogleStreetsLayer(TreeGrid treeGrid)
+	public void addGoogleStreetsLayer(TreeGrid treeGrid)
     {
-		TreeNode googleStreets = new TreeNode();
-		googleStreets.setAttribute(ATTRIBUTE_LAYOUT, "Google Карта");
-		String idPrefix = Integer.toString(googleStreets.hashCode()) + "_";
-		googleStreets.setID(idPrefix + "-1");
-		googleStreets.setAttribute(String_service  , new GoogleMaps("Google streets", GoogleMaps.MapTypeId.ROADMAP));
-		googleStreets.setAttribute(String_isService, true);
-        googleStreets.setIcon(GLOBE_ICON);
-		treeGrid.getData().add(googleStreets, treeGrid.getData().getRoot());
+        addGoogleLayer(treeGrid, BASEMAP_GOOGLE_STREETS, GoogleMaps.MapTypeId.ROADMAP);
 
-		((MapService) googleStreets.getAttributeAsObject(String_service)).invalidate();
-		treeGrid.selectRecord  (googleStreets);
-		treeGrid.deselectRecord(googleStreets);
+        ((MapService) baseMaps[BASEMAP_GOOGLE_STREETS].getAttributeAsObject(String_service)).invalidate();
+        treeGrid.selectRecord  (baseMaps[BASEMAP_GOOGLE_STREETS]);
+        treeGrid.deselectRecord(baseMaps[BASEMAP_GOOGLE_STREETS]);
 	}
     //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-	public static void addGoogleSatelliteLayer(TreeGrid treeGrid)
+	public void addGoogleSatelliteLayer(TreeGrid treeGrid)
     {
-		TreeNode googleSattelite = new TreeNode();
-		googleSattelite.setAttribute(ATTRIBUTE_LAYOUT, "Google Спутник");
-		String idPrefix = Integer.toString(googleSattelite.hashCode()) + "_";
-		googleSattelite.setID(idPrefix + "-1");
-		googleSattelite.setAttribute(String_service  , new GoogleMaps("Google satellite", GoogleMaps.MapTypeId.SATELLITE));
-		googleSattelite.setAttribute(String_isService, true);
-        googleSattelite.setIcon(GLOBE_ICON);
-		treeGrid.getData().add(googleSattelite, treeGrid.getData().getRoot());
+        addGoogleLayer(treeGrid, BASEMAP_GOOGLE_SATTELITE, GoogleMaps.MapTypeId.SATELLITE);
 	}
     //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-	public static void addGoogleHybridLayer(TreeGrid treeGrid)
+	public void addGoogleHybridLayer(TreeGrid treeGrid)
     {
-		TreeNode googleHybrid = new TreeNode();
-		googleHybrid.setAttribute(ATTRIBUTE_LAYOUT, "Google Гибрид");
-		String idPrefix = Integer.toString(googleHybrid.hashCode()) + "_";
-		googleHybrid.setID(idPrefix + "-1");
-		googleHybrid.setAttribute(String_service  , new GoogleMaps("Google satellite", GoogleMaps.MapTypeId.HYBRID));
-		googleHybrid.setAttribute(String_isService, true);
-        googleHybrid.setIcon(GLOBE_ICON);
-		treeGrid.getData().add(googleHybrid, treeGrid.getData().getRoot());
+        addGoogleLayer(treeGrid, BASEMAP_GOOGLE_HYBRID, GoogleMaps.MapTypeId.HYBRID);
 	}
     //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-    public static void addBingMapRoadLayer(TreeGrid treeGrid)
+    public void addGoogleLayer(TreeGrid treeGrid, int idx, GoogleMaps.MapTypeId type)
     {
-        String idPrefix;
-        TreeNode bmRoad = new TreeNode();
-        bmRoad.setAttribute(ATTRIBUTE_LAYOUT, "Bing Map Карта");
-        idPrefix = Integer.toString(bmRoad.hashCode()) + "_";
-        bmRoad.setID(idPrefix + "-1");
-        bmRoad.setAttribute(String_service  , new BingMaps("Bing Maps", BingMaps.MapTypeId.Road));
-        bmRoad.setAttribute(String_isService, true);
-        bmRoad.setIcon(GLOBE_ICON);
-        treeGrid.getData().add(bmRoad, treeGrid.getData().getRoot());
-
-        ((MapService) bmRoad.getAttributeAsObject(String_service)).invalidate();
-        treeGrid.selectRecord  (bmRoad);
-        treeGrid.deselectRecord(bmRoad);
+        baseMaps[idx] = new TreeNode();
+        baseMaps[idx].setAttribute(ATTRIBUTE_LAYOUT,  baseMapsCaptions[idx][0]);
+        String idPrefix = Integer.toString(baseMaps[idx].hashCode()) + "_";
+        baseMaps[idx].setID(idPrefix + "-1");
+        baseMaps[idx].setAttribute(String_service  , new GoogleMaps(baseMapsCaptions[idx][1], type));
+        baseMaps[idx].setAttribute(String_isService, true);
+//        baseMaps[idx].setIcon(GLOBE_ICON);
+        treeGrid.getData().add(baseMaps[idx], treeGrid.getData().getRoot());
     }
     //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-    public static void addBingMapSatelliteLayer(TreeGrid treeGrid)
+    public void addBingMapRoadLayer(TreeGrid treeGrid)
     {
-        TreeNode bmSattelite = new TreeNode();
-        bmSattelite.setAttribute(ATTRIBUTE_LAYOUT, "Bing Map Спутник");
-        String idPrefix = Integer.toString(bmSattelite.hashCode()) + "_";
-        bmSattelite.setID(idPrefix + "-1");
-        bmSattelite.setAttribute(String_service  , new BingMaps("Bing Maps Satellite", BingMaps.MapTypeId.Aerial));
-        bmSattelite.setAttribute(String_isService, true);
-        bmSattelite.setIcon(GLOBE_ICON);
-        treeGrid.getData().add(bmSattelite, treeGrid.getData().getRoot());
+        addBingMapLayer(treeGrid, BASEMAP_BINGMAP_STREETS, BingMaps.MapTypeId.Road);
     }
     //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-    public static void addBingMapHybridLayer(TreeGrid treeGrid)
+    public void addBingMapHybridLayer(TreeGrid treeGrid)
     {
-        TreeNode bmHybrid = new TreeNode();
-        bmHybrid.setAttribute(ATTRIBUTE_LAYOUT, "Bing Map Гибрид");
-        String idPrefix = Integer.toString(bmHybrid.hashCode()) + "_";
-        bmHybrid.setID(idPrefix + "-1");
-        bmHybrid.setAttribute(String_service  , new BingMaps("Bing Maps Hybrid", BingMaps.MapTypeId.Hybrid));
-        bmHybrid.setAttribute(String_isService, true);
-        bmHybrid.setIcon(GLOBE_ICON);
-        treeGrid.getData().add(bmHybrid, treeGrid.getData().getRoot());
+        addBingMapLayer(treeGrid, BASEMAP_BINGMAP_HYBRID, BingMaps.MapTypeId.Hybrid);
+    }
+    //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    public void addBingMapSatelliteLayer(TreeGrid treeGrid)
+    {
+        addBingMapLayer(treeGrid, BASEMAP_BINGMAP_SATTELITE, BingMaps.MapTypeId.Aerial);
+    }
+    //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    public void addBingMapLayer(TreeGrid treeGrid, int idx, BingMaps.MapTypeId type)
+    {
+        baseMaps[idx] = new TreeNode();
+        baseMaps[idx].setAttribute(ATTRIBUTE_LAYOUT, baseMapsCaptions[idx][0]);
+        String idPrefix = Integer.toString(baseMaps[idx].hashCode()) + "_";
+        baseMaps[idx].setID(idPrefix + "-1");
+        baseMaps[idx].setAttribute(String_service  , new BingMaps(baseMapsCaptions[idx][1], type));
+        baseMaps[idx].setAttribute(String_isService, true);
+//        baseMaps[idx].setIcon(GLOBE_ICON);
+        treeGrid.getData().add(baseMaps[idx], treeGrid.getData().getRoot());
     }
     //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	public static void addOSMLayer(TreeGrid treeGrid)
     {
-//		Tree data = treeGrid.getData();
-
 		TreeNode treeNode = new TreeNode();
 		treeNode.setAttribute(ATTRIBUTE_LAYOUT, "Open street map");
 		String idPrefix = Integer.toString(treeNode.hashCode()) + "_";
@@ -176,12 +179,27 @@ public class LayerUtils
 		treeGrid.getData().add(treeNode, treeGrid.getData().getRoot());
 	}
     //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-	public static void initLayerOrder(TreeGrid treeGrid)
+    public static void setLayerZIndex(List<TreeNode> nodes)
     {
-		TreeNode root = treeGrid.getTree().getRoot();
-
+        for (int k = 0; k < nodes.size(); k++)
+        {
+            String service = (String) nodes.get(k).getAttribute(String_service);
+            if (service != null)
+            {
+                JavaScriptObject layer = ((MapService)nodes.get(k).getAttributeAsObject(String_service)).getLayer();
+                if (layer == null)
+                    continue;
+                setLayerZOrder(layer, 1000 - k);
+            }
+        }
+//        com.google.gwt.user.client.Window.alert("LayerUtils.initLayerOrder : rootNodes.size() = " + nodes.size());
+    }
+    //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	public void initLayerOrder(TreeGrid treeGrid)
+    {
+		TreeNode       root      = treeGrid.getTree().getRoot();
 		List<TreeNode> rootNodes = new ArrayList<TreeNode>();
-		TreeNode[] nodes = treeGrid.getTree().getChildren(root);
+		TreeNode[]     nodes     = treeGrid.getTree().getChildren(root);
 
 		for (TreeNode n : nodes)
         {
@@ -189,32 +207,12 @@ public class LayerUtils
                 continue;
    			rootNodes.add(n);
 		}
-/*
-        if (googleStreets != null)
-            rootNodes.add(googleStreets);
-        if (googleSattelite != null)
-            rootNodes.add(googleSattelite);
-        if (googleHybrid != null)
-            rootNodes.add(googleHybrid);
-
-        if (bmRoad != null)
-            rootNodes.add(bmRoad);
-        if (bmSattelite != null)
-            rootNodes.add(bmSattelite);
-        if (bmHybrid != null)
-            rootNodes.add(bmHybrid);
-*/
-		for (int k = 0; k < rootNodes.size(); k++)
+        for (int i = 0; i < baseMaps.length; i++)
         {
-            String service = (String) rootNodes.get(k).getAttribute(String_service);
-            if (service != null)
-            {
-			    JavaScriptObject layer = ((MapService)rootNodes.get(k).getAttributeAsObject(String_service)).getLayer();
-			    if (layer == null)
-                    continue;
-			    setLayerZOrder(layer, 1000 - k);
-            }
-		}
+            if (baseMaps[i] != null)
+                rootNodes.add(baseMaps[i]);
+        }
+        setLayerZIndex(rootNodes);
 	}
     //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 }

@@ -18,36 +18,32 @@ import com.smartgwt.client.widgets.tree.Tree;
 import com.smartgwt.client.widgets.tree.TreeGrid;
 import ru.mos.gispro.client.layer.LayerUtils;
 
-/**
- * User: dima
- * Date: 20.11.2010
- * Time: 15:14:55
- */
-
-public class AddMapButton extends ToolStripButton {
-
+public class AddMapButton extends ToolStripButton
+{
 	public static final String SERVICE_ARCGIS93 = "ArcGIS";
-	public static final String SERVICE_WMS = "WMS";
+	public static final String SERVICE_WMS      = "WMS";
 
-
-	public AddMapButton(final TreeGrid treeGrid) {
-
+	public AddMapButton(final TreeGrid treeGrid, final LayerUtils layerUtils)
+    {
 		final Tree data = treeGrid.getTree();
 
 		this.setIcon("MActionAddMap.png");
 		this.setIconSize(20);
-		this.setHeight(30);
+		this.setHeight  (30);
 		this.setTitle("Добавить");
-		this.addClickHandler(new ClickHandler() {
-
-			public void onClick(ClickEvent event) {
+		this.addClickHandler(new ClickHandler()
+        {
+			public void onClick(ClickEvent event)
+            {
 				final Dialog winModal = new Dialog();
 				winModal.setTitle("Добавление ГИС сервиса");
 				winModal.setAutoSize(true);
 				winModal.setCanDragResize(true);
 				winModal.setIsModal(true);
-				winModal.addCloseClickHandler(new CloseClickHandler() {
-					public void onCloseClick(CloseClientEvent event) {
+				winModal.addCloseClickHandler(new CloseClickHandler()
+                {
+					public void onCloseClick(CloseClientEvent event)
+                    {
 						winModal.destroy();
 					}
 				});
@@ -77,19 +73,25 @@ public class AddMapButton extends ToolStripButton {
 				layerName.setRequiredMessage("Поле обязательно для заполнения");
 				layerName.setValue("");
 				layerName.setVisible(false);
-				layerName.setShowIfCondition(new FormItemIfFunction() {
-					public boolean execute(FormItem formItem, Object o, DynamicForm dynamicForm) {
+				layerName.setShowIfCondition(new FormItemIfFunction()
+                {
+					public boolean execute(FormItem formItem, Object o, DynamicForm dynamicForm)
+                    {
 						return SERVICE_WMS.equals(serviceType.getValue()); 
 					}
 				});
 
-				serviceType.addChangedHandler(new ChangedHandler() {
-					public void onChanged(ChangedEvent changedEvent) {
-						if (SERVICE_ARCGIS93.equals(serviceType.getValue())) {
+				serviceType.addChangedHandler(new ChangedHandler()
+                {
+					public void onChanged(ChangedEvent changedEvent)
+                    {
+						if (SERVICE_ARCGIS93.equals(serviceType.getValue()))
+                        {
 							layerName.setRequired(false);
 							return;
 						}
-						if (SERVICE_WMS.equals(serviceType.getValue())) {
+						if (SERVICE_WMS.equals(serviceType.getValue()))
+                        {
 							layerName.setRequired(true);
 						}
 					}
@@ -106,22 +108,27 @@ public class AddMapButton extends ToolStripButton {
 				winModal.addItem(form);
 
 				Button btnClose = new Button("Подключить");
-				btnClose.addClickHandler(new ClickHandler() {
-					public void onClick(ClickEvent event) {
-
-						if (!form.validate()) {
+				btnClose.addClickHandler(new ClickHandler()
+                {
+					public void onClick(ClickEvent event)
+                    {
+						if (!form.validate())
+                        {
 							return;
 						}
 
-						if (SERVICE_ARCGIS93.equals(serviceType.getValue())) {
-							LayerUtils.addArcGIS93Layer(name.getValue().toString(), url.getValue().toString(), treeGrid, true);
+						if (SERVICE_ARCGIS93.equals(serviceType.getValue()))
+                        {
+							LayerUtils.addArcGIS93Layer(name.getValue().toString(), url.getValue().toString(),
+                                                        treeGrid, true, layerUtils);
 						}
 
-						if (SERVICE_WMS.equals(serviceType.getValue())) {
-							LayerUtils.addWMSLayer(name.getValue().toString(), url.getValue().toString(), layerName.getValue().toString(), treeGrid, true);
+						if (SERVICE_WMS.equals(serviceType.getValue()))
+                        {
+							LayerUtils.addWMSLayer(name.getValue().toString(), url.getValue().toString(),
+                                                   layerName.getValue().toString(), treeGrid, true);
 						}
-
-						LayerUtils.initLayerOrder(treeGrid);
+						layerUtils.initLayerOrder(treeGrid);
 
 						winModal.hide();
 					}
@@ -131,8 +138,5 @@ public class AddMapButton extends ToolStripButton {
 				winModal.show();
 			}
 		});
-
 	}
-
-
 }

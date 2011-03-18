@@ -159,7 +159,8 @@ public class Contractors extends WindowBase
                 addScript(url);
             }
             //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-            public native void addScript(String url) /*-{
+            public native void addScript(String url)
+            /*-{
                 var scr = document.createElement("script");
                 scr.setAttribute("language", "JavaScript");
                 scr.setAttribute("type", "text/javascript");
@@ -167,7 +168,8 @@ public class Contractors extends WindowBase
                 document.getElementsByTagName("head")[0].appendChild(scr);
             }-*/;
             //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-            private native void createCallbackFunction(ContentRequestHandler handler, String callbackName)/*-{
+            private native void createCallbackFunction(ContentRequestHandler handler, String callbackName)
+            /*-{
                  tmpcallback = function(j)
                 {
                     handler.@ru.mos.gispro.client.ContentRequestHandler::onRequestComplete(Lcom/google/gwt/xml/client/Document;)(j);
