@@ -20,15 +20,15 @@ public class BaseMapWindow  extends WindowBase
                              "baseMap.png", "BaseMap"),
            null, null,
            new BaseMapRecord("\u0047\u006F\u006F\u0067\u006C\u0065\u0020\u041A\u0430\u0440\u0442\u0430",
-                             "baseMapGoogleStreet.png"    , "GoogleStreets"),
+                             "baseMapGoogleStreet.png"    , "GoogleStreets"  ),
             new BaseMapRecord("\u0047\u006F\u006F\u0067\u006C\u0065\u0020\u0413\u0438\u0431\u0440\u0438\u0434",
-                              "baseMapGoogleHybrid.png"   , "GoogleHybrid"),
+                              "baseMapGoogleHybrid.png"   , "GoogleHybrid"   ),
             new BaseMapRecord("\u0047\u006F\u006F\u0067\u006C\u0065\u0020\u0421\u043F\u0443\u0442\u043D\u0438\u043A",
                               "baseMapGoogleSatellite.png", "GoogleSatellite"),
             new BaseMapRecord("\u0042\u0069\u006E\u0067\u0020\u004D\u0061\u0070\u0020\u041A\u0430\u0440\u0442\u0430",
-                              "baseMapGoogleSatellite.png", "BingMapStreets"),
+                              "baseMapGoogleSatellite.png", "BingMapStreets" ),
             new BaseMapRecord("\u0042\u0069\u006E\u0067\u0020\u004D\u0061\u0070\u0020\u0413\u0438\u0431\u0440\u0438\u0434",
-                              "baseMapGoogleStreet.png"   , "BingMapHybrid"),
+                              "baseMapGoogleStreet.png"   , "BingMapHybrid"  ),
             new BaseMapRecord("\u0042\u0069\u006E\u0067\u0020\u004D\u0061\u0070\u0020\u0421\u043F\u0443\u0442\u043D\u0438\u043A",
                               "baseMapGoogleHybrid.png"   , "BingMapSatellite")
     };
@@ -37,7 +37,6 @@ public class BaseMapWindow  extends WindowBase
     public    final   static    String[]             baseMapList             = {"BaseMap",
                                                                                 "GoogleStreets" , "GoogleHybrid" , "GoogleSatellite",
                                                                                 "BingMapStreets", "BingMapHybrid", "BingMapSatellite"};
-
 	//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	public BaseMapWindow (IBaseMap callback)
 	{

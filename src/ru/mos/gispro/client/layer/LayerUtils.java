@@ -4,6 +4,7 @@ import com.google.gwt.core.client.JavaScriptObject;
 import com.smartgwt.client.widgets.tree.Tree;
 import com.smartgwt.client.widgets.tree.TreeGrid;
 import com.smartgwt.client.widgets.tree.TreeNode;
+import ru.mos.gispro.client.GWTViewer;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -213,6 +214,9 @@ public class LayerUtils
                 rootNodes.add(baseMaps[i]);
         }
         setLayerZIndex(rootNodes);
+
+        if ((nodes.length > 10) && GWTViewer.project.getConfigFile().equalsIgnoreCase("MosRegion"))
+            GWTViewer.expandTreeNode(treeGrid);
 	}
     //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 }

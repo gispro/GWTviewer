@@ -101,6 +101,7 @@ public class ArcGIS93 implements MapService
                 projection: new $wnd.OpenLayers.Projection(projection)
             });
         $wnd.map.addLayer(layer);
+//        $wnd.addLayer(layer, name); // selectControl = new $wnd.OpenLayers.Control.SelectFeature(layer, {onSelect: $wnd.onFeatureSelect});
         return layer;
     }-*/;
     //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

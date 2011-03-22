@@ -6,10 +6,13 @@ import com.google.gwt.event.shared.HandlerRegistration;
 import com.google.gwt.user.client.Timer;
 import com.google.gwt.core.client.GWT;
 
+import com.smartgwt.client.docs.FormLayout;
 import com.smartgwt.client.types.*;
 import com.smartgwt.client.widgets.*;
 import com.smartgwt.client.widgets.events.ClickEvent;
 import com.smartgwt.client.widgets.events.ClickHandler;
+import com.smartgwt.client.widgets.events.MouseMoveEvent;
+import com.smartgwt.client.widgets.events.MouseMoveHandler;
 import com.smartgwt.client.widgets.form.fields.TextItem;
 import com.smartgwt.client.widgets.grid.events.*;
 import com.smartgwt.client.widgets.layout.HLayout;
@@ -46,7 +49,7 @@ import java.util.*;
 public class GWTViewer implements EntryPoint, IBaseMap
 {
     public static        JSONConfig            config       ;
-    public               JSONProject           project      ;
+    public static        JSONProject           project      ;
     private              Authorization         authorization;
     private              Registration          registration ;
 
@@ -66,6 +69,7 @@ public class GWTViewer implements EntryPoint, IBaseMap
 
     private              PropertyLayerWindow   propertyLayerWindow;
     private              HandlerRegistration   handlerRegistration;
+    private              HandlerRegistration   moveHandler;
     private              LayerUtils            layerUtils             = null;
 
     public  static final  String                ACTION_RESULT_SUCCESS = "success";
@@ -75,7 +79,7 @@ public class GWTViewer implements EntryPoint, IBaseMap
     public  static final String                 LAYER_TYPE_ARC_GIS_93 = "ArcGIS93";
     public  static final String                 LAYER_TYPE_WMS        = "WMS";
 
-    private              boolean                withBaseMap           = true;
+    private              boolean                withBaseMap           = false;
     //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     public native void initMap()
     /*-{
@@ -559,7 +563,9 @@ public class GWTViewer implements EntryPoint, IBaseMap
         toolStripLayers.setWidth100();
         toolStripLayers.setHeight(40);
                                          // UNICODE - Список слоев
-        Label contentLayers = new Label ("\u0421\u043F\u0438\u0441\u043E\u043A\u0020\u0441\u043B\u043E\u0435\u0432");
+//        Label contentLayers = new Label ("\u0421\u043F\u0438\u0441\u043E\u043A\u0020\u0441\u043B\u043E\u0435\u0432");
+                                         // UNICODE - Слои карты
+        Label contentLayers = new Label ("\u0421\u043B\u043E\u0438\u0020\u043A\u0430\u0440\u0442\u044B");
         contentLayers.setHeight(30);
         contentLayers.setStyleName("contentLabel");
 
@@ -648,7 +654,7 @@ public class GWTViewer implements EntryPoint, IBaseMap
                 baseMapWindow = new BaseMapWindow(this);
 
             baseMap = new ToolStripButton();
-            baseMap.setIcon("Layer_Properties.png");
+            baseMap.setIcon("basemap.png");
             baseMap.setIconSize(24);
             baseMap.setHeight(30);
                                   //  Картооснова
@@ -721,6 +727,11 @@ public class GWTViewer implements EntryPoint, IBaseMap
         final ToolStripButton identify = new IdentifyButton(treeGrid, canvas);
                                          // "Информация"
         identify.setTooltip("\u0418\u043D\u0444\u043E\u0440\u043C\u0430\u0446\u0438\u044F");
+
+//        final ToolStripButton hint = new HintButton(treeGrid, canvas);
+//                                         // "Информация"
+//        hint.setTooltip("\u0418\u043D\u0444\u043E\u0440\u043C\u0430\u0446\u0438\u044F");
+
         final ToolStripButton find = new FindButton();
                                          // "Расширенный поиск"
         find.setTooltip("\u0420\u0430\u0441\u0448\u0438\u0440\u0435\u043D\u043D\u044B\u0439\u0020\u043F\u043E\u0438\u0441\u043A");
@@ -764,6 +775,14 @@ public class GWTViewer implements EntryPoint, IBaseMap
 
 //		toolStrip.setAlign(Alignment.LEFT);
 //		toolStrip.setAlign(VerticalAlignment.CENTER);
+        final ToolStripButton help = new ToolStripButton();
+        help.setIcon("helpButton.png");
+        help.setIconSize(24);
+        help.setHeight(30);
+//        zoomIn.setActionType(SelectionType.RADIO);
+//        zoomIn.setRadioGroup("mapAction");
+        help.setTooltip("\u0421\u043F\u0440\u0430\u0432\u043A\u0430"); // "Справка"
+//        zoomIn.addClickHandler(new ZoomClickHandler(handlerRegistration, false));
 
         toolStrip.addSpacer(4);
         if (withBaseMap)
@@ -783,6 +802,7 @@ public class GWTViewer implements EntryPoint, IBaseMap
             toolStrip.addSpacer(6);
 
         toolStrip.addButton(identify);
+//        toolStrip.addButton(hint);
         toolStrip.addButton(find);
         toolStrip.addButton(clearGeometry);
         toolStrip.addSpacer(6);
@@ -855,15 +875,26 @@ public class GWTViewer implements EntryPoint, IBaseMap
         layout.addMember(toolStrip);
         layout.addMember(canvas);
         mainLayout.addMember(layout);
-
+/*
+        moveHandler = canvas.addMouseMoveHandler(new MouseMoveHandler()
+        {
+             public void onMouseMove (MouseMoveEvent event)
+             {
+                  // com.google.gwt.user.client.Window.alert("moveHandler : " + event.getX());
+             }
+        });
+*/
 //~~~~~~~~~~~~~~~~
         if (project.getConfigFile().equalsIgnoreCase("MosRegion") && config.withHeader())
         {
             createHeaderMosRegion();
-
             pageLayout.addMember(mainLayout);
             pageLayout.draw();
 
+            int space = canvas.getWidth() - searchLayout.getLeft() - searchLayout.getWidth () - 45;
+            toolStrip.addSpacer(space);
+            toolStrip.addButton(help);
+//          com.google.gwt.user.client.Window.alert("MosRegion : " + searchLayout.getLeft() + ", space = " + space + ", " + help.getLeft());
         } else
             mainLayout.draw();
 //~~~~~~~~~~~~~~~~
@@ -927,11 +958,11 @@ public class GWTViewer implements EntryPoint, IBaseMap
 
                 TreeNode treeNode = (TreeNode) event.getRecord();
 
-                Object mapService = treeNode.getAttributeAsObject(LayerUtils.String_service); //  "service");
+                Object mapService = treeNode.getAttributeAsObject(LayerUtils.String_service);
                 if (mapService == null)
                     return;
 
-                if (treeNode.getAttributeAsBoolean(LayerUtils.String_isService)) //  "isService"))
+                if (treeNode.getAttributeAsBoolean(LayerUtils.String_isService))
                 {
                     ((MapService) mapService).visibility(event.getState());
                     ser.add((MapService) mapService);
@@ -1107,9 +1138,9 @@ public class GWTViewer implements EntryPoint, IBaseMap
             layerUtils.addGoogleHybridLayer     (treeGrid);
             layerUtils.addGoogleSatelliteLayer  (treeGrid);
 
-            layerUtils.addBingMapRoadLayer      (treeGrid);
-            layerUtils.addBingMapSatelliteLayer (treeGrid);
-            layerUtils.addBingMapHybridLayer    (treeGrid);
+//            layerUtils.addBingMapRoadLayer      (treeGrid);
+//            layerUtils.addBingMapSatelliteLayer (treeGrid);
+//            layerUtils.addBingMapHybridLayer    (treeGrid);
         }
         else
         {
@@ -1128,7 +1159,7 @@ public class GWTViewer implements EntryPoint, IBaseMap
                         LayerUtils.addWMSLayer (layer.name(), layer.serviceUrl(), layer.serviceName(),
                                                                                   treeGrid, layer.selected());
                     }
-                } else
+                } else if (LAYER_TYPE_ARC_GIS_93.equals(baseMapType))
                     layerUtils.addArcGIS93Layer (layer.name(), layer.serviceUrl(), baseTree, layerUtils);
             }
             layerUtils.addGoogleStreetsLayer    (baseTree);
@@ -1200,7 +1231,7 @@ public class GWTViewer implements EntryPoint, IBaseMap
         pageLayout = new VLayout();
         pageLayout.setWidth100();
         pageLayout.setHeight100();
-
+/*
         HLayout headerHLayout = new HLayout();
         headerHLayout.setWidth100();
         headerHLayout.setHeight(40);
@@ -1217,6 +1248,31 @@ public class GWTViewer implements EntryPoint, IBaseMap
         headerHLayout.addMember(titleLabel);
 
         pageLayout.addMember(headerHLayout);
+*/
+        HTMLFlow headerFlow = new HTMLFlow();
+        headerFlow.setWidth100();
+        headerFlow.setHeight(154);
+/*
+        String header = "<div id=\"header\" style=\"width:100%;height:154;\"></div>";
+        headerFlow.setContents(header);
+        headerFlow.redraw();
+*/
+        pageLayout.addMember(headerFlow);
+    }
+    //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    public static void expandTreeNode (TreeGrid treeGrid)
+    {
+        TreeNode[] nodes = treeGrid.getTree().getChildren(treeGrid.getTree().getRoot());
+        int idx = 0;
+        for (TreeNode n : nodes)
+        {
+            if ((idx == 0) || (idx == 1) || (idx == 2) || (idx == 4))
+            {
+                treeGrid.getData().openFolder(n);
+//                com.google.gwt.user.client.Window.alert("expandTreeNode = " + n.getAttribute(LayerUtils.ATTRIBUTE_LAYOUT));
+            }
+            idx++;
+        }
     }
     //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 }
