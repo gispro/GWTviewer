@@ -7,11 +7,19 @@
     <link rel="shortcut icon" href="globe-green.ico">
     <link rel="stylesheet" href="theme/default/style.css" type="text/css">
     <link rel="stylesheet" href="styles.css" type="text/css">
+    <style type="text/css">
+        BODY {
+            background: url('images/header.png') no-repeat fixed; /* Путь к фоновому изображению */
+            background-color: #fff; /* Цвет фона */
+        }
+    </style>
+
     <script type="text/javascript" language="javascript" src="LayerParams.js"></script>
     <script type="text/javascript" language="javascript" src="Project.js"></script>
     <script type="text/javascript" language="javascript" src="MosRegion.js"></script>
     <script type="text/javascript" language="javascript" src="TverAvtoDor.js"></script>
     <script type="text/javascript" language="javascript" src="MosAvtoDor.js"></script>
+    <script type="text/javascript" language="javascript" src="Popup.js"></script>
 	<script type="text/javascript" language="javascript" src="Terr.js"></script>
     <script type="text/javascript" language="javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
     <script type="text/javascript" language="javascript" src='http://dev.virtualearth.net/mapcontrol/mapcontrol.ashx?v=6.1'></script>
@@ -49,7 +57,7 @@
         OpenLayers.IMAGE_RELOAD_ATTEMPTS = 1;
         OpenLayers.Util.onImageLoadErrorColor = "transparent";
 
-        function initMap2() {
+        function initMap() {
 
             geojson = new OpenLayers.Format.GeoJSON();
 
@@ -66,7 +74,8 @@
 
 
             var panZoomBar = new OpenLayers.Control.PanZoomBar();
-			OpenLayers.Control.PanZoomBar.prototype.draw = function(px) {
+			OpenLayers.Control.PanZoomBar.prototype.draw = function(px)
+            {
 		        OpenLayers.Control.prototype.draw.apply(this, arguments);
         		px = this.position.clone();
 
