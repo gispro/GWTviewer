@@ -13,7 +13,6 @@
             background-color: #fff; /* Цвет фона */
         }
     </style>
-
     <script type="text/javascript" language="javascript" src="LayerParams.js"></script>
     <script type="text/javascript" language="javascript" src="Project.js"></script>
     <script type="text/javascript" language="javascript" src="MosRegion.js"></script>
@@ -48,8 +47,11 @@
             numZoomLevels: 18,
             minZoomLevel: 4,
             maxZoomLevel: 18,
-//            displayProjection: new OpenLayers.Projection("EPSG:102113"),
             displayProjection: new OpenLayers.Projection("EPSG:900913"),
+            scales: [    1128.497220,      2256.994440,     4513.988880,     9027.977761,    18055.955520,     36111.911040,
+                        72223.822090,    144447.644200,   288895.288400,   577790.576700,  1155581.153000,   2311162.307000,
+                      4622324.614000,   9244649.227000, 18489298.450000, 36978596.910000, 73957193.820000, 147914387.600000,
+                    295828775.300000, 591657550.500000],
             maxExtent: new OpenLayers.Bounds(-20037508, -20037508, 20037508, 20037508.34),
             controls:[]
         };
@@ -62,17 +64,6 @@
             geojson = new OpenLayers.Format.GeoJSON();
 
             map.addControl( new OpenLayers.Control.MousePosition() );
-//			nav2 = new OpenLayers.Control.Navigation();
-//            map.addControl(nav2);
-
-//            nav = new OpenLayers.Control.NavigationHistory();
-//            map.addControl(nav);
-//            panel = new OpenLayers.Control.Panel({div: document.getElementById("toolbar")});
-//            panel.addControls([new OpenLayers.Control.ZoomBox(), new OpenLayers.Control.ZoomBox({displayClass: "ZoomBox", out: true}),
-//            	 new OpenLayers.Control.ZoomToMaxExtent(), nav.previous, nav.next, nav2]);
-//            map.addControl(panel);
-
-
             var panZoomBar = new OpenLayers.Control.PanZoomBar();
 			OpenLayers.Control.PanZoomBar.prototype.draw = function(px)
             {
@@ -101,8 +92,7 @@
 <noscript>
     <div style="width: 22em; position: absolute; left: 50%; margin-left: -11em;
                 color: #f00; background-color:#fff; border: 1px solid #ff0000; padding: 4px; font-family: sans-serif">
-        Your web browser must have JavaScript enabled
-        in order for this application to display correctly.
+        Your web browser must have JavaScript enabled in order for this application to display correctly.
     </div>
 </noscript>
 </body>

@@ -29,6 +29,7 @@ var configMosRegion =
 
 	"centerX"     : 4187808.01,
 	"centerY"     : 7509054.01,
+    "zoom"        : 8,
 	"mapServices" : [
 				{
 					"name":"Административные единицы",
@@ -36,15 +37,26 @@ var configMosRegion =
 					"serviceUrl":"http://maps.gispro.ru/ArcGIS/rest/services/MOSOBL/adm_mosobl/MapServer",
 					"infoServiceUrl":"http://maps.gispro.ru/ArcGIS/rest/services/MOSOBL/adm_mosobl/MapServer",
 					"serviceName":"",
-					"selected":false
+					"selected":false,
+                    "hint":false
 				},
+                {
+                    "name":"Объекты строительства",
+                    "type":"ArcGIS93",
+                    "serviceUrl":"http://maps.gispro.ru/ArcGIS/rest/services/MOSOBL/invest_objects/MapServer",
+                    "infoServiceUrl":"http://maps.gispro.ru/ArcGIS/rest/services/MOSOBL/invest_objects/MapServer",
+                    "serviceName":"",
+                    "selected":false,
+                    "hint":true
+                },
                 {
                     "name":"Земельные участки и налоги",
                     "type":"ArcGIS93",
                     "serviceUrl":"http://maps.gispro.ru/ArcGIS/rest/services/MOSOBL/mosobl_kadastr/MapServer",
                     "infoServiceUrl":"http://maps.gispro.ru/ArcGIS/rest/services/MOSOBL/mosobl_kadastr/MapServer",
                     "serviceName":"",
-                    "selected":true
+                    "selected":true,
+                    "hint":true
                 },
                 {
                     "name":"Население",
@@ -52,7 +64,8 @@ var configMosRegion =
                     "serviceUrl":"http://maps.gispro.ru/ArcGIS/rest/services/MOSOBL/population/MapServer",
                     "infoServiceUrl":"http://maps.gispro.ru/ArcGIS/rest/services/MOSOBL/population/MapServer",
                     "serviceName":"",
-                    "selected":false
+                    "selected":false,
+                    "hint":false
                 },
                 {
                     "name":"Кадастровое деление",
@@ -60,7 +73,8 @@ var configMosRegion =
                     "serviceUrl":"http://maps.rosreestr.ru/ArcGIS/rest/services/Cadastre/Cadastre/MapServer",
                     "infoServiceUrl":"http://maps.rosreestr.ru/ArcGIS/rest/services/Cadastre/CadastreInfo/MapServer",
                     "serviceName":"",
-                    "selected":false
+                    "selected":false,
+                    "hint":false
                 },
                 {
                     "name":"Дорожная инфраструктура",
@@ -68,7 +82,8 @@ var configMosRegion =
                     "serviceUrl":"http://maps.gispro.ru/ArcGIS/rest/services/MOSOBL/road_infr/MapServer",
                     "infoServiceUrl":"http://maps.gispro.ru/ArcGIS/rest/services/MOSOBL/road_infr/MapServer",
                     "serviceName":"",
-                    "selected":true
+                    "selected":true,
+                    "hint":false
                 },
                 {
                     "name":"Сельское хозяйство",
@@ -76,7 +91,8 @@ var configMosRegion =
                     "serviceUrl":"http://maps.gispro.ru/ArcGIS/rest/services/MOSOBL/agro_lands/MapServer",
                     "infoServiceUrl":"http://maps.gispro.ru/ArcGIS/rest/services/MOSOBL/agro_lands/MapServer",
                     "serviceName":"",
-                    "selected":false
+                    "selected":false,
+                    "hint":false
                 },
 				{
 					"name":"Трубопроводы",
@@ -84,7 +100,8 @@ var configMosRegion =
 					"serviceUrl":"http://maps.gispro.ru/ArcGIS/rest/services/MOSOBL/pipe_transport/MapServer",
 					"infoServiceUrl":"http://maps.gispro.ru/ArcGIS/rest/services/MOSOBL/pipe_transport/MapServer",
 					"serviceName":"",
-					"selected":false
+					"selected":false,
+                    "hint":false
 				},
 				{
 					"name":"ЛЭП",
@@ -92,7 +109,8 @@ var configMosRegion =
 					"serviceUrl":"http://maps.gispro.ru/ArcGIS/rest/services/MOSOBL/mosobl_lep/MapServer",
 					"infoServiceUrl":"http://maps.gispro.ru/ArcGIS/rest/services/MOSOBL/mosobl_lep/MapServer",
 					"serviceName":"",
-					"selected":false
+					"selected":false,
+                    "hint":false
 				},
 				{
 					"name":"Московская область - Картооснова",
@@ -100,7 +118,8 @@ var configMosRegion =
 					"serviceUrl":"http://maps.gispro.ru/ArcGIS/rest/services/MOSOBL/mosobl_osn/MapServer",
 					"infoServiceUrl":"",
 					"serviceName":"",
-					"selected":true
+					"selected":true,
+                    "hint":false
 				}
 	]
 };
