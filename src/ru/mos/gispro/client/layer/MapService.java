@@ -10,4 +10,5 @@ public interface MapService
 	public   JavaScriptObject  getLayer        ();
     public   float             getLayerOpacity ();
     public   void              setLayerOpacity (float layerOpacity);
+    public   boolean           isServiceWithHint();
 }

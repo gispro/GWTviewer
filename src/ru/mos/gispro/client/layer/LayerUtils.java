@@ -33,6 +33,7 @@ public class LayerUtils
     public    final   static    int         BASEMAP_BINGMAP_STREETS   = 4;
     public    final   static    int         BASEMAP_BINGMAP_HYBRID    = 5;
     public    final   static    int         BASEMAP_BINGMAP_SATTELITE = 6;
+    private                     boolean     isExpanded                = false;
     //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     public LayerUtils(){};
     //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -54,7 +55,7 @@ public class LayerUtils
     //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     public static float getLayerOpacity(MapService service)
     {
-        if (service instanceof ArcGIS93)
+        if ((service instanceof ArcGIS93) || (service instanceof WMS))
             return service.getLayerOpacity();
         else
             return 1;
@@ -115,9 +116,9 @@ public class LayerUtils
     {
         addGoogleLayer(treeGrid, BASEMAP_GOOGLE_STREETS, GoogleMaps.MapTypeId.ROADMAP);
 
-        ((MapService) baseMaps[BASEMAP_GOOGLE_STREETS].getAttributeAsObject(String_service)).invalidate();
-        treeGrid.selectRecord  (baseMaps[BASEMAP_GOOGLE_STREETS]);
-        treeGrid.deselectRecord(baseMaps[BASEMAP_GOOGLE_STREETS]);
+//        ((MapService) baseMaps[BASEMAP_GOOGLE_STREETS].getAttributeAsObject(String_service)).invalidate();
+//        treeGrid.selectRecord  (baseMaps[BASEMAP_GOOGLE_STREETS]);
+//        treeGrid.deselectRecord(baseMaps[BASEMAP_GOOGLE_STREETS]);
 	}
     //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	public void addGoogleSatelliteLayer(TreeGrid treeGrid)
@@ -190,7 +191,8 @@ public class LayerUtils
                 JavaScriptObject layer = ((MapService)nodes.get(k).getAttributeAsObject(String_service)).getLayer();
                 if (layer == null)
                     continue;
-                setLayerZOrder(layer, 1000 - k);
+                setLayerZOrder(layer, -k - 1000);
+//                setLayerZOrder(layer, 1000 - k);
             }
         }
 //        com.google.gwt.user.client.Window.alert("LayerUtils.initLayerOrder : rootNodes.size() = " + nodes.size());
@@ -215,8 +217,39 @@ public class LayerUtils
         }
         setLayerZIndex(rootNodes);
 
-        if ((nodes.length > 10) && GWTViewer.project.getConfigFile().equalsIgnoreCase("MosRegion"))
-            GWTViewer.expandTreeNode(treeGrid);
+        if ((nodes.length >= 9) && GWTViewer.project.getConfigFile().equalsIgnoreCase("MosRegion"))
+            expandTreeNode(treeGrid);
 	}
+    //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    public void expandTreeNode (TreeGrid treeGrid)
+    {
+        if (!isExpanded)
+        {
+            TreeNode[] nodes = treeGrid.getTree().getChildren(treeGrid.getTree().getRoot());
+            int idx = 0;
+            for (TreeNode n : nodes)
+            {
+                if ((idx == 0) || (idx == 2) || (idx == 3))
+                {
+                    treeGrid.getData().openFolder(n);
+                    if ((idx == 2) && !isExpanded)
+                    {
+                        TreeNode[] chidren = treeGrid.getTree().getChildren(n);
+                        if (chidren.length > 0)
+                        {
+//                        com.google.gwt.user.client.Window.alert("expandTreeNode = " + chidren.length);
+                            for (TreeNode ch : chidren)
+//                            {
+                                treeGrid.getData().openFolder(ch);
+//                            }
+                            isExpanded = true;
+                        }
+                    }
+//                com.google.gwt.user.client.Window.alert("expandTreeNode = " + n.getAttribute(LayerUtils.ATTRIBUTE_LAYOUT));
+                }
+                idx++;
+            }
+        }
+    }
     //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 }

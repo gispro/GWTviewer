@@ -32,11 +32,13 @@ public class ArcGIS93 implements MapService
 	private       TreeGrid                         treeGrid;
 
     private       float                            layerOpacity = 1;
+    public        boolean                          withHint = false;
     private       WebService                       zipCodeService;
 
     private       LayerUtils                       layerUtils     = null;
     private final MapServiceInfoAsync              mapServiceInfo = GWT.create(MapServiceInfo.class);
 
+    public static String                           hintLayerName  = null;
     private       Map<String, List<LegendInfo>>    images         = new HashMap<String, List<LegendInfo>>();
     private       boolean                          isImage        = false;
     //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -100,8 +102,7 @@ public class ArcGIS93 implements MapService
                 ratio: 1,
                 projection: new $wnd.OpenLayers.Projection(projection)
             });
-        $wnd.map.addLayer(layer);
-//        $wnd.addLayer(layer, name); // selectControl = new $wnd.OpenLayers.Control.SelectFeature(layer, {onSelect: $wnd.onFeatureSelect});
+          $wnd.map.addLayer(layer);
         return layer;
     }-*/;
     //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -118,6 +119,10 @@ public class ArcGIS93 implements MapService
 		this.ids         = new ArrayList<String>();
 		this.layers      = "";
         this.layerUtils  = layerUtils;
+        if ((hintLayerName != null) && hintLayerName.equalsIgnoreCase(name))
+            this.withHint = true;
+        else
+            this.withHint = false;
 	}
     //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	public ArcGIS93(String name, String url, String urlIdentify, String projection, TreeNode treeNode, Tree data,
@@ -133,6 +138,10 @@ public class ArcGIS93 implements MapService
 		this.ids         = new ArrayList<String>();
 		this.layers      = "";
         this.layerUtils  = layerUtils;
+        if ((hintLayerName != null) && hintLayerName.equalsIgnoreCase(name))
+            this.withHint = true;
+        else
+            this.withHint = false;
 	}
     //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	public String Url()
@@ -276,6 +285,7 @@ public class ArcGIS93 implements MapService
 										legendNode.setIcon(li.getIcon());
 										legendNode.setAttribute("isNodeGroup", false);
 										legendNode.setEnabled(false);
+                                        legendNode.setAttribute("canSelect", false);
 										data.add(legendNode, test);
 									}
 								}
@@ -344,6 +354,11 @@ public class ArcGIS93 implements MapService
     public void  setLayerOpacity (float layerOpacity)
     {
         this.layerOpacity = layerOpacity;
+    }
+    //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    public boolean isServiceWithHint()
+    {
+        return withHint;
     }
     //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 }

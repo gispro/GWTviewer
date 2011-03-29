@@ -2,6 +2,7 @@ package ru.mos.gispro.client;
 
 import com.google.gwt.core.client.EntryPoint;
 import com.google.gwt.dom.client.Document;
+import com.google.gwt.event.dom.client.*;
 import com.google.gwt.event.shared.HandlerRegistration;
 import com.google.gwt.user.client.Timer;
 import com.google.gwt.core.client.GWT;
@@ -9,10 +10,9 @@ import com.google.gwt.core.client.GWT;
 import com.smartgwt.client.docs.FormLayout;
 import com.smartgwt.client.types.*;
 import com.smartgwt.client.widgets.*;
+import com.smartgwt.client.widgets.events.*;
 import com.smartgwt.client.widgets.events.ClickEvent;
 import com.smartgwt.client.widgets.events.ClickHandler;
-import com.smartgwt.client.widgets.events.MouseMoveEvent;
-import com.smartgwt.client.widgets.events.MouseMoveHandler;
 import com.smartgwt.client.widgets.form.fields.TextItem;
 import com.smartgwt.client.widgets.grid.events.*;
 import com.smartgwt.client.widgets.layout.HLayout;
@@ -53,8 +53,8 @@ public class GWTViewer implements EntryPoint, IBaseMap
     private              Authorization         authorization;
     private              Registration          registration ;
 
-                         JSONTerrs             terrs;
-    private              VLayout               pageLayout;
+                         JSONTerrs             terrs        ;
+    private              VLayout               pageLayout   ;
 
     private              Tree                  data;
     private              TreeGrid              treeGrid;
@@ -70,16 +70,18 @@ public class GWTViewer implements EntryPoint, IBaseMap
     private              PropertyLayerWindow   propertyLayerWindow;
     private              HandlerRegistration   handlerRegistration;
     private              HandlerRegistration   moveHandler;
-    private              LayerUtils            layerUtils             = null;
+    private              LayerUtils            layerUtils            = null;
 
-    public  static final  String                ACTION_RESULT_SUCCESS = "success";
+    public  static final  String               ACTION_RESULT_SUCCESS = "success";
 
-    public  static final MapServiceInfoAsync    MapServiceInfoServlet = GWT.create(MapServiceInfo.class);
+    public  static final MapServiceInfoAsync   MapServiceInfoServlet = GWT.create(MapServiceInfo.class);
 
-    public  static final String                 LAYER_TYPE_ARC_GIS_93 = "ArcGIS93";
-    public  static final String                 LAYER_TYPE_WMS        = "WMS";
+    public  static final String                LAYER_TYPE_ARC_GIS_93 = "ArcGIS93";
+    public  static final String                LAYER_TYPE_WMS        = "WMS";
 
-    private              boolean                withBaseMap           = false;
+    private              boolean               withBaseMap           = false;
+
+    private              boolean               DEBUG_HINT_HANDLER    = false;
     //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     public native void initMap()
     /*-{
@@ -119,123 +121,6 @@ public class GWTViewer implements EntryPoint, IBaseMap
     /*-{
         $wnd.map.zoomTo(lvl);
     }-*/;
-    //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-/*
-    class NavigationHistory
-    {
-        NavigationHistory(ToolStripButton prev, ToolStripButton next)
-        {
-            this.prev = prev;
-            this.next = next;
-        }
-
-        public void activate()
-        {
-            if (navigationHistory == null)
-                navigationHistory = test();
-
-            prev.addClickHandler(new ClickHandler() {
-                public void onClick(ClickEvent event) {
-                    previous(navigationHistory);
-                }
-            });
-            next.addClickHandler(new ClickHandler() {
-                public void onClick(ClickEvent event) {
-                    next(navigationHistory);
-                }
-            });
-
-            update();
-        }
-*/
-//
-//        void update() {
-//            prev.setDisabled(isPreviousStackEmpty(navigationHistory));
-//            next.setDisabled(isNextStackEmpty(navigationHistory));
-//        }
-//
-//        public native boolean isPreviousStackEmpty(JavaScriptObject navigationHistory)
-//        /*-{
-//            return navigationHistory.previousStack.length <= 1;
-//        }-*/;
-//
-//        public native boolean isNextStackEmpty(JavaScriptObject navigationHistory)
-//        /*-{
-//            return navigationHistory.nextStack.length == 0;
-//        }-*/;
-//
-//        public native boolean previous(JavaScriptObject navigationHistory)
-//        /*-{
-//            return navigationHistory.previousTrigger() == null;
-//        }-*/;
-//
-//        public native boolean next(JavaScriptObject navigationHistory)
-//       /*-{
-//            return navigationHistory.nextTrigger() == null;
-//        }-*/;
-//
-//        protected native JavaScriptObject test()
-//        /*-{
-//            var navigationHistory = new $wnd.OpenLayers.Control.NavigationHistory();
-//            var this_ = this;
-//            navigationHistory.onPreviousChange = function(state, lendth){
-//                this_.@ru.mos.gispro.client.GWTViewer.NavigationHistory::update()();
-//            };
-//            navigationHistory.onNextChange = function(state, lendth){
-//                this_.@ru.mos.gispro.client.GWTViewer.NavigationHistory::update()();
-//            };
-//
-//            $wnd.map.addControl(navigationHistory);
-//            return navigationHistory;
-//        }-*/;
-//
-//        ToolStripButton prev, next;
-//        public JavaScriptObject navigationHistory;
-//    }
-    //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-/*
-    class Navigation implements ClickHandler
-    {
-        public void onClick(ClickEvent event)
-        {
-            deactivateControls();
-            activate();
-        }
-
-        public void activate()
-        {
-            if (navigation == null)
-                navigation = test();
-            activate(navigation);
-            if (handlerRegistration != null)
-            {
-                Document.get().getElementById("map").getStyle().setCursor(Cursor.DEFAULT);
-                handlerRegistration.removeHandler();
-                handlerRegistration = null;
-            }
-        }
-*/
-//        protected native void activate(JavaScriptObject navigation)
-//        /*-{
-//            for (indexControl = 0;  indexControl < $wnd.map.controls.length; ++indexControl)
-//            {
-//                if ($wnd.map.controls[indexControl].active
-//                    && ( $wnd.map.controls[indexControl].displayClass == "olControlZoomBox" ||
-//                         $wnd.map.controls[indexControl].displayClass == "olControlNavigation"))
-//                    $wnd.map.controls[indexControl].deactivate();
-//            }
-//            navigation.activate();
-//        }-*/;
-//
-//        protected native JavaScriptObject test()
-//        /*-{
-//            var navigation = new $wnd.OpenLayers.Control.Navigation();
-//            $wnd.map.addControl(navigation);
-//            return navigation;
-//        }-*/;
-//
-//        private JavaScriptObject navigation;
-//    }
     //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     public native void addVectorLayer()
     /*-{
@@ -495,6 +380,8 @@ public class GWTViewer implements EntryPoint, IBaseMap
         mainLayout.setHeight100();
         mainLayout.setDefaultResizeBars(LayoutResizeBarPolicy.MIDDLE);
 
+        com.google.gwt.user.client.Window.enableScrolling(false);
+
         VLayout layoutLayers = new VLayout();
         layoutLayers.setHeight100();
         layoutLayers.setWidth("20%");
@@ -616,19 +503,7 @@ public class GWTViewer implements EntryPoint, IBaseMap
             treePickTreeItem.setValueTree(terrTree);
 //		    toolStripLayers.addFormItem(treePickTreeItem);      //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
         }
-/*
-        SectionStack sectionStack = new SectionStack();
-        sectionStack.setHeight(600);
-        sectionStack.setVisibilityMode(VisibilityMode.MULTIPLE);
-        sectionStack.setAnimateSections(true);
-        sectionStack.setOverflow(Overflow.HIDDEN);
 
-        SectionStackSection layersSection = new SectionStackSection();
-                                             // Список слоев
-        layersSection.setTitle("\u0421\u043F\u0438\u0441\u043E\u043A\u0020\u0441\u043B\u043E\u0435\u0432");
-        layersSection.setExpanded(true);
-        layersSection.setItems(treeGrid);
-*/
         HLayout baseTreeLayout = new HLayout();
         baseTreeLayout.setWidth100();
         baseTreeLayout.setHeight(1); //200);
@@ -649,12 +524,11 @@ public class GWTViewer implements EntryPoint, IBaseMap
         ToolStripButton baseMap = null;
         if (withBaseMap)
         {
-//            final BaseMapWindow baseMapWindow;
             if (baseMapWindow == null)
                 baseMapWindow = new BaseMapWindow(this);
 
             baseMap = new ToolStripButton();
-            baseMap.setIcon("basemap.png");
+            baseMap.setIcon("basemapButton.png");
             baseMap.setIconSize(24);
             baseMap.setHeight(30);
                                   //  Картооснова
@@ -664,6 +538,9 @@ public class GWTViewer implements EntryPoint, IBaseMap
                 public void onClick(ClickEvent event)
                 {
                     baseMapWindow.show();
+//                    int baseMapLayerIDX = getSelectedBaseMapIDX ();
+//                    if (baseMapLayerIDX >= 0)
+//                        baseMapWindow.selectBaseMapLayer(baseMapLayerIDX);
                     // com.google.gwt.user.client.Window.alert("baseMap.addClickHandler");
                 }
             });
@@ -728,10 +605,6 @@ public class GWTViewer implements EntryPoint, IBaseMap
                                          // "Информация"
         identify.setTooltip("\u0418\u043D\u0444\u043E\u0440\u043C\u0430\u0446\u0438\u044F");
 
-//        final ToolStripButton hint = new HintButton(treeGrid, canvas);
-//                                         // "Информация"
-//        hint.setTooltip("\u0418\u043D\u0444\u043E\u0440\u043C\u0430\u0446\u0438\u044F");
-
         final ToolStripButton find = new FindButton();
                                          // "Расширенный поиск"
         find.setTooltip("\u0420\u0430\u0441\u0448\u0438\u0440\u0435\u043D\u043D\u044B\u0439\u0020\u043F\u043E\u0438\u0441\u043A");
@@ -775,14 +648,6 @@ public class GWTViewer implements EntryPoint, IBaseMap
 
 //		toolStrip.setAlign(Alignment.LEFT);
 //		toolStrip.setAlign(VerticalAlignment.CENTER);
-        final ToolStripButton help = new ToolStripButton();
-        help.setIcon("helpButton.png");
-        help.setIconSize(24);
-        help.setHeight(30);
-//        zoomIn.setActionType(SelectionType.RADIO);
-//        zoomIn.setRadioGroup("mapAction");
-        help.setTooltip("\u0421\u043F\u0440\u0430\u0432\u043A\u0430"); // "Справка"
-//        zoomIn.addClickHandler(new ZoomClickHandler(handlerRegistration, false));
 
         toolStrip.addSpacer(4);
         if (withBaseMap)
@@ -802,7 +667,6 @@ public class GWTViewer implements EntryPoint, IBaseMap
             toolStrip.addSpacer(6);
 
         toolStrip.addButton(identify);
-//        toolStrip.addButton(hint);
         toolStrip.addButton(find);
         toolStrip.addButton(clearGeometry);
         toolStrip.addSpacer(6);
@@ -857,6 +721,7 @@ public class GWTViewer implements EntryPoint, IBaseMap
 
         searchLayout.addMember(searchToolStrip);
         toolStrip.addMember(searchLayout);
+
 //      toolStrip.addSpacer(12);
 //		toolStrip.addFormItem(quickSearchTextItem);
 //		toolStrip.addButton(quickFindButton);
@@ -875,25 +740,16 @@ public class GWTViewer implements EntryPoint, IBaseMap
         layout.addMember(toolStrip);
         layout.addMember(canvas);
         mainLayout.addMember(layout);
-/*
-        moveHandler = canvas.addMouseMoveHandler(new MouseMoveHandler()
-        {
-             public void onMouseMove (MouseMoveEvent event)
-             {
-                  // com.google.gwt.user.client.Window.alert("moveHandler : " + event.getX());
-             }
-        });
-*/
+
+        if (DEBUG_HINT_HANDLER)
+            canvas.addMouseMoveHandler(new MouseHintHandler(treeGrid));
+//           canvas.addMouseUpHandler(new MouseHintHandler(treeGrid));
 //~~~~~~~~~~~~~~~~
         if (project.getConfigFile().equalsIgnoreCase("MosRegion") && config.withHeader())
         {
             createHeaderMosRegion();
             pageLayout.addMember(mainLayout);
             pageLayout.draw();
-
-            int space = canvas.getWidth() - searchLayout.getLeft() - searchLayout.getWidth () - 45;
-            toolStrip.addSpacer(space);
-            toolStrip.addButton(help);
 //          com.google.gwt.user.client.Window.alert("MosRegion : " + searchLayout.getLeft() + ", space = " + space + ", " + help.getLeft());
         } else
             mainLayout.draw();
@@ -1037,17 +893,6 @@ public class GWTViewer implements EntryPoint, IBaseMap
 
             public void onSelectionChanged(SelectionEvent event)
             {
-/*
-                TreeNode node = treeGrid.getTree().findById(event.getRecord().getAttribute("id"));
-                while (treeGrid.getTree().getParent(node) != root)
-                    node = treeGrid.getTree().getParent(node);
-                String s = node.getAttribute(LayerUtils.ATTRIBUTE_LAYOUT);
-                currentLayer = s;
-                currentLayerLabel.setContents(s);
-                currentNode = node;
-                if (propertyLayerWindow != null)
-                    propertyLayerWindow.setCurrentNode(currentNode);
-*/
 //                com.google.gwt.user.client.Window.alert("0. baseTree.onSelectionChanged");
                 if (services == null)
                     services = new HashSet<MapService>();
@@ -1129,18 +974,16 @@ public class GWTViewer implements EntryPoint, IBaseMap
             {
                 JSONLayerConfig layer = config.layer(i).cast();
                 if (LAYER_TYPE_ARC_GIS_93.equals(layer.type()))
+                {
                     layerUtils.addArcGIS93Layer (layer.name(), layer.serviceUrl(), layer.infoServiceUrl(), treeGrid,
                                                  layer.selected(), layerUtils);
+                }
                 else if (LAYER_TYPE_WMS.equals(layer.type()))
                     LayerUtils.addWMSLayer (layer.name(), layer.serviceUrl(), layer.serviceName(), treeGrid, layer.selected());
             }
-            layerUtils.addGoogleStreetsLayer    (treeGrid);
-            layerUtils.addGoogleHybridLayer     (treeGrid);
-            layerUtils.addGoogleSatelliteLayer  (treeGrid);
-
-//            layerUtils.addBingMapRoadLayer      (treeGrid);
-//            layerUtils.addBingMapSatelliteLayer (treeGrid);
-//            layerUtils.addBingMapHybridLayer    (treeGrid);
+            layerUtils.addGoogleStreetsLayer   (treeGrid);
+            layerUtils.addGoogleHybridLayer    (treeGrid);
+            layerUtils.addGoogleSatelliteLayer (treeGrid);
         }
         else
         {
@@ -1151,6 +994,9 @@ public class GWTViewer implements EntryPoint, IBaseMap
                 {
                     if (LAYER_TYPE_ARC_GIS_93.equals(layer.type()))
                     {
+                        ArcGIS93.hintLayerName = null;
+                        if (layer.withHint())
+                            ArcGIS93.hintLayerName = layer.name();
                         layerUtils.addArcGIS93Layer (layer.name(), layer.serviceUrl(), layer.infoServiceUrl(),
                                                                    treeGrid, layer.selected(), layerUtils);
                     }
@@ -1173,6 +1019,25 @@ public class GWTViewer implements EntryPoint, IBaseMap
 //		LayerUtils.addOSMLayer(treeGrid);
 //      addYandex();
 
+        if (project.getConfigFile().equalsIgnoreCase("MosRegion"))
+        {
+            int space = canvas.getWidth() - searchLayout.getLeft() - searchLayout.getWidth () - 45;
+            toolStrip.addSpacer(space);
+            final ToolStripButton help = new ToolStripButton();
+            help.setIcon("helpButton.png");
+            help.setIconSize(24);
+            help.setHeight(30);
+            help.setTooltip("\u0421\u043F\u0440\u0430\u0432\u043A\u0430"); // "Справка"
+            help.addClickHandler(new ClickHandler()
+            {
+                public void onClick(ClickEvent clickEvent)
+                {
+                    com.google.gwt.user.client.Window.open("http://maps.gispro.ru:8080/MosRegion/doc/MosRegion Presentation.ppt", "_self", "");
+                }
+            });
+            toolStrip.addButton(help);
+        }
+
         addVectorLayer();
         addVectorLayer1();
 
@@ -1182,7 +1047,7 @@ public class GWTViewer implements EntryPoint, IBaseMap
         NavigationHistory navigationHistory = new NavigationHistory(zoomLast, zoomNext);
         navigationHistory.activate();
 
-        zoomTo (4);
+        zoomTo (config.zoom());
 //        LayerUtils.initLayerOrder(treeGrid);
     }
     //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -1207,21 +1072,20 @@ public class GWTViewer implements EntryPoint, IBaseMap
         }
     }
     //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    public void removeBaseMap ()
+    {
+//        com.google.gwt.user.client.Window.alert("GWTViewer.removeBaseMap");
+        for (int j = 0; j < layerUtils.baseMaps.length; j++)
+        {
+            if (layerUtils.baseMaps[j] != null)
+                baseTree.deselectRecord(layerUtils.baseMaps[j]);
+        }
+    }
+    //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     public void closeBaseMapWindow ()
     {
         baseMapWindow.hide();
     }
-    //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-/*
-        new Timer()
-        {
-            public void run()
-            {
-                cancel();
-            }
-        }.scheduleRepeating(10000);
-        //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-*/
     //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     /**
      * Заголовок для проекта MosRegion
@@ -1244,35 +1108,13 @@ public class GWTViewer implements EntryPoint, IBaseMap
         titleLabel.setWidth100();
                                 // UNICODE - Электронная карта Московской области
         titleLabel.setContents("\u042D\u043B\u0435\u043A\u0442\u0440\u043E\u043D\u043D\u0430\u044F\u0020\u043A\u0430\u0440\u0442\u0430\u0020\u041C\u043E\u0441\u043A\u043E\u0432\u0441\u043A\u043E\u0439\u0020\u043E\u0431\u043B\u0430\u0441\u0442\u0438");
-
         headerHLayout.addMember(titleLabel);
-
         pageLayout.addMember(headerHLayout);
 */
-        HTMLFlow headerFlow = new HTMLFlow();
-        headerFlow.setWidth100();
-        headerFlow.setHeight(154);
-/*
-        String header = "<div id=\"header\" style=\"width:100%;height:154;\"></div>";
-        headerFlow.setContents(header);
-        headerFlow.redraw();
-*/
-        pageLayout.addMember(headerFlow);
-    }
-    //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-    public static void expandTreeNode (TreeGrid treeGrid)
-    {
-        TreeNode[] nodes = treeGrid.getTree().getChildren(treeGrid.getTree().getRoot());
-        int idx = 0;
-        for (TreeNode n : nodes)
-        {
-            if ((idx == 0) || (idx == 1) || (idx == 2) || (idx == 4))
-            {
-                treeGrid.getData().openFolder(n);
-//                com.google.gwt.user.client.Window.alert("expandTreeNode = " + n.getAttribute(LayerUtils.ATTRIBUTE_LAYOUT));
-            }
-            idx++;
-        }
+        HLayout headerLayout = new HLayout();
+        headerLayout.setWidth100();
+        headerLayout.setHeight(150);
+        pageLayout.addMember(headerLayout);
     }
     //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 }

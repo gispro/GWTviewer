@@ -14,6 +14,7 @@ public class JSONConfig extends JavaScriptObject
 
 	public final native double           centerX                   () /*-{ return this.centerX;                  }-*/;
 	public final native double           centerY                   () /*-{ return this.centerY;                  }-*/;
+    public final native int              zoom                      () /*-{ return this.zoom;                     }-*/;
 	public final native JsArray          layers                    () /*-{ return this.mapServices;              }-*/;
 	public final native JavaScriptObject layer                (int i) /*-{ return this.mapServices[i];           }-*/;
 

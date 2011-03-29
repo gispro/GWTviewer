@@ -37,7 +37,7 @@ public class BaseMapRecord extends TileRecord
     {
         setAttribute("title", title);
     }
-    public String geTitle()
+    public String getTitle()
     {
         return getAttribute("title");
     }

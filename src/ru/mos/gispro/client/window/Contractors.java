@@ -369,10 +369,10 @@ public class Contractors extends WindowBase
 			public void onFailure(Throwable caught) {}
 			public void onSuccess(String content)
 			{
-//				com.google.gwt.user.client.Window.alert(content);
+				com.google.gwt.user.client.Window.alert(content);           //!!!!!!!!!!!!!!!!!!!!!!!!!!!! !!!!!!!!!!!!!!!! !
                 if ((content != null) && (content.length() > 0))
                 {
-//                    com.google.gwt.user.client.Window.alert("0. onResponseReceived.content.length() = " + content.length());
+                    com.google.gwt.user.client.Window.alert("0. onResponseReceived.content.length() = " + content.length());
                     Document document = null;
                     try {
                         document = XMLParser.parse (content);
