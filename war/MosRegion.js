@@ -29,7 +29,7 @@ var configMosRegion =
 
 	"centerX"     : 4187808.01,
 	"centerY"     : 7509054.01,
-    "zoom"        : 8,
+    "zoom"        : 4,
 	"mapServices" : [
 				{
 					"name":"Административные единицы",

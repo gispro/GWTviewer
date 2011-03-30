@@ -23,7 +23,7 @@ var configTverAvtoDor =
 
 	"centerX"    : 3831023.8569686,
 	"centerY"    : 7795697.8578676,
-    "zoom"       : 3,
+    "zoom"       : 6,
 	"mapServices":
 	        [
 	            {

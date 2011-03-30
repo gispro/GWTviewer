@@ -29,6 +29,7 @@ var configMosAvtoDor =
 
 	"centerX"     : 4187808.01,
 	"centerY"     : 7509054.01,
+    "centerY1"     : 7489054.01,
     "zoom"        : 4,
 	"mapServices" : [
 				{
@@ -47,7 +48,7 @@ var configMosAvtoDor =
 					"infoServiceUrl":"http://maps.gispro.ru/ArcGIS/rest/services/MAD/mad_event_04_02_2011/MapServer",
 					"serviceName":"",
 					"selected":true,
-                    "hint":true
+                    "hint":false
 				},
 	            {
 	                "name":"Кадастровое деление",
@@ -77,5 +78,4 @@ var configMosAvtoDor =
                     "hint":false
 				}
 	]
-//~~~~~ MosAvtoDor END ~~~~~
 };
