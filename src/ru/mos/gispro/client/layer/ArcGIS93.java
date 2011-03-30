@@ -302,8 +302,9 @@ public class ArcGIS93 implements MapService
 					TreeNode[] nodes = new TreeNode[]{};
 					nodes = treeNodes.toArray(nodes);
 					data.linkNodes(nodes);
-//							if (treeGrid.isSelected(treeNode))
+//					if (treeGrid.isSelected(treeNode))
 					updateSelectedLayers((MapService) mapService, treeNode, true);
+                    layerUtils.rebuildStubGoogleLayer (treeGrid, url);
 				}
 			});
 		}

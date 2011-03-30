@@ -23,9 +23,33 @@ public class GoogleMaps implements MapService
 		isServiceVisible = false;
 	}
     //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    public GoogleMaps(JavaScriptObject layer, String name, MapTypeId mapTypeId)
+    {
+        this.layer       = layer;
+        this.mapTypeId   = mapTypeId;
+        this.name        = name;
+        isServiceVisible = false;
+    }
+    //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     private native void setVisibility(JavaScriptObject layer, boolean isLayoutVisible)
     /*-{
         layer.setVisibility(isLayoutVisible);
+    }-*/;
+    //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    public static native JavaScriptObject createStubGoogleLayer(String name)
+    /*-{
+        var layer = new $wnd.OpenLayers.Layer.Google(name, {
+                                                            type: eval("$wnd.google.maps.MapTypeId.ROADMAP"),
+                                                            sphericalMercator:true,
+                                                            minZoomLevel: 4,
+                                                            maxZoomLevel: 17,
+                                                            maxResolution: $wnd.maxResolution,
+                                                            visibility: true
+                                                            }
+        );
+        $wnd.map.addLayer(layer);
+        layer.setOpacity(0.1);
+        return layer;
     }-*/;
     //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     private native JavaScriptObject addGoogleLayer(String name, String mapTypeId)

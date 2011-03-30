@@ -15,6 +15,9 @@ public class LayerUtils
     public    final   static    String      String_service            = "service";
     public    final   static    String      String_isService          = "isService";
 
+    public                      String      baseLayerURL              = null;
+    private                     boolean     isAllServicesLoaded       = false;
+    public             JavaScriptObject     stubGoogleLayer           = null;
 //    public    final   static    String      GLOBE_ICON                = "globe-green.ico";
 
     public                      TreeNode[]  baseMaps                  = {null, null, null, null, null, null, null};
@@ -63,7 +66,6 @@ public class LayerUtils
     //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	public void addArcGIS93Layer(String name, String url, TreeGrid baseTree, LayerUtils layerUtils)
     {
-        baseMaps[BASEMAP_COMMON] = new TreeNode();
 		baseMaps[BASEMAP_COMMON] = new TreeNode();
 		baseMaps[BASEMAP_COMMON].setAttribute(ATTRIBUTE_LAYOUT, name + " ");
 		String idPrefix = Integer.toString(baseMaps[BASEMAP_COMMON].hashCode()) + "_";
@@ -112,32 +114,35 @@ public class LayerUtils
 			treeGrid.selectRecord(treeNode);
 	}
     //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-	public void addGoogleStreetsLayer(TreeGrid treeGrid)
+	public void addGoogleStreetsLayer(TreeGrid treeGrid, JavaScriptObject layer)
     {
-        addGoogleLayer(treeGrid, BASEMAP_GOOGLE_STREETS, GoogleMaps.MapTypeId.ROADMAP);
-
-//        ((MapService) baseMaps[BASEMAP_GOOGLE_STREETS].getAttributeAsObject(String_service)).invalidate();
+        stubGoogleLayer = layer;
+        addGoogleLayer(treeGrid, BASEMAP_GOOGLE_STREETS, GoogleMaps.MapTypeId.ROADMAP, layer);
+////        ((MapService) baseMaps[BASEMAP_GOOGLE_STREETS].getAttributeAsObject(String_service)).invalidate();
 //        treeGrid.selectRecord  (baseMaps[BASEMAP_GOOGLE_STREETS]);
 //        treeGrid.deselectRecord(baseMaps[BASEMAP_GOOGLE_STREETS]);
 	}
     //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	public void addGoogleSatelliteLayer(TreeGrid treeGrid)
     {
-        addGoogleLayer(treeGrid, BASEMAP_GOOGLE_SATTELITE, GoogleMaps.MapTypeId.SATELLITE);
+        addGoogleLayer(treeGrid, BASEMAP_GOOGLE_SATTELITE, GoogleMaps.MapTypeId.SATELLITE, null);
 	}
     //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	public void addGoogleHybridLayer(TreeGrid treeGrid)
     {
-        addGoogleLayer(treeGrid, BASEMAP_GOOGLE_HYBRID, GoogleMaps.MapTypeId.HYBRID);
+        addGoogleLayer(treeGrid, BASEMAP_GOOGLE_HYBRID, GoogleMaps.MapTypeId.HYBRID, null);
 	}
     //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-    public void addGoogleLayer(TreeGrid treeGrid, int idx, GoogleMaps.MapTypeId type)
+    public void addGoogleLayer(TreeGrid treeGrid, int idx, GoogleMaps.MapTypeId type, JavaScriptObject layer)
     {
         baseMaps[idx] = new TreeNode();
         baseMaps[idx].setAttribute(ATTRIBUTE_LAYOUT,  baseMapsCaptions[idx][0]);
         String idPrefix = Integer.toString(baseMaps[idx].hashCode()) + "_";
         baseMaps[idx].setID(idPrefix + "-1");
-        baseMaps[idx].setAttribute(String_service  , new GoogleMaps(baseMapsCaptions[idx][1], type));
+        if (layer == null)
+            baseMaps[idx].setAttribute(String_service, new GoogleMaps(baseMapsCaptions[idx][1], type));
+        else
+            baseMaps[idx].setAttribute(String_service, new GoogleMaps(layer, baseMapsCaptions[idx][1], type));
         baseMaps[idx].setAttribute(String_isService, true);
 //        baseMaps[idx].setIcon(GLOBE_ICON);
         treeGrid.getData().add(baseMaps[idx], treeGrid.getData().getRoot());
@@ -221,6 +226,18 @@ public class LayerUtils
             expandTreeNode(treeGrid);
 	}
     //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    public void rebuildStubGoogleLayer (TreeGrid treeGrid, String url)
+    {
+        if (!isAllServicesLoaded && url.equalsIgnoreCase(baseLayerURL))
+        {
+            isAllServicesLoaded = true;
+            treeGrid.selectRecord  (baseMaps[BASEMAP_GOOGLE_STREETS]);
+            treeGrid.deselectRecord(baseMaps[BASEMAP_GOOGLE_STREETS]);
+            setLayerOpacity(stubGoogleLayer, 1);
+//            com.google.gwt.user.client.Window.alert("rebuildStubGoogleLayer : service = " + url);
+        }
+    }
+    //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     public void expandTreeNode (TreeGrid treeGrid)
     {
         if (!isExpanded)

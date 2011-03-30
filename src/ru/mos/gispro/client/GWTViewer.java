@@ -1,6 +1,7 @@
 package ru.mos.gispro.client;
 
 import com.google.gwt.core.client.EntryPoint;
+import com.google.gwt.core.client.JavaScriptObject;
 import com.google.gwt.dom.client.Document;
 import com.google.gwt.event.dom.client.*;
 import com.google.gwt.event.shared.HandlerRegistration;
@@ -81,7 +82,7 @@ public class GWTViewer implements EntryPoint, IBaseMap
 
     private              boolean               withBaseMap           = false;
 
-    private              boolean               DEBUG_HINT_HANDLER    = false;
+    private              boolean               DEBUG_HINT_HANDLER    = true;
     //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     public native void initMap()
     /*-{
@@ -107,11 +108,16 @@ public class GWTViewer implements EntryPoint, IBaseMap
         $wnd.map.addLayer(layer);
     }-*/;
     //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-    public native void mapToCenter(double lon, double lat)
-    /*-{
-        $wnd.map.setCenter(new $wnd.OpenLayers.LonLat(lon,lat),3);
+//    public native void mapToCenter(double lon, double lat, int zoom)
+//    /*-{
+//        $wnd.map.setCenter(new $wnd.OpenLayers.LonLat(lon,lat), zoom);
 //		$wnd.map.setCenter(new $wnd.OpenLayers.LonLat($wnd.configLayers.centerX,$wnd.configLayers.centerY),3);
-    }-*/;
+//    }-*/;
+    //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+//    public static native void getCurrentScale()
+//    /*-{
+//        alert ("getScale : " + $wnd.map.getScale());
+//    }-*/;
     //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 //    public native void zoomToMaxExtent() /*-{
 //        $wnd.map.zoomToMaxExtent();
@@ -172,6 +178,7 @@ public class GWTViewer implements EntryPoint, IBaseMap
         }
     }-*/;
     //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
 /*
 	class JSONRequest
     {
@@ -801,7 +808,6 @@ public class GWTViewer implements EntryPoint, IBaseMap
                     propertyLayerWindow.setCurrentNode(currentNode);
                 if (ser == null)
                     ser = new HashSet<MapService>();
-
                 if (timer == null)
                     timer = new Timer() {
                         public void run() {
@@ -968,25 +974,33 @@ public class GWTViewer implements EntryPoint, IBaseMap
         String baseMapTitle = config.getBaseMapTitle();
         String baseMapType  = config.getBaseMapType ();
 
+        layerUtils.baseLayerURL = baseMapURL;
         if (!withBaseMap)
         {
+            JavaScriptObject stubGoogleLayer = GoogleMaps.createStubGoogleLayer("stubGoogleLayer");
+            layerUtils.stubGoogleLayer = stubGoogleLayer;
             for (int i = 0; i < config.layers().length(); i++)
             {
                 JSONLayerConfig layer = config.layer(i).cast();
                 if (LAYER_TYPE_ARC_GIS_93.equals(layer.type()))
                 {
+                    ArcGIS93.hintLayerName = null;
+                    if (layer.withHint())
+                        ArcGIS93.hintLayerName = layer.name();
                     layerUtils.addArcGIS93Layer (layer.name(), layer.serviceUrl(), layer.infoServiceUrl(), treeGrid,
                                                  layer.selected(), layerUtils);
                 }
                 else if (LAYER_TYPE_WMS.equals(layer.type()))
                     LayerUtils.addWMSLayer (layer.name(), layer.serviceUrl(), layer.serviceName(), treeGrid, layer.selected());
             }
-            layerUtils.addGoogleStreetsLayer   (treeGrid);
+            layerUtils.addGoogleStreetsLayer   (treeGrid, stubGoogleLayer);
             layerUtils.addGoogleHybridLayer    (treeGrid);
             layerUtils.addGoogleSatelliteLayer (treeGrid);
         }
         else
         {
+            JavaScriptObject stubGoogleLayer = GoogleMaps.createStubGoogleLayer("stubGoogleLayer");
+            layerUtils.stubGoogleLayer = stubGoogleLayer;
             for (int i = 0; i < config.layers().length(); i++)
             {
                 JSONLayerConfig layer = config.layer(i).cast();
@@ -1008,13 +1022,13 @@ public class GWTViewer implements EntryPoint, IBaseMap
                 } else if (LAYER_TYPE_ARC_GIS_93.equals(baseMapType))
                     layerUtils.addArcGIS93Layer (layer.name(), layer.serviceUrl(), baseTree, layerUtils);
             }
-            layerUtils.addGoogleStreetsLayer    (baseTree);
+            layerUtils.addGoogleStreetsLayer    (baseTree, stubGoogleLayer);
             layerUtils.addGoogleHybridLayer     (baseTree);
             layerUtils.addGoogleSatelliteLayer  (baseTree);
 
             layerUtils.addBingMapRoadLayer      (baseTree);
-            layerUtils.addBingMapSatelliteLayer (baseTree);
             layerUtils.addBingMapHybridLayer    (baseTree);
+            layerUtils.addBingMapSatelliteLayer (baseTree);
         }
 //		LayerUtils.addOSMLayer(treeGrid);
 //      addYandex();
