@@ -21,15 +21,37 @@ var configMosAvtoDor =
     "urlQuickSearch"            : "http://maps.gispro.ru/ArcGIS/rest/services/MOSOBL/mosobl_osn/MapServer/find?layers=20,10,14,17&f=json&searchFields=Find&searchText=<0>&contains=true&sr=102113&returnGeometry=true",
     "urlFindNasPunkt"           : "http://maps.gispro.ru/ArcGIS/rest/services/MOSOBL/mosobl_osn/MapServer/find?layers=20&f=json&searchFields=Find&searchText=<0>&contains=true&sr=102113&returnGeometry=true",
     "urlFindStreets"            : "http://maps.gispro.ru/ArcGIS/rest/services/MOSOBL/mosobl_osn/MapServer/find?layers=1&f=json&searchFields=Find&&searchText=<0>&contains=true&sr=102113&returnGeometry=true",
-    "baseMapTitle"              : "Московская область - Картооснова",
+
     "baseMapURL"                : "http://maps.gispro.ru/ArcGIS/rest/services/MAD/mad_osn/MapServer",
     "baseMapType"               : "ArcGIS93",
+
     "urlFindTitulDorog"         : "",
     "urlRoadSoft"               : "",
 
+    "hintDelay"   : 500,
+    "hintDesc"    : [
+                 {
+                    "identifier" : "Краткое название",
+                    "isTitle"    : true,
+                    "layerN"     : 1,
+                    "html"       : "<div style=\"font-size:1em;font-weight:bold;\"><0></div>"
+                 },
+                 {
+                    "identifier" : "ГородРабАдр",
+                    "isTitle"    : false,
+                    "layerN"     : 1,
+                    "html"       : "<div style=\"font-size:.9em;font-style:italic;\">Место : <0></div>"
+                 },
+                 {
+                    "identifier" : "Телефон",
+                    "isTitle"    : false,
+                    "layerN"     : 1,
+                    "html"       : "<div style=\"font-size:.9em;font-style:italic;\">Телефон : <0></div>"
+                 }
+    ],
+
 	"centerX"     : 4187808.01,
 	"centerY"     : 7509054.01,
-    "centerY1"     : 7489054.01,
     "zoom"        : 4,
 	"mapServices" : [
 				{

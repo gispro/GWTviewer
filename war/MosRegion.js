@@ -2,7 +2,7 @@ var configMosRegion =
 {
 // Authorizationa & registration
     "withAuthorization"         : false,
-    "withRegistration"          : true,
+    "withRegistration"          : false,
     "withOrganization"          : false,
     "withDepartment"            : false,
 // DEBUG
@@ -21,11 +21,65 @@ var configMosRegion =
     "urlQuickSearch"            : "http://maps.gispro.ru/ArcGIS/rest/services/MOSOBL/mosobl_osn/MapServer/find?layers=20,10,14,17&f=json&searchFields=Find&searchText=<0>&contains=true&sr=102113&returnGeometry=true",
     "urlFindNasPunkt"           : "http://maps.gispro.ru/ArcGIS/rest/services/MOSOBL/mosobl_osn/MapServer/find?layers=20&f=json&searchFields=Find&searchText=<0>&contains=true&sr=102113&returnGeometry=true",
     "urlFindStreets"            : "http://maps.gispro.ru/ArcGIS/rest/services/MOSOBL/mosobl_osn/MapServer/find?layers=1&f=json&searchFields=Find&&searchText=<0>&contains=true&sr=102113&returnGeometry=true",
-    "baseMapTitle"              : "Московская область - Картооснова",
-    "baseMapURL"                : "http://maps.gispro.ru/ArcGIS/rest/services/MOSOBL/mosobl_osn/MapServer",
-    "baseMapType"               : "ArcGIS93",
     "urlFindTitulDorog"         : "",
     "urlRoadSoft"               : "",
+
+    "baseMapURL"                : "http://maps.gispro.ru/ArcGIS/rest/services/MOSOBL/mosobl_osn/MapServer",
+    "baseMapType"               : "ArcGIS93",
+
+    "serviceUrl"                : "",
+
+    "hintDelay"  : 500,
+    "hintDesc"   : [
+                 {
+                    "identifier" : "Название объекта",
+                    "isTitle"    : true,
+                    "layerN"     : 1,
+                    "html"       : "<div style=\"font-size:1em;font-weight:bold;\"><0></div>"
+                 },
+                 {
+                    "identifier" : "Адрес",
+                    "isTitle"    : false,
+                    "layerN"     : 1,
+                    "html"       : "<div style=\"font-size:.9em;font-style:italic;\">Адрес : <0></div>"
+                 },
+                 {
+                    "identifier" : "№ постановления",
+                    "isTitle"    : false,
+                    "layerN"     : 1,
+                    "html"       : "<div style=\"font-size:.9em;font-style:italic;\">№ постановления : <0></div>"
+                 },
+                 {
+                    "identifier" : "стадия стр-ва на 22.03.2011",
+                    "isTitle"    : false,
+                    "layerN"     : 1,
+                    "html"       : "<div style=\"font-size:.9em;font-style:italic;\">Стадия строительства : <0></div>"
+                 },
+                 {
+                    "identifier" : "Владелец",
+                    "isTitle"    : true,
+                    "layerN"     : 2,
+                    "html"       : "<div style=\"font-size:1em;font-weight:bold;\"><0></div>"
+                 },
+                 {
+                   "identifier" : "Адрес",
+                   "isTitle"    : false,
+                   "layerN"     : 2,
+                   "html"       : "<div style=\"font-size:.9em;font-style:italic;\">Адрес : <0></div>"
+                 },
+                 {
+                    "identifier" : "Площадь, кв.м",
+                    "isTitle"    : false,
+                    "layerN"     : 2,
+                    "html"       : "<div style=\"font-size:.9em;font-style:italic;\">Площадь, кв.м : <0></div>"
+                 },
+                 {
+                    "identifier" : "Разрешенное использование",
+                    "isTitle"    : false,
+                    "layerN"     : 2,
+                    "html"       : "<div style=\"font-size:.9em;font-style:italic;\"><0></div>"
+                 }
+    ],
 
 	"centerX"     : 4187808.01,
 	"centerY"     : 7509054.01,

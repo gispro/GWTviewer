@@ -1,29 +1,53 @@
 var configTverAvtoDor =
 {
+// Authorizationa & registration
+    "withAuthorization"         : false,
+    "withRegistration"          : false,
+    "withOrganization"          : false,
+    "withDepartment"            : false,
 // DEBUG
     "debug_ServiceADD"          : false,
     "debug_InfoURL_Alert"       : false,
 
 //~~~~~ ToolButton "zoomFullExtend" ~~~~~
     "toolButtonFullExtent"      : true,
-//~~~~~ MosRegion ~~~~~
-    "mosregion_municipalities"  : false,
 
+    "mosregion_municipalities"  : false,
     "isTverAvtoDor"             : true,
+
+    "withHeader"                : false,
+
     "pageTitul"                 : "Дорожный Фонд Тверской области",
     "urlQuickSearch"            : "http://maps.gispro.ru:30080/ArcGIS/rest/services/tver_osn/MapServer/find?layers=25,11&f=json&searchFields=Find&searchText=<0>&contains=true&sr=102113&returnGeometry=true",
     "urlFindNasPunkt"           : "http://maps.gispro.ru:30080/ArcGIS/rest/services/tver_osn/MapServer/find?layers=25&f=json&searchFields=Find&searchText=<0>&contains=true&sr=102113&returnGeometry=true",
-    "urlFindTitulDorog"         : "http://maps.gispro.ru:30080/ArcGIS/rest/services/routes_tver_region/MapServer/find?layers=53&f=json&searchFields=Titul&searchText=<0>&contains=true&sr=102113&returnGeometry=true",
     "urlFindStreets"            : "",
+    "urlFindTitulDorog"         : "http://maps.gispro.ru:30080/ArcGIS/rest/services/routes_tver_region/MapServer/find?layers=53&f=json&searchFields=Titul&searchText=<0>&contains=true&sr=102113&returnGeometry=true",
     "urlRoadSoft"               : "http://maps.gispro.ru:30080/RoadSoft/",
 
-    "baseMapTitle"              : "Тверская область - Топооснова",
-    "serviceUrl"                : "http://maps.gispro.ru/ArcGIS/rest/services/TVER/topo100_tver/MapServer",
+    "baseMapURL"                : "http://maps.gispro.ru/ArcGIS/rest/services/TVER/topo100_tver/MapServer",
     "baseMapType"               : "ArcGIS93",
+
+    "serviceUrl"                : "http://maps.gispro.ru/ArcGIS/rest/services/TVER/topo100_tver/MapServer",
+
+    "hintDelay"  : 500,
+    "hintDesc"   : [
+                 {
+                    "identifier" : "Титул",
+                    "isTitle"    : true,
+                    "layerN"     : 1,
+                    "html"       : "<div style=\"font-size:1em;font-weight:bold;\"><0></div>"
+                 },
+                 {
+                    "identifier" : "Код дороги",
+                    "isTitle"    : false,
+                    "layerN"     : 1,
+                    "html"       : "<div style=\"font-size:.9em;font-style:italic;\">Код дороги : <0></div>"
+                 }
+    ],
 
 	"centerX"    : 3831023.8569686,
 	"centerY"    : 7795697.8578676,
-    "zoom"       : 6,
+    "zoom"       : 3,
 	"mapServices":
 	        [
 	            {
@@ -51,11 +75,9 @@ var configTverAvtoDor =
                     "type":"ArcGIS93",
                     "serviceUrl":"http://maps.gispro.ru/ArcGIS/rest/services/TVER/routes_kinsh_local_db/MapServer",
                     "infoServiceUrl":"http://maps.gispro.ru/ArcGIS/rest/services/TVER/routes_kinsh_local_db/MapServer",
-                    "serviceUrl1":"http://maps.gispro.ru:30080/ArcGIS/rest/services/routes_tver_region/MapServer",
-                    "infoServiceUrl1":"http://maps.gispro.ru:30080/ArcGIS/rest/services/routes_tver_region/MapServer",
                     "serviceName":"",
                     "selected":true,
-                    "hint":false
+                    "hint":true
                 },
 
                 {
