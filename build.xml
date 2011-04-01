@@ -80,7 +80,7 @@
   <target name="build" depends="gwtc" description="Build this project" />
 
   <target name="war" depends="build" description="Create a war file">
-    <zip destfile="MAD.war" basedir="war"/>
+    <zip destfile="TAD.war" basedir="war"/>
   </target>
 
   <target name="clean" description="Cleans this project">
