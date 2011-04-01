@@ -2,8 +2,8 @@ package ru.mos.gispro.client.json;
 
 import com.google.gwt.core.client.JavaScriptObject;
 
-public class JSONLayerConfig extends JavaScriptObject{
-
+public class JSONLayerConfig extends JavaScriptObject
+{
 	protected JSONLayerConfig() {}
 
 	public final native String name          () /*-{ return this.name;           }-*/;

@@ -14,6 +14,10 @@ public class JSONConfig extends JavaScriptObject
 
 	public final native double           centerX                   () /*-{ return this.centerX;                  }-*/;
 	public final native double           centerY                   () /*-{ return this.centerY;                  }-*/;
+    public final native int              hintDelay                 () /*-{ return this.hintDelay;                }-*/;
+	public final native JsArray          hintDesc                  () /*-{ return this.hintDesc;                 }-*/;
+    public final native JavaScriptObject hintItem             (int i) /*-{ return this.hintDesc[i];              }-*/;
+
     public final native int              zoom                      () /*-{ return this.zoom;                     }-*/;
 	public final native JsArray          layers                    () /*-{ return this.mapServices;              }-*/;
 	public final native JavaScriptObject layer                (int i) /*-{ return this.mapServices[i];           }-*/;
@@ -34,7 +38,6 @@ public class JSONConfig extends JavaScriptObject
     public final native String           getURLRoadSoft            () /*-{ return this.urlRoadSoft;              }-*/;
 
     public final native String           getBaseMapURL             () /*-{ return this.baseMapURL;               }-*/;
-    public final native String           getBaseMapTitle           () /*-{ return this.baseMapTitle;             }-*/;
     public final native String           getBaseMapType            () /*-{ return this.baseMapType;              }-*/;
 
     public final native boolean          debug_serviceADD          () /*-{ return this.debug_ServiceADD;         }-*/;

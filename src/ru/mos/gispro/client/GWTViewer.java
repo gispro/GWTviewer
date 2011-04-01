@@ -82,7 +82,7 @@ public class GWTViewer implements EntryPoint, IBaseMap
 
     private              boolean               withBaseMap           = false;
 
-    private              boolean               DEBUG_HINT_HANDLER    = true;
+    private              boolean               DEBUG_HINT_HANDLER    = false;
     //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     public native void initMap()
     /*-{
@@ -971,7 +971,6 @@ public class GWTViewer implements EntryPoint, IBaseMap
         TreeNode treeNode = new TreeNode();
 
         String baseMapURL   = config.getBaseMapURL  ();
-        String baseMapTitle = config.getBaseMapTitle();
         String baseMapType  = config.getBaseMapType ();
 
         layerUtils.baseLayerURL = baseMapURL;
