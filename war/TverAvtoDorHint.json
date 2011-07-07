@@ -1,0 +1,103 @@
+{
+    "hintDelay"  : 1000,
+    "hintWidth"  : 250,
+    "hintHeight" : 65,
+    "hintColor"  : "#f0f0f0",
+    "infoHeight" : 320,
+    "infoWidth"  : 320,
+    "hintDesc"   : [
+                 {
+                    "subLayer"   : "\u0414\u0422\u041F",
+                    "identifier" : "\u0412\u0438\u0434\u0020\u0414\u0422\u041F",
+                    "isTitle"    : true,
+                    "layerN"     : 1,
+                    "html"       : "<div style=\"font-size:1em;font-weight:bold;\">&nbsp;\u0414\u0422\u041F : <0></div>"
+                 },
+                 {
+                    "subLayer"   : "\u0414\u0422\u041F",
+                    "identifier" : "\u0414\u0430\u0442\u0430\u0020\u0438\u0020\u0432\u0440\u0435\u043C\u044F\u0020\u0414\u0422\u041F",
+                    "isTitle"    : false,
+                    "layerN"     : 1,
+                    "html"       : "<div style=\"font-size:.9em;font-style:italic;\">&nbsp;\u0414\u0430\u0442\u0430\ : <0></div>"
+                 },
+                 {
+                    "subLayer"   : "\u0414\u0422\u041F",
+                    "identifier" : "\u0422\u0438\u0442\u0443\u043B",
+                    "isTitle"    : false,
+                    "layerN"     : 1,
+                    "html"       : "<div style=\"font-size:.9em;font-style:italic;\">&nbsp;\u0414\u043E\u0440\u043E\u0433\u0430 : <0></div>"
+                 },
+                 {
+                    "subLayer"   : "\u0414\u0422\u041F",
+                    "identifier" : "\u041E\u0441\u0432\u0435\u0449\u0435\u043D\u0438\u0435",
+                    "isTitle"    : false,
+                    "layerN"     : 1,
+                    "html"       : "<div style=\"font-size:.9em;font-style:italic;\">&nbsp;\u041E\u0441\u0432\u0435\u0449\u0435\u043D\u0438\u0435 : <0></div>"
+                 },
+                 {
+                    "subLayer"   : "\u0414\u043E\u0440\u043E\u0433\u0438\u002C\u0020\u0031\u002C\u0032\u002C\u0033\u0020\u043A\u043B\u0430\u0441\u0441\u043E\u0432",
+                    "identifier" : "\u0422\u0438\u0442\u0443\u043B",
+                    "isTitle"    : true,
+                    "layerN"     : 2,
+                    "html"       : "<div style=\"font-size:1em;font-weight:bold;\">&nbsp;<0></div>"
+                 },
+                 {
+                    "subLayer"   : "\u0414\u043E\u0440\u043E\u0433\u0438\u002C\u0020\u0031\u002C\u0032\u002C\u0033\u0020\u043A\u043B\u0430\u0441\u0441\u043E\u0432",
+                    "identifier" : "\u041E\u0431\u0441\u043B\u0443\u0436\u002E\u0020\u0443\u0447\u002D\u043A\u002C\u0020\u043A\u043C",
+                    "isTitle"    : false,
+                    "layerN"     : 2,
+                    "html"       : "<div style=\"font-size:.9em;font-style:italic;\">&nbsp;\u041E\u0431\u0441\u043B\u0443\u0436\u002E\u0020\u0443\u0447\u0430\u0441\u0442\u043E\u043A\u002C\u0020\u043A\u043C : <0></div>"
+                 },
+                 {
+                    "subLayer"   : "\u0414\u043E\u0440\u043E\u0433\u0438\u002C\u0020\u0031\u002C\u0032\u002C\u0033\u0020\u043A\u043B\u0430\u0441\u0441\u043E\u0432",
+                    "identifier" : "\u041A\u043E\u0434\u0020\u0434\u043E\u0440\u043E\u0433\u0438",
+                    "isTitle"    : false,
+                    "layerN"     : 2,
+                    "html"       : "<div style=\"font-size:.9em;font-style:italic;\">&nbsp;\u041A\u043E\u0434\u0020\u0434\u043E\u0440\u043E\u0433\u0438 : <0></div>"
+                 },
+                 {
+                    "subLayer"   : "\u0414\u043E\u0440\u043E\u0433\u0438\u002C\u0020\u0031\u002C\u0032\u002C\u0033\u0020\u043A\u043B\u0430\u0441\u0441\u043E\u0432",
+                    "identifier" : "\u041A\u043B\u0430\u0441\u0441\u0020\u0434\u043E\u0440\u043E\u0433\u0438",
+                    "isTitle"    : false,
+                    "layerN"     : 2,
+                    "html"       : "<div style=\"font-size:.9em;font-style:italic;\">&nbsp;\u041A\u043B\u0430\u0441\u0441\u0020\u0434\u043E\u0440\u043E\u0433\u0438 : <0></div>"
+                 },
+                 {
+                    "subLayer"   : "\u041C\u043E\u0441\u0442\u044B",
+                    "identifier" : "\u041C\u0430\u0442\u0435\u0440\u0438\u0430\u043B",
+                    "isTitle"    : true,
+                    "layerN"     : 3,
+                    "html"       : "<div style=\"font-size:1em;font-weight:bold;\">&nbsp;\u041C\u043E\u0441\u0442 <0></div>"
+                 },
+                 {
+                    "subLayer"   : "\u041C\u043E\u0441\u0442\u044B",
+                    "identifier" : "\u0414\u043B\u0438\u043D\u0430\u002C\u0020\u043C",
+                    "isTitle"    : false,
+                    "layerN"     : 3,
+                    "html"       : "<div style=\"font-size:.9em;font-style:italic;\">&nbsp;\u0414\u043B\u0438\u043D\u0430\u002C\u0020\u043C : <0></div>"
+                 },
+                 {
+                    "subLayer"   : "\u041C\u043E\u0441\u0442\u044B",
+                    "identifier" : "\u0422\u0438\u043F\u0020\u0441\u043E\u043E\u0440\u0443\u0436\u0435\u043D\u0438\u044F",
+                    "isTitle"    : false,
+                    "layerN"     : 3,
+                    "html"       : "<div style=\"font-size:.9em;font-style:italic;\">&nbsp;\u0422\u0438\u043F\u0020\u0441\u043E\u043E\u0440\u0443\u0436\u0435\u043D\u0438\u044F : <0></div>"
+                 },
+                 {
+                    "subLayer"   : "\u041C\u043E\u0441\u0442\u044B",
+                    "identifier" : "\u041D\u0430\u0438\u043C\u0435\u043D\u043E\u0432\u0430\u043D\u0438\u0435\u0020\u043F\u0440\u0435\u043F\u044F\u0442\u0441\u0442\u0432\u0438\u044F",
+                    "isTitle"    : false,
+                    "layerN"     : 3,
+                    "html"       : "<div style=\"font-size:.9em;font-style:italic;\">&nbsp;\u041F\u0440\u0435\u043F\u044F\u0442\u0441\u0442\u0432\u0438\u0435 : <0></div>"
+                 },
+                 {
+                    "subLayer"   : "Федеральные дороги",
+                    "identifier" : "\u041D\u0430\u0438\u043C\u0435\u043D\u043E\u0432\u0430\u043D\u0438\u0435\u0020\u043F\u0440\u0435\u043F\u044F\u0442\u0441\u0442\u0432\u0438\u044F",
+                    "isTitle"    : true,
+                    "layerN"     : 4,
+                    "html"       : "<div style=\"font-size:.9em;font-style:italic;\">&nbsp;<0></div>"
+                 }
+                 
+                 
+    ]
+}

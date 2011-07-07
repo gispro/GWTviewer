@@ -1,0 +1,66 @@
+{
+    "hintDelay"  : 250,
+    "hintWidth"  : 250,
+    "hintHeight" : 65,
+    "hintColor"  : "#f0f0f0",
+    "infoHeight" : 460,
+    "infoWidth"  : 460,
+    "hintDesc"   : [
+                 {
+                    "subLayer"   : "\u043F\u043E\u0434\u0433\u043E\u0442\u043E\u0432\u043A\u0430\u0020\u043A\u0020\u0432\u0432\u043E\u0434\u0443\u0020\u0432\u0020\u044D\u043A\u0441\u043F\u043B\u0443\u0430\u0442\u0430\u0446\u0438\u044E",
+                    "identifier" : "\u041D\u0430\u0437\u0432\u0430\u043D\u0438\u0435\u0020\u043E\u0431\u044A\u0435\u043A\u0442\u0430",
+                    "isTitle"    : true,
+                    "layerN"     : 1,
+                    "html"       : "<div style=\"font-size:1em;font-weight:bold;\">&nbsp;<0></div>"
+                 },
+                 {
+                    "subLayer"   : "\u043F\u043E\u0434\u0433\u043E\u0442\u043E\u0432\u043A\u0430\u0020\u043A\u0020\u0432\u0432\u043E\u0434\u0443\u0020\u0432\u0020\u044D\u043A\u0441\u043F\u043B\u0443\u0430\u0442\u0430\u0446\u0438\u044E",
+                    "identifier" : "\u0410\u0434\u0440\u0435\u0441",
+                    "isTitle"    : false,
+                    "layerN"     : 1,
+                    "html"       : "<div style=\"font-size:.9em;font-style:italic;\">&nbsp;\u0410\u0434\u0440\u0435\u0441 : <0></div>"
+                 },
+                 {
+                    "subLayer"   : "\u043F\u043E\u0434\u0433\u043E\u0442\u043E\u0432\u043A\u0430\u0020\u043A\u0020\u0432\u0432\u043E\u0434\u0443\u0020\u0432\u0020\u044D\u043A\u0441\u043F\u043B\u0443\u0430\u0442\u0430\u0446\u0438\u044E",
+                    "identifier" : "\u2116\u0020\u043F\u043E\u0441\u0442\u0430\u043D\u043E\u0432\u043B\u0435\u043D\u0438\u044F",
+                    "isTitle"    : false,
+                    "layerN"     : 1,
+                    "html"       : "<div style=\"font-size:.9em;font-style:italic;\">&nbsp;\u2116\u0020\u043F\u043E\u0441\u0442\u0430\u043D\u043E\u0432\u043B\u0435\u043D\u0438\u044F : <0></div>"
+                 },
+                 {
+                    "subLayer"   : "\u043F\u043E\u0434\u0433\u043E\u0442\u043E\u0432\u043A\u0430\u0020\u043A\u0020\u0432\u0432\u043E\u0434\u0443\u0020\u0432\u0020\u044D\u043A\u0441\u043F\u043B\u0443\u0430\u0442\u0430\u0446\u0438\u044E",
+                    "identifier" : "\u0441\u0442\u0430\u0434\u0438\u044F\u0020\u0441\u0442\u0440\u002D\u0432\u0430\u0020\u043D\u0430\u0020\u0032\u0032\u002E\u0030\u0033\u002E\u0032\u0030\u0031\u0031",
+                    "isTitle"    : false,
+                    "layerN"     : 1,
+                    "html"       : "<div style=\"font-size:.9em;font-style:italic;\">&nbsp;\u0421\u0442\u0430\u0434\u0438\u044F\u0020\u0441\u0442\u0440\u043E\u0438\u0442\u0435\u043B\u044C\u0441\u0442\u0432\u0430 : <0></div>"
+                 },
+                 {
+                    "subLayer"   : "\u0441\u0442\u0440\u043E\u0438\u0442\u0435\u043B\u044C\u0441\u0442\u0432\u043E",
+                    "identifier" : "\u041D\u0430\u0437\u0432\u0430\u043D\u0438\u0435\u0020\u043E\u0431\u044A\u0435\u043A\u0442\u0430",
+                    "isTitle"    : true,
+                    "layerN"     : 2,
+                    "html"       : "<div style=\"font-size:1em;font-weight:bold;\">&nbsp;<0></div>"
+                 },
+                 {
+                    "subLayer"   : "\u0441\u0442\u0440\u043E\u0438\u0442\u0435\u043B\u044C\u0441\u0442\u0432\u043E",
+                   "identifier"  : "\u0410\u0434\u0440\u0435\u0441",
+                   "isTitle"     : false,
+                   "layerN"      : 2,
+                   "html"        : "<div style=\"font-size:.9em;font-style:italic;\">&nbsp;\u0410\u0434\u0440\u0435\u0441 : <0></div>"
+                 },
+                 {
+                    "subLayer"   : "\u0441\u0442\u0440\u043E\u0438\u0442\u0435\u043B\u044C\u0441\u0442\u0432\u043E",
+                    "identifier" : "\u2116\u0020\u043F\u043E\u0441\u0442\u0430\u043D\u043E\u0432\u043B\u0435\u043D\u0438\u044F",
+                    "isTitle"    : false,
+                    "layerN"     : 2,
+                    "html"       : "<div style=\"font-size:.9em;font-style:italic;\">&nbsp;\u2116\u0020\u043F\u043E\u0441\u0442\u0430\u043D\u043E\u0432\u043B\u0435\u043D\u0438\u044F : <0></div>"
+                 },
+                 {
+                    "subLayer"   : "\u0441\u0442\u0440\u043E\u0438\u0442\u0435\u043B\u044C\u0441\u0442\u0432\u043E",
+                    "identifier" : "\u0441\u0442\u0430\u0434\u0438\u044F\u0020\u0441\u0442\u0440\u002D\u0432\u0430\u0020\u043D\u0430\u0020\u0032\u0032\u002E\u0030\u0033\u002E\u0032\u0030\u0031\u0031",
+                    "isTitle"    : false,
+                    "layerN"     : 2,
+                    "html"       : "<div style=\"font-size:.9em;font-style:italic;\">&nbsp;\u0421\u0442\u0430\u0434\u0438\u044F\u0020\u0441\u0442\u0440\u043E\u0438\u0442\u0435\u043B\u044C\u0441\u0442\u0432\u0430 : <0></div>"
+                 }
+    ]
+}
