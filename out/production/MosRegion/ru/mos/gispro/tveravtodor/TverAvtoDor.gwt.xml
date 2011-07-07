@@ -1,8 +1,0 @@
-
-<module rename-to="tveravtodor">
-	<inherits name="com.google.gwt.user.User"/>
-	<inherits name="com.smartgwt.SmartGwt"/>
-	<entry-point class="ru.mos.gispro.tveravtodor.client.TverAvtoDor"/>
-    <servlet path="/" class="ru.mos.gispro.tveravtodor.legendloader.server.RPCImpl" />
-	<source path="client"/>
-</module>
